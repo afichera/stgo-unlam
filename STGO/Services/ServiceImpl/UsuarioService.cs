@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Model;
+using Services.Service;
+using Persistence.DAO;
+using Persistence.Util;
+
+namespace Services.ServiceImpl
+{
+    public class UsuarioService:IUsuarioService, ICommonService<Usuario>
+    {
+        private IUsuarioDAO usuarioDAO = DAOLocator.Instance.UsuarioDAO;
+
+        public List<Usuario> getAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario getFindById(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario saveOrUpdate(Usuario entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void delete(Usuario entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void login(string email, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario getFindByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

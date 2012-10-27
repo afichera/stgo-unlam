@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="" title="Inicio"  description="" >
+
+
+    <siteMapNode url="empresas.aspx" title="Empresas"  description="" >
+      <!-- DEFAULT SUPERUSUARIO-->
+      <siteMapNode url="activar-desactivarEmpresas.aspx" title="Activar/Desactivar empresas"  description=""/>
+      <!-- popup-->
+      <siteMapNode url="modifCantSalas" title="Modificar Cantidad de Salas"  description=""/>
+      <!-- popup-->
+    </siteMapNode>
+
+    <siteMapNode url="turnos.aspx" title="Turnos"  description="" >
+      <!-- DEFAULT EMPRESA-->
+      <siteMapNode url="" title="Nuevo Turno / modificar turno"  description=""/>
+      <!-- popup-->
+      <siteMapNode url="" title="Baja"  description=""/>
+      <!-- popup confirm de js-->
+    </siteMapNode>
+
+
+    <siteMapNode url="salas.aspx" title="Salas"  description="" >
+      <siteMapNode url="nuevaSala.aspx" title="Nueva Sala"  description=""/>
+      <!-- Preguntar cuando-->
+      <siteMapNode url="modificarSala.aspx" title="Modificar Sala"  description=""/>
+    </siteMapNode>
+
+
+
+    <siteMapNode url="miperfil.aspx" title="Mis Datos"  description="" />
+    <siteMapNode url="logout.aspx" title="Cerrar Sesión"  description="" />
+
+  </siteMapNode>
+</siteMap>
