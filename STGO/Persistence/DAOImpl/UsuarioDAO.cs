@@ -79,5 +79,34 @@ namespace Persistence.DAOImpl
         {
             throw new NotImplementedException();
         }
+
+
+        public long login(string email, string password)
+        {
+            long empresaId = -1;
+            if (base.Conectar())
+            {
+                SqlDataReader dataReader;
+                base.Command = new SqlCommand();
+                Usuario usuario;
+                 
+
+                base.Command.Connection = base.Conexion;
+                Command.CommandText = "SELECT u.UserId, u.UserName, m.Password FROM aspnet_Users u INNER JOIN aspnet_Membership m ON (u.UserId = m.UserId) WHERE u.UserName = @UserName";
+                Command.CommandType = CommandType.Text;
+                Command.Parameters.AddWithValue("UserName", email.ToUpper());
+                dataReader = Command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    usuario = new Usuario();
+                    usuario.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    usuario.EMail = dataReader.GetSqlString(1).ToString();
+                    usuario.Password = dataReader.GetSqlString(2).ToString();
+
+                }
+            }
+            return empresaId;
+        }
     }
 }

@@ -33,9 +33,9 @@ namespace Services.ServiceImpl
             throw new NotImplementedException();
         }
 
-        public void login(string email, string password)
+        public long login(string email, string password)
         {
-            throw new NotImplementedException();
+            return this.usuarioDAO.login(email, password);
         }
 
         public Usuario getFindByEmail(string email)

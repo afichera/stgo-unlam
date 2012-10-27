@@ -44,9 +44,9 @@ namespace Persistence.DAOImpl
             SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder();
             csb.DataSource = @"(local)";
             csb.InitialCatalog = "STGO";
-            csb.IntegratedSecurity = false;
-            csb.UserID = "stgo";
-            csb.Password = "adminadmin";
+            csb.IntegratedSecurity = true;
+            //csb.UserID = "stgo";
+            //csb.Password = "adminadmin";
 
             return csb.ConnectionString;
         }

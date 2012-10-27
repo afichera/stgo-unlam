@@ -8,7 +8,7 @@ namespace Services.Service
 {
     public interface IUsuarioService
     {
-        void login(String email, String password);
+        long login(String email, String password);
 
         Usuario getFindByEmail(String email);
     }
