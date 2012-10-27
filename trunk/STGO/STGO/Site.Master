@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="STGO.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="~/Styles/960.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/reset.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="/Scripts/jquery-1.4.1.js"></script>
+        <script type="text/javascript" src="/Scripts/jquery-1.4.1.min.js"></script>
+        <script type="text/javascript" src="/Scripts/jquery-1.4.1-vsdoc.js"></script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<form runat="server" id="form">
+    <div class="container_12" id="encabezado">
+        <div class="grid_11">
+            <img src="images/logo.png" alt="STGO - Sistema de Turnos Genérico Online" />
+        </div>
+
+    </div>
+        
+    <asp:ContentPlaceHolder ID="MenuContent" runat="server" />
+       
+    </div>
+    <div class="container_12" id="principal">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+    <div class="container_12" id="pie">
+        <div class="grid_12">
+            <p>
+                Diseñado por Fichera-Margenats</p>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
