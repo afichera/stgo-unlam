@@ -8,6 +8,9 @@ namespace Persistence.DAO
 {
     public interface IUsuarioDAO
     {
+        
         Usuario getFindByEmail(String email);
+
+        long login(String email, String password);
     }
 }
