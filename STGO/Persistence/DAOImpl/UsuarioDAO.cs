@@ -92,18 +92,17 @@ namespace Persistence.DAOImpl
                  
 
                 base.Command.Connection = base.Conexion;
-                Command.CommandText = "SELECT u.UserId, u.UserName, m.Password FROM aspnet_Users u INNER JOIN aspnet_Membership m ON (u.UserId = m.UserId) WHERE u.UserName = @UserName";
+                Command.CommandText = "SELECT u.UserName, m.Password, e.id FROM aspnet_Users u INNER JOIN aspnet_Membership m ON (u.UserId = m.UserId) INNER JOIN SistemaTurnos.Empresa e ON (u.UserId = e.UserId) WHERE u.UserName = @UserName";
                 Command.CommandType = CommandType.Text;
                 Command.Parameters.AddWithValue("UserName", email.ToUpper());
                 dataReader = Command.ExecuteReader();
 
                 while (dataReader.Read())
                 {
-                    usuario = new Usuario();
-                    usuario.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
-                    usuario.EMail = dataReader.GetSqlString(1).ToString();
-                    usuario.Password = dataReader.GetSqlString(2).ToString();
-
+                    usuario = new Usuario();                   
+                    usuario.EMail = dataReader.GetSqlString(0).ToString();
+                    usuario.Password = dataReader.GetSqlString(1).ToString();
+                    empresaId = long.Parse(dataReader.GetSqlInt64(2).ToString());
                 }
             }
             return empresaId;

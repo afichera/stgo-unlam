@@ -15,9 +15,19 @@ namespace ServiceTests
         [TestMethod]
         public void TestLoginOK()
         {
-            String email = "adminadmin";
+            String email = "admin@admin.com";
             String password = "adminadmin";
-            usuarioService.login(email, password);
+            long empresaId = usuarioService.login(email, password);
+            Assert.IsTrue(empresaId != -1);
+        }
+
+        [TestMethod]
+        public void TestLoginFail()
+        {
+            String email = "cualquiera";
+            String password = "adminadmin";
+            long empresaId = usuarioService.login(email, password);
+            Assert.IsTrue(empresaId == -1);
         }
     }
 }
