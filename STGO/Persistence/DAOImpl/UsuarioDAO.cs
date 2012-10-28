@@ -30,7 +30,7 @@ namespace Persistence.DAOImpl
                 while (dataReader.Read())
                 {
                     usuario = new Usuario();
-                    usuario.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    usuario.Id = new Guid(dataReader.GetSqlGuid(0).ToString());
                     usuario.EMail = dataReader.GetSqlString(1).ToString();
                     usuario.Password = dataReader.GetSqlString(2).ToString();
                     usuario.Descripcion = dataReader.GetSqlString(3).ToString();
