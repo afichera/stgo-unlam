@@ -8,8 +8,7 @@ namespace Persistence.DAO
 {
     public interface ISalaDAO:ICommonDAO<Sala>
     {
-        List<Sala> obtenerSalas();
-
         List<Sala> obtenerSalasEmpresa(long idEmpresa);
+        Sala saveOrUpdate(Sala sala, long idEmpresa);
     }
 }

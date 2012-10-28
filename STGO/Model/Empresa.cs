@@ -23,6 +23,11 @@ namespace Model
             this.Telefono = telefono;
         }
 
+        public Empresa()
+        {
+            // TODO: Complete member initialization
+        }
+
     }
 
 }
