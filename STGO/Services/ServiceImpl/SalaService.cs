@@ -35,7 +35,7 @@ namespace Services.ServiceImpl
 
         public List<Sala> obtenerSalas()
         {
-            throw new NotImplementedException();
+            return this.getAll();
         }
 
         public List<Sala> obtenerSalasEmpresa(long idEmpresa)
