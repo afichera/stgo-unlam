@@ -6,14 +6,17 @@ using Persistence.DAO;
 using Model;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlTypes;
 
 namespace Persistence.DAOImpl
 {
     public class SalaDAO:BaseDAO,ISalaDAO
     {
+        
         public List<Sala> obtenerSalasEmpresa(long idEmpresa)
         {
             List<Sala> salas = new List<Sala>();
+            
             if (base.Conectar())
             {
                 SqlDataReader dataReader;
@@ -21,9 +24,11 @@ namespace Persistence.DAOImpl
                 Sala sala;
 
                 base.Command.Connection = base.Conexion;
-                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.empresaId = @empresaId";
-                Command.CommandType = CommandType.Text;
+                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.empresaId = @empresaId AND s.fechaHoraBaja is null";
+                
+                Command.CommandType = CommandType.Text;                
                 Command.Parameters.AddWithValue("empresaId", idEmpresa);
+                
                 dataReader = Command.ExecuteReader();
 
                 while (dataReader.Read())
@@ -52,7 +57,7 @@ namespace Persistence.DAOImpl
                 Sala sala;
 
                 base.Command.Connection = base.Conexion;
-                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S";
+                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.fechaHoraBaja is null";
                 Command.CommandType = CommandType.Text;
                 dataReader = Command.ExecuteReader();
 
