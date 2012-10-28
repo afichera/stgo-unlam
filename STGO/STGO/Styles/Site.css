@@ -143,20 +143,21 @@ width:440px;
 }
 
 
+/*Para las tablas generadas po asp.net*/
 
-
-.tabla-item, .tabla-titulo
+td, th
 {
  margin-top: 5px;
   margin-bottom: 5px;  
+  padding: 5px;
 }
 
-.tabla-titulo
+th
 { border-bottom:2px solid #444;
  font-weight:bold;
 }
 
-.tabla-item
+td
 {
    border-bottom:1px solid #444; 
     }

@@ -2,7 +2,6 @@
     CodeBehind="salas.aspx.cs" Inherits="STGO.salas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPagConMenu" runat="server">
-    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
     <div class="grid_12">
@@ -12,19 +11,28 @@
         <asp:DropDownList ID="liEmpresas" runat="server">
         </asp:DropDownList>
         (sólo para superusuario)<br />
-    
     </div>
-
-<div class="grid_12 tabla-titulo">
-    <asp:GridView ID="grid_Salas" runat="server">
-        <Columns>
-            <asp:ButtonField CommandName="Edit" HeaderText="Editar" ShowHeader="True" 
-                Text="Editar" />
-        </Columns>
-    </asp:GridView>
-</div>
-<div class="clear"></div>
-
-
-
+    <div class="grid_12 tabla-titulo">
+        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField DataField="Nombre" HeaderText="Nonmbre" />
+                <asp:BoundField DataField="Frecuencia" HeaderText="Frecuencia de Turno" HtmlEncode="false"
+                    DataFormatString="{0} min." />
+                <asp:TemplateField HeaderText="Permite Múltiplos">
+                    <ItemTemplate>
+                        <asp:Label ID="txtPermiteMultiplo" Text='<%# Eval("PermiteMultiplo").ToString() == "True" ? "Si": "No" %>'
+                            runat="server" /></ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="HoraInicio" HeaderText="Hora Inicio" HtmlEncode="false"
+                    DataFormatString="{0:T}" />
+                <asp:BoundField DataField="HoraCierre" HeaderText="Hora Cierre" HtmlEncode="false"
+                    DataFormatString="{0:T}" />
+                <asp:CommandField ShowEditButton="True" />
+                <asp:CommandField ShowDeleteButton="True" ShowHeader="True" />
+                
+            </Columns>
+        </asp:GridView>
+    </div>
+    <div class="clear">
+    </div>
 </asp:Content>
