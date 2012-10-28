@@ -198,6 +198,7 @@
     <Content Include="Libraries\WSExchange\Microsoft.Exchange.WebServices.xml" />
     <Content Include="Login.aspx" />
     <Content Include="miperfil.aspx" />
+    <Content Include="Registro.aspx" />
     <Content Include="salas.aspx" />
     <Content Include="Scripts\fancybox\blank.gif" />
     <Content Include="Scripts\fancybox\fancybox-x.png" />
@@ -354,6 +355,13 @@
       <DependentUpon>popup.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registro.aspx.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registro.aspx.designer.cs">
+      <DependentUpon>Registro.aspx</DependentUpon>
+    </Compile>
     <Compile Include="salas.aspx.cs">
       <DependentUpon>salas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

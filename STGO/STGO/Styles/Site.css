@@ -160,4 +160,30 @@ width:440px;
 {
    border-bottom:1px solid #444; 
     }
+    
+    
+#LoginStatusDiv
+{  
+     text-align:right;
+     padding-top:5px;
+}
+
+#LoginStatus
+{
+     font-family: Arial, Helvetica, sans-serif;
+     font-size:13px; 
+     color:#444; 
+     font-weight:bold; 
+}
+
+#LoginStatusDiv a
+{
+    text-decoration:none;
+}
+
+#LoginStatusDiv a:hover
+{
+    text-decoration:underline;
+}
+
 
