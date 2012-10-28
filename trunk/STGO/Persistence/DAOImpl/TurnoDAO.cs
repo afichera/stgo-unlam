@@ -15,7 +15,7 @@ namespace Persistence.DAOImpl
             throw new NotImplementedException();
         }
 
-        public List<Turno> getFindById(long id)
+        public Turno getFindById(long id)
         {
             throw new NotImplementedException();
         }

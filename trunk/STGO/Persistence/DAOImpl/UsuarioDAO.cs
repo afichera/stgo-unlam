@@ -65,10 +65,6 @@ namespace Persistence.DAOImpl
         }
 
 
-        List<Usuario> ICommonDAO<Usuario>.getFindById(long id)
-        {
-            throw new NotImplementedException();
-        }
 
         public void delete(Usuario entity)
         {
