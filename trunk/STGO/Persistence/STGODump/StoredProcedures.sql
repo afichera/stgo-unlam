@@ -78,5 +78,89 @@ AS
 BEGIN TRANSACTION DELETESALA; 
 	UPDATE Sala SET fechaHoraBaja = GETDATE()
 			WHERE id = @id;
-COMMIT TRANSACTION UPSERTSALA; 	
+COMMIT TRANSACTION DELETESALA; 	
+GO
+
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_EMPRESA_SAVE_OR_UPDATE]    Script Date: 10/28/2012 15:15:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_EMPRESA_SAVE_OR_UPDATE]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[SP_EMPRESA_SAVE_OR_UPDATE]
+GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_SALA_SAVE_OR_UPDATE]    Script Date: 10/28/2012 15:15:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_EMPRESA_SAVE_OR_UPDATE]
+    @id						bigint OUTPUT,
+    @razonSocial             varchar(100),
+    @cuit				varchar(13),
+    @telefono				varchar(20),
+    @maximoSalas					smallint,
+    @activa		tinyint,
+    @userId				uniqueidentifier
+AS
+DECLARE @rows int;
+SET @rows = 0;
+
+BEGIN TRANSACTION UPSERTEMPRESA; 
+if(@id is not null and @id <> 0) 
+begin
+	SET @rows = (SELECT COUNT(*) FROM Sala WHERE id = @id);
+end
+
+IF (@rows = 0)
+BEGIN
+	INSERT INTO Empresa(activa, cuit, maximoSalas, razonSocial, telefono, userId)
+	VALUES (0, @cuit, @maximoSalas, @razonSocial, @telefono, @userId);
+	SET @id = (SELECT MAX(id) FROM Sala); 
+end
+
+IF (@rows = 1)
+BEGIN
+	UPDATE Empresa SET activa = @activa,
+					cuit = @cuit,
+					maximoSalas = @maximoSalas, 
+					razonSocial = @razonSocial,
+					telefono = @telefono
+			WHERE id = @id;
+end
+
+COMMIT TRANSACTION UPSERTEMPRESA; 	
+GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_EMPRESA_DELETE]    Script Date: 10/28/2012 15:15:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_EMPRESA_DELETE]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[SP_EMPRESA_DELETE]
+GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_EMPRESA_DELETE]    Script Date: 10/28/2012 15:15:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_EMPRESA_DELETE]
+    @id						bigint    
+AS
+BEGIN TRANSACTION DELETEEMPRESA; 
+	UPDATE Empresa SET fechaHoraBaja = GETDATE()
+			WHERE id = @id;
+COMMIT TRANSACTION DELETEEMPRESA; 	
 GO
