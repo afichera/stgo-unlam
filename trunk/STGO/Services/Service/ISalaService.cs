@@ -8,6 +8,8 @@ namespace Services.Service
 {
     public interface ISalaService:ICommonService<Sala>
     {
+        Sala saveOrUpdate(Sala sala, Empresa empresa);
+
         List<Sala> obtenerSalas();
 
         List<Sala> obtenerSalasEmpresa(long idEmpresa);

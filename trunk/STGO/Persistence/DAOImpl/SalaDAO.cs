@@ -42,6 +42,7 @@ namespace Persistence.DAOImpl
                     sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
                     salas.Add(sala);
                 }
+                base.Desconectar();
 
             }
             return salas;
@@ -72,7 +73,7 @@ namespace Persistence.DAOImpl
                     sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
                     salas.Add(sala);
                 }
-
+                base.Desconectar();
             }
             return salas;
         }
@@ -105,24 +106,78 @@ namespace Persistence.DAOImpl
                     sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
                     
                 }
-
+                base.Desconectar();
             }
             return sala;
         }
 
-        public Sala saveOrUpdate(Sala entity)
+        public Sala saveOrUpdate(Sala entity, long empresaId)
         {
-            throw new NotImplementedException();
+            Sala sala = entity;
+
+            if (base.Conectar())            {
+                
+                string sp = "SP_SALA_SAVE_OR_UPDATE";
+                SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                Command.CommandType = CommandType.StoredProcedure;
+                SqlParameter paramId =  new SqlParameter("id", SqlDbType.BigInt);
+                SqlParameter paramFrecuencia = new SqlParameter("frecuencia", SqlDbType.Int);
+                SqlParameter paramHoraCierre = new SqlParameter("horaCierre", SqlDbType.DateTime);
+                SqlParameter paramHoraInicio = new SqlParameter("horaInicio", SqlDbType.DateTime);
+                SqlParameter paramNombre = new SqlParameter("nombre", SqlDbType.VarChar);
+                SqlParameter paramPermiteMultiplo = new SqlParameter("permiteMultiplo", SqlDbType.TinyInt);
+                SqlParameter paramEmpresaId = new SqlParameter("empresaId", SqlDbType.BigInt);
+                paramId.Direction = ParameterDirection.InputOutput;
+                paramId.Value = sala.Id;                
+                paramFrecuencia.Direction = ParameterDirection.Input;
+                paramFrecuencia.Value = sala.Frecuencia;
+                paramHoraCierre.Direction = ParameterDirection.Input;
+                paramHoraCierre.Value = sala.HoraCierre;
+                paramHoraInicio.Direction = ParameterDirection.Input;
+                paramHoraInicio.Value = sala.HoraInicio;
+                paramNombre.Direction = ParameterDirection.Input;
+                paramNombre.Value = sala.Nombre;
+                paramPermiteMultiplo.Direction = ParameterDirection.Input;
+                paramPermiteMultiplo.Value = sala.PermiteMultiplo;
+                paramEmpresaId.Direction = ParameterDirection.Input;
+                paramEmpresaId.Value = empresaId;
+
+                Command.Parameters.Add(paramId);
+                Command.Parameters.Add(paramFrecuencia);
+                Command.Parameters.Add(paramHoraCierre);
+                Command.Parameters.Add(paramHoraInicio);
+                Command.Parameters.Add(paramNombre);
+                Command.Parameters.Add(paramPermiteMultiplo);
+                Command.Parameters.Add(paramEmpresaId);
+
+                int filasAfectadas = Command.ExecuteNonQuery();
+                
+                sala.Id = long.Parse(Command.Parameters["id"].Value.ToString());
+                base.Desconectar();
+            }
+            return sala;
         }
 
+        public Sala saveOrUpdate(Sala entity) {
+            throw new NotImplementedException();
+        }
         public void delete(Sala entity)
         {
-            throw new NotImplementedException();
-        }
+            //[SP_SALA_DELETE]
+            Sala sala = entity;
 
-        public List<Sala> obtenerSalas()
-        {
-            throw new NotImplementedException();
+            if (base.Conectar())
+            {
+                string sp = "SP_SALA_DELETE";
+                SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                Command.CommandType = CommandType.StoredProcedure;
+                SqlParameter paramId = new SqlParameter("id", SqlDbType.BigInt);
+                paramId.Direction = ParameterDirection.Input;
+                paramId.Value = sala.Id;
+                Command.Parameters.Add(paramId);                
+                int filasAfectadas = Command.ExecuteNonQuery();
+                base.Desconectar();
+            }            
         }
     }
 }

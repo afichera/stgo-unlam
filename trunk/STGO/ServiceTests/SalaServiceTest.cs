@@ -38,5 +38,40 @@ namespace ServiceTests
             Assert.IsNotNull(sala);
             Assert.IsTrue(sala.Id.Equals(2));
         }
+
+        [TestMethod]
+        public void saveOrUpdateUpdateTestOK()
+        {
+            Sala sala = this.salaService.getFindById(2);
+            sala.Nombre = "NUEVO NOMBRE";
+            Empresa empresa = new Empresa();
+            empresa.Id = 2;
+            sala = this.salaService.saveOrUpdate(sala, empresa);
+            Assert.IsNotNull(sala);
+            Assert.IsTrue(sala.Id.Equals(2));
+        }
+
+        [TestMethod]
+        public void saveOrUpdateSaveTestOK()
+        {
+            Sala sala = this.salaService.getFindById(2);
+            sala.Id = 0;
+            sala.Nombre = "NUEVO NOMBRE";
+            Empresa empresa = new Empresa();
+            empresa.Id = 2;
+            sala = this.salaService.saveOrUpdate(sala, empresa);
+            Assert.IsNotNull(sala);
+            
+        }
+
+        [TestMethod]
+        public void deleteTestOK()
+        {
+            Sala sala = this.salaService.getFindById(5);
+            this.salaService.delete(sala);
+            Assert.IsTrue(true);
+
+        }
+
     }
 }

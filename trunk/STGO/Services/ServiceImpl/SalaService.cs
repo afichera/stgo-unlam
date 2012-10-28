@@ -23,6 +23,10 @@ namespace Services.ServiceImpl
             return this.salaDAO.getFindById(id);
         }
 
+        public Sala saveOrUpdate(Sala sala, Empresa empresa) {
+            return this.salaDAO.saveOrUpdate(sala, empresa.Id);
+        }
+
         public Sala saveOrUpdate(Sala entity)
         {
             throw new NotImplementedException();
@@ -30,7 +34,7 @@ namespace Services.ServiceImpl
 
         public void delete(Sala entity)
         {
-            throw new NotImplementedException();
+            this.salaDAO.delete(entity);
         }
 
         public List<Sala> obtenerSalas()

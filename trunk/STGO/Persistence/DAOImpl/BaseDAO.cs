@@ -39,6 +39,12 @@ namespace Persistence.DAOImpl
 
         }
 
+        public void Desconectar() {
+            if (Conexion != null && Conexion.State == ConnectionState.Open) {
+                Conexion.Close();
+            }
+        }
+       
         public String CadenaConexion()
         {
             SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder();
