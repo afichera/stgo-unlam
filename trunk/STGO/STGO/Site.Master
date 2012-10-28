@@ -18,8 +18,11 @@
 <body>
 <form runat="server" id="form">
     <div class="container_12" id="encabezado">
-        <div class="grid_11">
+        <div class="grid_9">
             <img src="images/logo.png" alt="STGO - Sistema de Turnos Genérico Online" />
+        </div>
+        <div class="grid_3" id="LoginStatusDiv">
+            <asp:LoginStatus ID="LoginStatus" runat="server" />
         </div>
 
     </div>
