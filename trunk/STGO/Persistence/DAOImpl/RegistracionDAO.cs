@@ -7,7 +7,7 @@ using Model;
 
 namespace Persistence.DAOImpl
 {
-    public class RegistracionDAO:BaseDAO, ICommonDAO<Registracion>, IRegistracionDAO
+    public class RegistracionDAO:BaseDAO, IRegistracionDAO
     {
         public List<Registracion> getAll()
         {

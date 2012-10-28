@@ -6,7 +6,7 @@ using Model;
 
 namespace Persistence.DAO
 {
-    public interface IUsuarioDAO
+    public interface IUsuarioDAO:ICommonDAO<Usuario>
     {
         
         Usuario getFindByEmail(String email);

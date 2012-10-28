@@ -7,7 +7,7 @@ using Model;
 
 namespace Persistence.DAOImpl
 {
-    public class RolDAO:BaseDAO, ICommonDAO<Rol>, IRolDAO
+    public class RolDAO:BaseDAO, IRolDAO
     {
 
         public List<Rol> getAll()

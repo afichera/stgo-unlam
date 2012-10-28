@@ -9,7 +9,7 @@ using Model;
 
 namespace Persistence.DAOImpl
 {
-    public class ParametroDAO : BaseDAO, ICommonDAO<Parametro>, IParametroDAO
+    public class ParametroDAO : BaseDAO, IParametroDAO
     {
         public List<Parametro> getAll()
         {

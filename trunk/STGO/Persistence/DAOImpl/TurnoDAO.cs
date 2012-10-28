@@ -7,7 +7,7 @@ using Model;
 
 namespace Persistence.DAOImpl
 {
-    public class TurnoDAO:BaseDAO, ICommonDAO<Turno>, ITurnoDAO
+    public class TurnoDAO:BaseDAO, ITurnoDAO
     {
 
         public List<Turno> getAll()

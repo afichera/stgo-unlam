@@ -7,7 +7,7 @@ using Model;
 
 namespace Persistence.DAOImpl
 {
-    public class EmpresaDAO:BaseDAO, ICommonDAO<Empresa>, IEmpresaDAO
+    public class EmpresaDAO:BaseDAO, IEmpresaDAO
     {
 
         public List<Empresa> getAll()

@@ -6,7 +6,7 @@ using Model;
 
 namespace Persistence.DAO
 {
-    public interface IEmpresaDAO
+    public interface IEmpresaDAO:ICommonDAO<Empresa>
     {
     }
 }

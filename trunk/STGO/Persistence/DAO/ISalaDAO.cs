@@ -6,8 +6,10 @@ using Model;
 
 namespace Persistence.DAO
 {
-    public interface ISalaDAO
+    public interface ISalaDAO:ICommonDAO<Sala>
     {
+        List<Sala> obtenerSalas();
+
         List<Sala> obtenerSalasEmpresa(long idEmpresa);
     }
 }

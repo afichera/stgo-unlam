@@ -7,7 +7,7 @@ using Model;
 
 namespace Persistence.DAOImpl
 {
-    public class SalaDAO:BaseDAO, ICommonDAO<Sala>, ISalaDAO
+    public class SalaDAO:BaseDAO,ISalaDAO
     {
         public List<Sala> obtenerSalasEmpresa(long idEmpresa)
         {
@@ -31,6 +31,11 @@ namespace Persistence.DAOImpl
         }
 
         public void delete(Sala entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Sala> obtenerSalas()
         {
             throw new NotImplementedException();
         }
