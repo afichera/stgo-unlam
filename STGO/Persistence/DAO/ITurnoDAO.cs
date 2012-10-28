@@ -6,7 +6,7 @@ using Model;
 
 namespace Persistence.DAO
 {
-    public interface ITurnoDAO
+    public interface ITurnoDAO:ICommonDAO<Turno>
     {
         List<Turno> obtenerTurnosReservados(long idSala, DateTime fecha);
 

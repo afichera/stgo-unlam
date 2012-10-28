@@ -6,7 +6,7 @@ using Model;
 
 namespace Persistence.DAO
 {
-    public interface IParametroDAO
+    public interface IParametroDAO:ICommonDAO<Parametro>
     {
         Parametro getFindByClave(String clave);
     }

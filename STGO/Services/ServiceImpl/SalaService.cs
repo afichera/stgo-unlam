@@ -15,6 +15,7 @@ namespace Services.ServiceImpl
 
         public List<Sala> getAll()
         {
+            
             throw new NotImplementedException();
         }
 
