@@ -22,6 +22,11 @@ namespace Model
             this.HoraInicio = horaInicio;
             this.HoraCierre = horaCierre;
         }
+
+        public Sala()
+        {
+            
+        }
     }
 
 

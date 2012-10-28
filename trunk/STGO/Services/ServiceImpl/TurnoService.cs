@@ -9,7 +9,7 @@ using Persistence.Util;
 
 namespace Services.ServiceImpl
 {
-    public class TurnoService:ITurnoService, ICommonService<Turno>
+    public class TurnoService:ITurnoService
     {
         private ITurnoDAO turnoDAO = DAOLocator.Instance.TurnoDAO;
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Persistence.DAO;
 using Model;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Persistence.DAOImpl
 {
@@ -11,13 +13,63 @@ namespace Persistence.DAOImpl
     {
         public List<Sala> obtenerSalasEmpresa(long idEmpresa)
         {
-            //TODO: Implememtar
-            return null;
+            List<Sala> salas = new List<Sala>();
+            if (base.Conectar())
+            {
+                SqlDataReader dataReader;
+                base.Command = new SqlCommand();
+                Sala sala;
+
+                base.Command.Connection = base.Conexion;
+                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.empresaId = @empresaId";
+                Command.CommandType = CommandType.Text;
+                Command.Parameters.AddWithValue("empresaId", idEmpresa);
+                dataReader = Command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    sala = new Sala();
+                    sala.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    sala.Nombre= dataReader.GetSqlString(1).ToString();
+                    sala.PermiteMultiplo = Convert.ToBoolean(dataReader.GetSqlByte(2).Value);
+                    sala.Frecuencia = int.Parse(dataReader.GetSqlInt32(3).ToString());
+                    sala.HoraInicio = DateTime.Parse(dataReader.GetSqlDateTime(4).ToString());
+                    sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
+                    salas.Add(sala);
+                }
+
+            }
+            return salas;
         }
 
         public List<Sala> getAll()
         {
-            throw new NotImplementedException();
+            List<Sala> salas = new List<Sala>();
+            if (base.Conectar())
+            {
+                SqlDataReader dataReader;
+                base.Command = new SqlCommand();
+                Sala sala;
+
+                base.Command.Connection = base.Conexion;
+                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S";
+                Command.CommandType = CommandType.Text;
+                dataReader = Command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    sala = new Sala();
+                    sala.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    sala.Nombre = dataReader.GetSqlString(1).ToString();
+                    sala.PermiteMultiplo = Convert.ToBoolean(dataReader.GetSqlByte(2).Value);
+                    sala.Frecuencia = int.Parse(dataReader.GetSqlInt32(3).ToString());
+                    sala.HoraInicio = DateTime.Parse(dataReader.GetSqlDateTime(4).ToString());
+                    sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
+                    salas.Add(sala);
+                }
+
+            }
+            return salas;
         }
 
         public List<Sala> getFindById(long id)

@@ -9,7 +9,7 @@ using Persistence.Util;
 
 namespace Services.ServiceImpl
 {
-    public class RegistracionService:IRegistracionService, ICommonService<Registracion>
+    public class RegistracionService:IRegistracionService
     {
         private IRegistracionDAO registracionDAO = DAOLocator.Instance.RegistracionDAO;
 

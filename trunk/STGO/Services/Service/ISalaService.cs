@@ -6,7 +6,7 @@ using Model;
 
 namespace Services.Service
 {
-    public interface ISalaService
+    public interface ISalaService:ICommonService<Sala>
     {
         List<Sala> obtenerSalas();
 

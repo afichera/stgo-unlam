@@ -9,14 +9,13 @@ using Persistence.Util;
 
 namespace Services.ServiceImpl
 {
-    public class SalaService:ISalaService, ICommonService<Sala>
+    public class SalaService:ISalaService
     {
         private ISalaDAO salaDAO = DAOLocator.Instance.SalaDAO;
 
         public List<Sala> getAll()
         {
-            
-            throw new NotImplementedException();
+            return salaDAO.getAll();
         }
 
         public Sala getFindById(long id)
@@ -41,7 +40,7 @@ namespace Services.ServiceImpl
 
         public List<Sala> obtenerSalasEmpresa(long idEmpresa)
         {
-            throw new NotImplementedException();
+            return this.salaDAO.obtenerSalasEmpresa(idEmpresa);
         }
     }
 }
