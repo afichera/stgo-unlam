@@ -110,6 +110,8 @@ CREATE PROCEDURE [dbo].[SP_EMPRESA_SAVE_OR_UPDATE]
     @userId				uniqueidentifier
 AS
 DECLARE @rows int;
+DECLARE @maximoSalasDefault int;
+
 SET @rows = 0;
 
 BEGIN TRANSACTION UPSERTEMPRESA; 
@@ -120,8 +122,9 @@ end
 
 IF (@rows = 0)
 BEGIN
+	SET @maximoSalasDefault = (SELECT CAST(valor AS int) FROM Parametro where clave = 'MAX_SALAS_DEFAULT');
 	INSERT INTO Empresa(activa, cuit, maximoSalas, razonSocial, telefono, userId)
-	VALUES (0, @cuit, @maximoSalas, @razonSocial, @telefono, @userId);
+	VALUES (0, @cuit, @maximoSalasDefault, @razonSocial, @telefono, @userId);
 	SET @id = (SELECT MAX(id) FROM Sala); 
 end
 

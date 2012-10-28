@@ -7,7 +7,7 @@ namespace Model
 {
     public class Usuario
     {
-        public long Id{ get; set; }
+        public Guid Id{ get; set; }
         public String EMail { get; set; }
         public String Descripcion{ get; set; }
         public String Password{ get; set; }

@@ -16,12 +16,12 @@ namespace Services.ServiceImpl
 
         public List<Empresa> getAll()
         {
-            throw new NotImplementedException();
+            return this.empresaDAO.getAll();
         }
 
         public Empresa getFindById(long id)
         {
-            throw new NotImplementedException();
+            return this.empresaDAO.getFindById(id);
         }
 
         public Empresa saveOrUpdate(Empresa entity)
@@ -31,7 +31,12 @@ namespace Services.ServiceImpl
 
         public void delete(Empresa entity)
         {
-            throw new NotImplementedException();
+            this.empresaDAO.delete(entity);
+        }
+
+        public Empresa saveOrUpdate(Empresa empresa, Guid userIdenficator)
+        {
+            return this.empresaDAO.saveOrUpdate(empresa, userIdenficator);
         }
     }
 }

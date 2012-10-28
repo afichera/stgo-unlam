@@ -8,6 +8,7 @@ namespace Services.Service
 {
     public interface IEmpresaService:ICommonService<Empresa>
     {
+        Empresa saveOrUpdate(Empresa empresa, Guid userIdenficator);
 
     }
 }
