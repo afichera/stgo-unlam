@@ -9,7 +9,7 @@ using Persistence.Util;
 
 namespace Services.ServiceImpl
 {
-    public class EmpresaService:IEmpresaService, ICommonService<Empresa>
+    public class EmpresaService:IEmpresaService
     {
         private IEmpresaDAO empresaDAO = DAOLocator.Instance.EmpresaDAO;
 

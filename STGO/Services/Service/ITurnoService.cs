@@ -6,7 +6,7 @@ using Model;
 
 namespace Services.Service
 {
-    public interface ITurnoService
+    public interface ITurnoService:ICommonService<Turno>
     {
         List<Turno> obtenerTurnosReservados(long idSala, DateTime fecha);
 

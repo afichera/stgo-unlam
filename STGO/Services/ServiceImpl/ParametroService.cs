@@ -9,7 +9,7 @@ using Persistence.Util;
 
 namespace Services.ServiceImpl
 {
-    public class ParametroService:IParametroService, ICommonService<Parametro>
+    public class ParametroService:IParametroService
     {
         private IParametroDAO parametroDAO = DAOLocator.Instance.ParametroDAO;
 

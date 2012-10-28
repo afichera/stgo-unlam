@@ -6,7 +6,7 @@ using Model;
 
 namespace Services.Service
 {
-    public interface IParametroService
+    public interface IParametroService:ICommonService<Parametro>
     {
         Parametro getFindByClave(String clave);
     }

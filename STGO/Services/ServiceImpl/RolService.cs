@@ -9,7 +9,7 @@ using Persistence.Util;
 
 namespace Services.ServiceImpl
 {
-    public class RolService:IRolService, ICommonService<Rol>
+    public class RolService:IRolService
     {
         private IRolDAO rolDAO = DAOLocator.Instance.RolDAO;
 

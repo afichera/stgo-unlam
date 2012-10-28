@@ -6,7 +6,7 @@ using Model;
 
 namespace Services.Service
 {
-    public interface IUsuarioService
+    public interface IUsuarioService:ICommonService<Usuario>
     {
         long login(String email, String password);
 

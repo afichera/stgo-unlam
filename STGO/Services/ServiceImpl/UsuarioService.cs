@@ -9,7 +9,7 @@ using Persistence.Util;
 
 namespace Services.ServiceImpl
 {
-    public class UsuarioService:IUsuarioService, ICommonService<Usuario>
+    public class UsuarioService:IUsuarioService
     {
         private IUsuarioDAO usuarioDAO = DAOLocator.Instance.UsuarioDAO;
 
