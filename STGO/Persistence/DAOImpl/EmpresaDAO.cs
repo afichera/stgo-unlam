@@ -15,7 +15,7 @@ namespace Persistence.DAOImpl
             throw new NotImplementedException();
         }
 
-        public List<Empresa> getFindById(long id)
+        public Empresa getFindById(long id)
         {
             throw new NotImplementedException();
         }

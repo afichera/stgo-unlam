@@ -77,9 +77,37 @@ namespace Persistence.DAOImpl
             return salas;
         }
 
-        public List<Sala> getFindById(long id)
+        public Sala getFindById(long id)
         {
-            throw new NotImplementedException();
+            Sala sala = null;
+
+            if (base.Conectar())
+            {
+                SqlDataReader dataReader;
+                base.Command = new SqlCommand();
+               
+                base.Command.Connection = base.Conexion;
+                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.id = @id";
+
+                Command.CommandType = CommandType.Text;
+                Command.Parameters.AddWithValue("id", id);
+                
+                dataReader = Command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    sala = new Sala();
+                    sala.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    sala.Nombre = dataReader.GetSqlString(1).ToString();
+                    sala.PermiteMultiplo = Convert.ToBoolean(dataReader.GetSqlByte(2).Value);
+                    sala.Frecuencia = int.Parse(dataReader.GetSqlInt32(3).ToString());
+                    sala.HoraInicio = DateTime.Parse(dataReader.GetSqlDateTime(4).ToString());
+                    sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
+                    
+                }
+
+            }
+            return sala;
         }
 
         public Sala saveOrUpdate(Sala entity)

@@ -15,7 +15,7 @@ namespace Persistence.DAOImpl
             throw new NotImplementedException();
         }
 
-        public List<Rol> getFindById(long id)
+        public Rol getFindById(long id)
         {
             throw new NotImplementedException();
         }

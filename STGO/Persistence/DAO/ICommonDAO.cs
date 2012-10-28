@@ -9,7 +9,7 @@ namespace Persistence.DAO
     {
         List<T> getAll();
         
-        List<T> getFindById(long id);
+        T getFindById(long id);
         
         T saveOrUpdate(T entity);
 

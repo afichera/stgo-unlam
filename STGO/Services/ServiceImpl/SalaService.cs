@@ -20,7 +20,7 @@ namespace Services.ServiceImpl
 
         public Sala getFindById(long id)
         {
-            throw new NotImplementedException();
+            return this.salaDAO.getFindById(id);
         }
 
         public Sala saveOrUpdate(Sala entity)

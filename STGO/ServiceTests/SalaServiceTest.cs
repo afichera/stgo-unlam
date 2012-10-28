@@ -30,5 +30,13 @@ namespace ServiceTests
             Assert.IsNotNull(salas);
             Assert.IsTrue(salas.Count > 0);
         }
+
+        [TestMethod]
+        public void getFindByIdTestOK()
+        {
+            Sala sala= this.salaService.getFindById(2);
+            Assert.IsNotNull(sala);
+            Assert.IsTrue(sala.Id.Equals(2));
+        }
     }
 }
