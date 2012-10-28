@@ -228,6 +228,7 @@
     <Content Include="Scripts\wdCalendar\src\jquery.min.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\Common.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_AU.js" />
+    <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_ES.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_HK.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_US.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\jquery.alert.js" />
@@ -239,6 +240,7 @@
     <Content Include="Scripts\wdCalendar\src\Plugins\jquery.ifrmdailog.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\jquery.validate.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_AU.js" />
+    <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_ES.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_HK.js" />
     <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_US.js" />
     <Content Include="Styles\960.css" />
