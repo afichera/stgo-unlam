@@ -383,6 +383,10 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{CEDDAC5D-746C-4F04-9E59-CCF31176C32E}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{540BAD86-7512-42AE-85F5-0D1ADB31A027}</Project>
       <Name>Services</Name>
@@ -409,7 +413,9 @@
     <None Include="Styles\league.otf" />
     <None Include="Styles\league.ttf" />
     <None Include="Styles\league.woff" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
