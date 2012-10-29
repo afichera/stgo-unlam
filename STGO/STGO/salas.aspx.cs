@@ -92,37 +92,11 @@ namespace STGO
 
         protected void grid_Salas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "BorradoMio")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
+            
 
-                // retorna el row en que se hizo clic
-                GridViewRow row = grid_Salas.Rows[index];
-
-                // asigna el valor de la celda de la columna 2 y la fila en que se hizo clic  
-                long id = (long)Convert.ToDouble(Server.HtmlDecode(row.Cells[0].Text));
-
-
-                salaService.delete(salaService.getFindById(id));
-                this.todasLasSalas = salaService.obtenerSalas();
-                grid_Salas.DataSource = this.todasLasSalas;
-                grid_Salas.DataBind();
-
-            }
-
-            else
-
-                if (e.CommandName == "BorradoMio2")
+                if (e.CommandName == "BorradoMio")
                 {
-                    // Selecciona el indice de la fila del boton en el que se hizo clic
-                    int index = Convert.ToInt32(e.CommandArgument);
-
-                    // retorna el row en que se hizo clic
-                    GridViewRow row = grid_Salas.Rows[index];
-
-                    // asigna el valor de la celda de la columna 2 y la fila en que se hizo clic  
-                    long id = (long)Convert.ToDouble(Server.HtmlDecode(row.Cells[0].Text));
-
+                    long id=(long)Convert.ToDouble(e.CommandArgument.ToString());
 
                     salaService.delete(salaService.getFindById(id));
                     this.todasLasSalas = salaService.obtenerSalas();
