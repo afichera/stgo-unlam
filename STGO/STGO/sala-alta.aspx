@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
 <div class="grid_12"><h1>Nueva Sala</h1></div>
-
 <div class="grid_2 divlabel">
 <asp:Label ID="lblNombre" Text="Nombre: " runat="server" AssociatedControlID="txtNombre" /></div>
 <div class="grid_2"><asp:TextBox ID="txtNombre" runat="server" ></asp:TextBox></div>
@@ -45,7 +44,7 @@
 <div class="grid_3"><asp:RequiredFieldValidator Display="Dynamic" ID="rfvHoraFin" runat="server" ErrorMessage="Este campo es obligatorio" ControlToValidate="txtHoraFin"></asp:RequiredFieldValidator>
     <asp:RegularExpressionValidator ID="regHoraFin" runat="server" ErrorMessage="La hora debe tener formato HH:mm:ss" ControlToValidate="txtHoraFin"
      ValidationExpression="^(0[1-9]|1\d|2[0-3]):([0-5]\d):([0-5]\d)$" Display="Dynamic"></asp:RegularExpressionValidator>
-
+<asp:CompareValidator ID="compHoras" runat="server" ErrorMessage="La hora de cierre debe ser posterior a la de inicio" ControlToValidate="txtHoraFin" ControlToCompare="txtHoraInicio" Type="String" Operator="GreaterThan"></asp:CompareValidator>
 </div>
 <div class="clear"></div>
  <div class="grid_4 prefix_1 divlabel">
