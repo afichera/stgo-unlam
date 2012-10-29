@@ -35,11 +35,11 @@ namespace STGO
         {
          long id =(long) Convert.ToDouble(grid_Salas.Rows[e.RowIndex].Cells[0].Text);
             salaService.delete(salaService.getFindById(id));
-              
-          
+            this.todasLasSalas = salaService.obtenerSalas();
+            grid_Salas.DataSource = this.todasLasSalas;
+            grid_Salas.DataBind();
         }
 
-    
-
+      
     }
 }
