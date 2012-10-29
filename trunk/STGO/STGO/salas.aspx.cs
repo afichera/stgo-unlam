@@ -42,7 +42,7 @@ namespace STGO
         {
             grid_Salas.Columns[0].Visible = false;
 
-            if (Roles.IsUserInRole("admin"))
+            if (Roles.IsUserInRole("ADMINISTRADOR"))
             {
                 lblListaEmpresas.Visible = true;
                 liEmpresas.Visible = true;
@@ -106,10 +106,6 @@ namespace STGO
                     grid_Salas.DataBind();
 
                 }
-
-
-
-
         }
 
 
