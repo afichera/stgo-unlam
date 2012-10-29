@@ -13,7 +13,7 @@ namespace STGO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+           //long id = Request.g;
 
         }
     }

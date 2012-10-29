@@ -2,5 +2,5 @@
 <%@ PreviousPageType VirtualPath="~/salas.aspx"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPagConMenu" runat="server">
 </asp:Content>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
 </asp:Content>
