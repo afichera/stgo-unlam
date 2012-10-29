@@ -175,6 +175,15 @@ namespace STGO {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator regHoraFin;
         
         /// <summary>
+        /// Control compHoras.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator compHoras;
+        
+        /// <summary>
         /// Control btnGuardar.
         /// </summary>
         /// <remarks>

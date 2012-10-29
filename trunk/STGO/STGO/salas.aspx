@@ -5,8 +5,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
     <div class="grid_12">
-        <h1>
-            Salas</h1>
+        <h1>Salas</h1>
+        </div>
+        <div class="grid_12"><asp:HyperLink ID="lnkAlta" runat="server" class="boton" NavigateUrl="~/sala-alta.aspx">Agregar Sala</asp:HyperLink> </div>
+        <div class="grid_12">
         <asp:Label ID="lblListaEmpresas" runat="server" AssociatedControlID="liEmpresas">Seleccione una empresa: </asp:Label>
         <asp:DropDownList ID="liEmpresas" runat="server" DataValueField="Id" DataTextField="RazonSocial"
             AutoPostBack="true" OnSelectedIndexChanged="liEmpresas_SelectedIndexChanged">

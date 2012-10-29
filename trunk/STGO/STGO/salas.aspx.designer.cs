@@ -13,6 +13,15 @@ namespace STGO {
     public partial class salas {
         
         /// <summary>
+        /// Control lnkAlta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkAlta;
+        
+        /// <summary>
         /// Control lblListaEmpresas.
         /// </summary>
         /// <remarks>
