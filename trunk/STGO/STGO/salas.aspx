@@ -8,18 +8,17 @@
         <h1>
             Salas</h1>
         <asp:Label ID="lblListaEmpresas" runat="server" AssociatedControlID="liEmpresas">Seleccione una empresa: </asp:Label>
-        <asp:DropDownList ID="liEmpresas" runat="server" DataValueField="Id"  
-            DataTextField="RazonSocial" AutoPostBack="true" 
-            onselectedindexchanged="liEmpresas_SelectedIndexChanged">
-        <asp:ListItem Value="0" Enabled="true" Selected="True" Text="Todas" />
+        <asp:DropDownList ID="liEmpresas" runat="server" DataValueField="Id" DataTextField="RazonSocial"
+            AutoPostBack="true" OnSelectedIndexChanged="liEmpresas_SelectedIndexChanged">
+            <asp:ListItem Value="0" Enabled="true" Selected="True" Text="Todas" />
         </asp:DropDownList>
-       <br />
+        <br />
     </div>
     <div class="grid_12 tabla-datos">
-        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" 
-           onrowediting="grid_Salas_RowEditing" onrowcommand="grid_Salas_RowCommand">
+        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" OnRowEditing="grid_Salas_RowEditing"
+            OnRowCommand="grid_Salas_RowCommand">
             <Columns>
-            <asp:BoundField DataField="id"  HeaderText="Id" Visible="true" />
+                <asp:BoundField DataField="id" HeaderText="Id" Visible="true" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Frecuencia" HeaderText="Frecuencia de Turno" HtmlEncode="false"
                     DataFormatString="{0} min." />
@@ -33,11 +32,12 @@
                 <asp:BoundField DataField="HoraCierre" HeaderText="Hora Cierre" HtmlEncode="false"
                     DataFormatString="{0:T}" />
                 <asp:CommandField ShowEditButton="True" />
-                <asp:ButtonField CommandName="BorradoMio" Runat="server" Text="Eliminar"   />
-
-            
-         
-
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="BorradoMio" Text="Eliminar" runat="server" CommandName="BorradoMio"
+                            CommandArgument='<%# Eval("id") %>' OnClientClick="return confirm('¿Esta seguro que desea eliminar la sala? si posee turnos, los mismos se perderán');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>
