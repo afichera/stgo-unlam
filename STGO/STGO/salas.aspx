@@ -17,8 +17,7 @@
     </div>
     <div class="grid_12 tabla-datos">
         <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" 
-            onrowdeleting="grid_Salas_RowDeleting" 
-            onrowediting="grid_Salas_RowEditing" >
+           onrowediting="grid_Salas_RowEditing" onrowcommand="grid_Salas_RowCommand">
             <Columns>
             <asp:BoundField DataField="id"  HeaderText="Id" Visible="true" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -34,8 +33,8 @@
                 <asp:BoundField DataField="HoraCierre" HeaderText="Hora Cierre" HtmlEncode="false"
                     DataFormatString="{0:T}" />
                 <asp:CommandField ShowEditButton="True" />
-               <asp:CommandField ShowDeleteButton="True" ShowHeader="True" CancelText="Cancelar" DeleteText="Eliminar" />
-         
+                <asp:ButtonField CommandName="BorradoMio" Runat="server" Text="Eliminar"   />
+
             
          
 

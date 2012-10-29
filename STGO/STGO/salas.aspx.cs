@@ -55,14 +55,15 @@ namespace STGO
 
         }
 
-        protected void grid_Salas_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            long id = (long)Convert.ToDouble(grid_Salas.Rows[e.RowIndex].Cells[0].Text);
-            salaService.delete(salaService.getFindById(id));
-            this.todasLasSalas = salaService.obtenerSalas();
-            grid_Salas.DataSource = this.todasLasSalas;
-            grid_Salas.DataBind();
-        }
+        //protected void grid_Salas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        //{
+        //    string id = grid_Salas.Rows[e.RowIndex].Cells[1].Text;
+        //    long id2 = (long)Convert.ToDouble(id);
+        //    salaService.delete(salaService.getFindById(id2));
+        //    this.todasLasSalas = salaService.obtenerSalas();
+        //    grid_Salas.DataSource = this.todasLasSalas;
+        //    grid_Salas.DataBind();
+        //}
 
         protected void liEmpresas_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -83,12 +84,60 @@ namespace STGO
 
         protected void grid_Salas_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            
             long id = (long)Convert.ToDouble(grid_Salas.Rows[e.NewEditIndex].Cells[0].Text);
             Response.Redirect("editar-sala.aspx?id=" + id.ToString());
 
           
         }
+
+        protected void grid_Salas_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "BorradoMio")
+            {
+                int index = Convert.ToInt32(e.CommandArgument);
+
+                // retorna el row en que se hizo clic
+                GridViewRow row = grid_Salas.Rows[index];
+
+                // asigna el valor de la celda de la columna 2 y la fila en que se hizo clic  
+                long id = (long)Convert.ToDouble(Server.HtmlDecode(row.Cells[0].Text));
+
+
+                salaService.delete(salaService.getFindById(id));
+                this.todasLasSalas = salaService.obtenerSalas();
+                grid_Salas.DataSource = this.todasLasSalas;
+                grid_Salas.DataBind();
+
+            }
+
+            else
+
+                if (e.CommandName == "BorradoMio2")
+                {
+                    // Selecciona el indice de la fila del boton en el que se hizo clic
+                    int index = Convert.ToInt32(e.CommandArgument);
+
+                    // retorna el row en que se hizo clic
+                    GridViewRow row = grid_Salas.Rows[index];
+
+                    // asigna el valor de la celda de la columna 2 y la fila en que se hizo clic  
+                    long id = (long)Convert.ToDouble(Server.HtmlDecode(row.Cells[0].Text));
+
+
+                    salaService.delete(salaService.getFindById(id));
+                    this.todasLasSalas = salaService.obtenerSalas();
+                    grid_Salas.DataSource = this.todasLasSalas;
+                    grid_Salas.DataBind();
+
+                }
+
+
+
+
+        }
+
+
+
 
 
 
