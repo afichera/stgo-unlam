@@ -8,5 +8,8 @@
      <asp:CompareValidator runat="server" 
      Font-Size="8px" ForeColor="red" padding-top="8px" />
 
+          <asp:CustomValidator runat="server" 
+     Font-Size="8px" ForeColor="red" padding-top="8px" />
+
 
      <asp:Button runat="server" CssClass="boton" />

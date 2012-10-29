@@ -84,10 +84,12 @@ namespace STGO
 
         protected void grid_Salas_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            long id = (long)Convert.ToDouble(grid_Salas.Rows[e.NewEditIndex].Cells[0].Text);
+            string id= grid_Salas.Rows[e.NewEditIndex].Cells[0].Text;
+
             Response.Redirect("editar-sala.aspx?id=" + id.ToString());
 
-          
+
+
         }
 
         protected void grid_Salas_RowCommand(object sender, GridViewCommandEventArgs e)

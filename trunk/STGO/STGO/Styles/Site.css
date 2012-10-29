@@ -142,6 +142,11 @@ width:440px;
  text-align:right;   
 }
 
+.ok 
+{color:#6F950A;
+ font-weight:bold;
+ text-align:left;
+}
 
 /*Para las tablas generadas po asp.net*/
 
