@@ -199,6 +199,8 @@
     <Content Include="Login.aspx" />
     <Content Include="miperfil.aspx" />
     <Content Include="Registro.aspx" />
+    <Content Include="sala-alta.aspx" />
+    <Content Include="sala-editar.aspx" />
     <Content Include="salas.aspx" />
     <Content Include="Scripts\fancybox\blank.gif" />
     <Content Include="Scripts\fancybox\fancybox-x.png" />
@@ -362,6 +364,20 @@
     </Compile>
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sala-alta.aspx.cs">
+      <DependentUpon>sala-alta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sala-alta.aspx.designer.cs">
+      <DependentUpon>sala-alta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sala-editar.aspx.cs">
+      <DependentUpon>sala-editar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sala-editar.aspx.designer.cs">
+      <DependentUpon>sala-editar.aspx</DependentUpon>
     </Compile>
     <Compile Include="salas.aspx.cs">
       <DependentUpon>salas.aspx</DependentUpon>

@@ -86,7 +86,7 @@ namespace STGO
         {
             string id= grid_Salas.Rows[e.NewEditIndex].Cells[0].Text;
 
-            Response.Redirect("editar-sala.aspx?id=" + id.ToString());
+            Response.Redirect("sala-editar.aspx?id=" + id.ToString());
 
 
 
