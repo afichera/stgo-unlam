@@ -4,7 +4,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
-
+<div class="grid_12"><h1>Editar Sala</h1></div>
 <div class="grid_2 divlabel">
 <asp:Label ID="lblId" Text="Id: " runat="server" AssociatedControlID="txtId" Visible="false" /></div>
 <div class="grid_2"><asp:TextBox ID="txtId" runat="server"  Visible="false"></asp:TextBox></div>

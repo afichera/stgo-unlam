@@ -179,5 +179,32 @@ namespace Persistence.DAOImpl
                 base.Desconectar();
             }            
         }
+
+        public int cantidadSalasEmpresa(long idEmpresa){
+
+            {
+                int cantidad=0;
+
+                if (base.Conectar())
+                {
+                    SqlDataReader dataReader;
+                    base.Command = new SqlCommand();
+                    
+
+                    base.Command.Connection = base.Conexion;
+                    Command.CommandText = "SELECT COUNT(s.id) as cant FROM Sala S WHERE s.empresaId = @empresaId AND s.fechaHoraBaja is null";
+
+                    Command.CommandType = CommandType.Text;
+                    Command.Parameters.AddWithValue("empresaId", idEmpresa);
+
+                    cantidad = Convert.ToInt32(Command.ExecuteScalar());
+                        
+                    
+                    base.Desconectar();
+
+                }
+                return cantidad;
+            }
+        }
     }
 }

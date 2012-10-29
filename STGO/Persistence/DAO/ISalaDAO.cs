@@ -10,5 +10,7 @@ namespace Persistence.DAO
     {
         List<Sala> obtenerSalasEmpresa(long idEmpresa);
         Sala saveOrUpdate(Sala sala, long idEmpresa);
+
+        int cantidadSalasEmpresa(long idEmpresa);
     }
 }
