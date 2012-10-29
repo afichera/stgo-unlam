@@ -13,5 +13,7 @@ namespace Services.Service
         List<Sala> obtenerSalas();
 
         List<Sala> obtenerSalasEmpresa(long idEmpresa);
+
+        int cantidadSalasEmpresa(long idEmpresa);
     }
 }

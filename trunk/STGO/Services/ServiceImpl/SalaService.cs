@@ -46,5 +46,10 @@ namespace Services.ServiceImpl
         {
             return this.salaDAO.obtenerSalasEmpresa(idEmpresa);
         }
+
+        public int cantidadSalasEmpresa(long idEmpresa)
+        {
+            return this.salaDAO.cantidadSalasEmpresa(idEmpresa);
+        }
     }
 }
