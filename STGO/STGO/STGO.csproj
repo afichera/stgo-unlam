@@ -186,6 +186,7 @@
     <Content Include="App_Themes\wdCalendar\images\validation\warning.gif" />
     <Content Include="App_Themes\wdCalendar\main.css" />
     <Content Include="cantidadDeSalas.aspx" />
+    <Content Include="alta-sala.aspx" />
     <Content Include="DataFeed.aspx" />
     <Content Include="Edit.aspx" />
     <Content Include="empresas.aspx" />
@@ -288,6 +289,13 @@
     </Compile>
     <Compile Include="cantidadDeSalas.aspx.designer.cs">
       <DependentUpon>cantidadDeSalas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="alta-sala.aspx.cs">
+      <DependentUpon>alta-sala.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="alta-sala.aspx.designer.cs">
+      <DependentUpon>alta-sala.aspx</DependentUpon>
     </Compile>
     <Compile Include="DataFeed.aspx.cs">
       <DependentUpon>DataFeed.aspx</DependentUpon>
