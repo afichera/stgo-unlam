@@ -145,19 +145,19 @@ width:440px;
 
 /*Para las tablas generadas po asp.net*/
 
-td, th
+.tabla-datos td, .tabla-datos th
 {
  margin-top: 5px;
   margin-bottom: 5px;  
   padding: 5px;
 }
 
-th
+.tabla-datos th
 { border-bottom:2px solid #444;
  font-weight:bold;
 }
 
-td
+.tabla-datos td
 {
    border-bottom:1px solid #444; 
     }
