@@ -13,8 +13,8 @@
         (sólo para superusuario)<br />
     </div>
     <div class="grid_12 tabla-titulo">
-        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" 
-            onrowdeleting="grid_Salas_RowDeleting">
+        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" onrowdeleting="grid_Salas_RowDeleting"
+            >
             <Columns>
             <asp:BoundField DataField="id"  HeaderText="Id" Visible="true" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -30,8 +30,9 @@
                 <asp:BoundField DataField="HoraCierre" HeaderText="Hora Cierre" HtmlEncode="false"
                     DataFormatString="{0:T}" />
                 <asp:CommandField ShowEditButton="True" />
-                <asp:CommandField ShowDeleteButton="True" ShowHeader="True" />
-                
+               <asp:CommandField ShowDeleteButton="True" ShowHeader="True" CancelText="Cancelar" DeleteText="Eliminar" />
+         
+
             </Columns>
         </asp:GridView>
     </div>
