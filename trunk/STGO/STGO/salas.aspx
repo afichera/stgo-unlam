@@ -13,9 +13,11 @@
         (sólo para superusuario)<br />
     </div>
     <div class="grid_12 tabla-titulo">
-        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" 
+            onrowdeleting="grid_Salas_RowDeleting">
             <Columns>
-                <asp:BoundField DataField="Nombre" HeaderText="Nonmbre" />
+            <asp:BoundField DataField="id"  HeaderText="Id" Visible="true" />
+                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Frecuencia" HeaderText="Frecuencia de Turno" HtmlEncode="false"
                     DataFormatString="{0} min." />
                 <asp:TemplateField HeaderText="Permite Múltiplos">

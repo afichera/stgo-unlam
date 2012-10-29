@@ -20,11 +20,23 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.todasLasEmpresas = empresaService.
+            //this.todasLasEmpresas = empresaService.obtenerEmpresas();
 
             this.todasLasSalas = salaService.obtenerSalas();
             grid_Salas.DataSource = this.todasLasSalas;
             grid_Salas.DataBind();
+        }
+
+        protected void Page_SaveStateComplete (object sender, EventArgs e){
+            grid_Salas.Columns[0].Visible = false ;
+        }
+
+        protected void grid_Salas_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+         long id =(long) Convert.ToDouble(grid_Salas.Rows[e.RowIndex].Cells[0].Text);
+            salaService.delete(salaService.getFindById(id));
+              
+          
         }
 
     
