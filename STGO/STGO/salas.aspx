@@ -8,13 +8,17 @@
         <h1>
             Salas</h1>
         <asp:Label ID="lblListaEmpresas" runat="server" AssociatedControlID="liEmpresas">Seleccione una empresa: </asp:Label>
-        <asp:DropDownList ID="liEmpresas" runat="server">
+        <asp:DropDownList ID="liEmpresas" runat="server" DataValueField="Id"  
+            DataTextField="RazonSocial" AutoPostBack="true" 
+            onselectedindexchanged="liEmpresas_SelectedIndexChanged">
+        <asp:ListItem Value="0" Enabled="true" Selected="True" Text="Todas" />
         </asp:DropDownList>
-        (sólo para superusuario)<br />
+       <br />
     </div>
-    <div class="grid_12 tabla-titulo">
-        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" onrowdeleting="grid_Salas_RowDeleting"
-            >
+    <div class="grid_12 tabla-datos">
+        <asp:GridView ID="grid_Salas" runat="server" AutoGenerateColumns="False" 
+            onrowdeleting="grid_Salas_RowDeleting" 
+            onrowediting="grid_Salas_RowEditing" >
             <Columns>
             <asp:BoundField DataField="id"  HeaderText="Id" Visible="true" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
@@ -31,6 +35,8 @@
                     DataFormatString="{0:T}" />
                 <asp:CommandField ShowEditButton="True" />
                <asp:CommandField ShowDeleteButton="True" ShowHeader="True" CancelText="Cancelar" DeleteText="Eliminar" />
+         
+            
          
 
             </Columns>

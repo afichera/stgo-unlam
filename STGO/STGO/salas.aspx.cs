@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Services.Util;
 using Model;
 using Services.Service;
+using System.Web.Security;
 
 
 namespace STGO
@@ -16,30 +17,80 @@ namespace STGO
         List<Empresa> todasLasEmpresas;
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
         List<Sala> todasLasSalas;
-        ISalaService salaService= ServiceLocator.Instance.SalaService;
+        ISalaService salaService = ServiceLocator.Instance.SalaService;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //this.todasLasEmpresas = empresaService.obtenerEmpresas();
+            if (!Page.IsPostBack)
+            {
+                this.todasLasEmpresas = empresaService.getAll();
+                liEmpresas.DataSource = this.todasLasEmpresas;
+                liEmpresas.DataBind();
+                liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
 
-            this.todasLasSalas = salaService.obtenerSalas();
-            grid_Salas.DataSource = this.todasLasSalas;
-            grid_Salas.DataBind();
+                this.todasLasSalas = salaService.obtenerSalas();
+                grid_Salas.DataSource = this.todasLasSalas;
+                grid_Salas.DataBind();
+            }
+
+
+
+
         }
 
-        protected void Page_SaveStateComplete (object sender, EventArgs e){
-            grid_Salas.Columns[0].Visible = false ;
+        protected void Page_SaveStateComplete(object sender, EventArgs e)
+        {
+            grid_Salas.Columns[0].Visible = false;
+
+            if (Roles.IsUserInRole("admin"))
+            {
+                lblListaEmpresas.Visible = true;
+                liEmpresas.Visible = true;
+            }
+            else
+            {
+                lblListaEmpresas.Visible = false;
+                liEmpresas.Visible = false;
+            }
+
         }
 
         protected void grid_Salas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-         long id =(long) Convert.ToDouble(grid_Salas.Rows[e.RowIndex].Cells[0].Text);
+            long id = (long)Convert.ToDouble(grid_Salas.Rows[e.RowIndex].Cells[0].Text);
             salaService.delete(salaService.getFindById(id));
             this.todasLasSalas = salaService.obtenerSalas();
             grid_Salas.DataSource = this.todasLasSalas;
             grid_Salas.DataBind();
         }
 
-      
+        protected void liEmpresas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (liEmpresas.SelectedValue == "0")
+            {
+                this.todasLasSalas = salaService.obtenerSalas();
+
+            }
+
+            else
+            {
+                this.todasLasSalas = salaService.obtenerSalasEmpresa((long)Convert.ToDouble(liEmpresas.SelectedValue));
+            }
+
+            grid_Salas.DataSource = this.todasLasSalas;
+            grid_Salas.DataBind();
+        }
+
+        protected void grid_Salas_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            
+            long id = (long)Convert.ToDouble(grid_Salas.Rows[e.NewEditIndex].Cells[0].Text);
+            Response.Redirect("editar-sala.aspx?id=" + id.ToString());
+
+          
+        }
+
+
+
     }
 }
