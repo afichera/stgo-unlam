@@ -22,7 +22,7 @@ namespace STGO
             {
                 this.registracionService.activarCuenta(activationKey);
                 //TODO: Mandar a una pagina de Resultado de Activación.
-                Response.Redirect("Login.aspx");
+                Response.Redirect("Default.aspx");
                 
             }
             catch (RegistracionExpiradaException ex)
