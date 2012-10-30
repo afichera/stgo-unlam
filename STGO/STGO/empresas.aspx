@@ -16,6 +16,7 @@
                 <asp:BoundField DataField="razonSocial" HeaderText="Razón Social" />
                 <asp:BoundField DataField="cuit" HeaderText="CUIT" />
                 <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
+                <asp:BoundField DataField="maximoSalas" HeaderText="Cantidad de Salas" />
                 <asp:TemplateField HeaderText="Estado">
                     <ItemTemplate>
                         <asp:Label ID="txtPermiteMultiplo" Text='<%# Eval("activo").ToString() == "True" ? "Activa": "Inactiva" %>'

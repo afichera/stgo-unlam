@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="activar-desactivar-salas.aspx" />
     <Content Include="Add.aspx" />
     <Content Include="App_Themes\wdCalendar\alert.css" />
     <Content Include="App_Themes\wdCalendar\calendar.css" />
@@ -268,13 +267,6 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="activar-desactivar-salas.aspx.cs">
-      <DependentUpon>activar-desactivar-salas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="activar-desactivar-salas.aspx.designer.cs">
-      <DependentUpon>activar-desactivar-salas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Add.aspx.cs">
       <DependentUpon>Add.aspx</DependentUpon>

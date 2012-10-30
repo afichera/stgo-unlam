@@ -45,13 +45,22 @@ namespace STGO
                 else
                     empresaACambiar.activo = true;
 
-                empresaService.saveOrUpdate(empresaACambiar);
+               empresaService.saveOrUpdate(empresaACambiar);
                 
                 this.todasLasEmpresas = empresaService.getAll();
                 grid_Empresas.DataSource = this.todasLasEmpresas;
                 grid_Empresas.DataBind();
 
             }
+
+            else
+                if (e.CommandName == "cambiarCantSalas")
+                {
+                    String id = e.CommandArgument.ToString();
+                    Response.Redirect("cantidadDeSalas.aspx?id=" + id.ToString());
+                  
+                }
+
         }
     }
 }
