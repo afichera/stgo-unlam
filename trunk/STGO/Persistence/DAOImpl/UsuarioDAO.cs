@@ -100,6 +100,7 @@ namespace Persistence.DAOImpl
                     usuario.Password = dataReader.GetSqlString(1).ToString();
                     empresaId = long.Parse(dataReader.GetSqlInt64(2).ToString());
                 }
+                base.Desconectar();
             }
             return empresaId;
         }

@@ -1,24 +1,24 @@
 ﻿<%@ Page Title="STGO -Registro" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="Registro.aspx.cs" Inherits="STGO._Registro" Theme="STGO"%>
+    CodeBehind="Registro.aspx.cs" Inherits="STGO._Registro" Theme="STGO" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:CreateUserWizard RequireEmail="true" ID="CreateUserWizard1" CreateUserButtonText="Registrarse" 
-        runat="server"  
-        oncreateduser="CreateUserWizard1_CreatedUser" 
-        oncreatinguser="CreateUserWizard1_CreatingUser">
+    <asp:CreateUserWizard RequireEmail="true" ID="CreateUserWizard1" CreateUserButtonText="Registrarse"
+        runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser" OnCreatingUser="CreateUserWizard1_CreatingUser">
         <WizardSteps>
-            <asp:CreateUserWizardStep ID="CreateUserWizardStep1"  runat="server">
+            <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                 <ContentTemplate>
                     <table>
                         <tr>
-                        <div class="grid_6 ">
-                            <td align="center" colspan="2">
-                                        <h2>Registre su Empresa</h2>
-                            </td>
-                        </div>
+                            <div class="grid_6 ">
+                                <td align="center" colspan="2">
+                                    <h2>
+                                        Registre su Empresa</h2>
+                                </td>
+                            </div>
                         </tr>
                         <tr>
                             <td align="right">
@@ -26,8 +26,9 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" Display="Dynamic" ControlToValidate="UserName"
-                                    ErrorMessage="El E-mail es requerido." ToolTip="El email es requerido." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" Display="Dynamic"
+                                    ControlToValidate="UserName" ErrorMessage="El E-mail es requerido." ToolTip="El email es requerido."
+                                    ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revUserName" runat="server" ValidationExpression="^([a-zA-Z0-9]+[a-zA-Z0-9._%-]*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4})$"
                                     ErrorMessage="El E-mail ingresado es inválido." Display="Dynamic" ControlToValidate="UserName"
                                     ValidationGroup="CreateUserWizard1"></asp:RegularExpressionValidator>
@@ -108,7 +109,7 @@
                                 <asp:RequiredFieldValidator ID="rqfTelefonoReg" runat="server" ControlToValidate="txtTelefonoReg"
                                     ErrorMessage="Debe completar el teléfono." ValidationGroup="CreateUserWizard1"
                                     Display="Dynamic"></asp:RequiredFieldValidator>
-<%--                                <asp:RegularExpressionValidator ID="revTelefonoReg" ErrorMessage="El formato del telefono es inválido."
+                                <%--                                <asp:RegularExpressionValidator ID="revTelefonoReg" ErrorMessage="El formato del telefono es inválido."
                                     ControlToValidate="txtTelefonoReg" runat="server" ValidationGroup="CreateUserWizard1"
                                     Display="Dynamic" ValidationExpression="/^(\(?[0-9]{3,3}\)?|[0-9]{3,3}[-. ]?)[ ][0-9]{4,4}[-. ]?[0-9]{4,4}$/" />--%>
                             </td>
@@ -129,7 +130,29 @@
                 </ContentTemplate>
             </asp:CreateUserWizardStep>
             <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
+                <ContentTemplate>
+                    <table>
+                        <tr>
+                            <td align="center" colspan="2">
+                                Registro Completado.
+                            </td>
+                        </tr>
+                        <tr> 
+                            <td>
+                                Su cuenta fue creada. A la brevedad se enviará un mail para su activación.
+                                Para activarla verifique su casilla de E-Mail.
+                                Muchas Gracias.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" colspan="2">
+                                <asp:Button ID="ContinueButton" PostBackUrl="~/Default.aspx" runat="server" CausesValidation="False" CommandName="Continue"
+                                    Text="Continuar" ValidationGroup="CreateUserWizard1" />
+                            </td>
+                        </tr>
+                    </table>
+                </ContentTemplate>
             </asp:CompleteWizardStep>
         </WizardSteps>
-     </asp:CreateUserWizard>
+    </asp:CreateUserWizard>
 </asp:Content>

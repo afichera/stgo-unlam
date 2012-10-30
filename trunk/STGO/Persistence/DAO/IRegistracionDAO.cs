@@ -12,5 +12,9 @@ namespace Persistence.DAO
         Registracion getFindByUserName(String userName);
 
         void crearPendiente(Registracion registracion, Guid guid);
+
+        Registracion getFindByActivationKey(Guid activationKey);
+
+        void activarCuenta(Guid activationKey);
     }
 }

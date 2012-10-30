@@ -43,9 +43,9 @@ namespace Services.ServiceImpl
             {
                 if (registracion.Pendiente)
                 {
-                    DateTime fechaHoraActual = new DateTime();
+                    DateTime fechaHoraActual = DateTime.Now;
                     TimeSpan timeSpan = new TimeSpan(0, 30, 0);
-                    fechaHoraActual.Subtract(timeSpan);
+                    fechaHoraActual = fechaHoraActual.Subtract(timeSpan);
                     if (registracion.FechaHoraRegistro <= fechaHoraActual)
                     {
                         //Loggear que se va a hacer pelota el registro caducado y hacer pelota el registro caducado y demas.
@@ -83,6 +83,35 @@ namespace Services.ServiceImpl
             mensaje.AppendLine("Atentamente STGO.<br />");
             
             return mensaje.ToString();
+        }
+
+
+        public void activarCuenta(Guid activationKey)
+        {
+            Registracion registracion = this.registracionDAO.getFindByActivationKey(activationKey);
+            if (registracion != null)
+            {
+                if (registracion.Pendiente)
+                {
+                    DateTime fechaHoraActual = DateTime.Now;
+                    TimeSpan timeSpan = new TimeSpan(0, 30, 0);
+                    fechaHoraActual =  fechaHoraActual.Subtract(timeSpan);
+                    if (registracion.FechaHoraRegistro <= fechaHoraActual)
+                    {
+                        //Loggear que se va a hacer pelota el registro caducado y hacer pelota el registro caducado y demas.
+                        throw new RegistracionExpiradaException("Expiro el tiempo para activar la cuenta.");
+                    }
+                    else
+                    {
+                        //TODO: Activarla.
+                        this.registracionDAO.activarCuenta(activationKey);
+                    }
+                }
+                else
+                {
+                    throw new EMailRegistradoException("La cuenta ya se encuentra activa.");
+                }
+            }
         }
     }
 }
