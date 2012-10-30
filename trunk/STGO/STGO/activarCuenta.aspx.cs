@@ -22,19 +22,23 @@ namespace STGO
             {
                 this.registracionService.activarCuenta(activationKey);
                 //TODO: Mandar a una pagina de Resultado de Activación.
-                Response.Redirect("Default.aspx");
-                
+                lblResultado.Text = "Su cuenta ha sido Activada. Presione Ingresar para Acceder al Sistema.";
+                btnVolver.Text = "Ingresar";
+                btnVolver.PostBackUrl = "~/Login.aspx";                                
             }
             catch (RegistracionExpiradaException ex)
             {
-                //TODO: Mandar algun mensaje mejor.
-                Response.Redirect("Error.aspx");
+                lblResultado.Text = "El registro se expiró. Registrarse para volver a registrarse en el sistema.";
+                btnVolver.Text = "Volver";
+                btnVolver.PostBackUrl = "~/Registro.aspx";      
             }
             catch (BusinessException ex)
             {
-                //TODO: Mandar algun mensaje mejor.
-                Response.Redirect("Error.aspx");
+                lblResultado.Text = "No se pudo activar la cuenta. Presione volver para ir a la página principal.";
+                btnVolver.Text = "Volver";
+                btnVolver.PostBackUrl = "~/Default.aspx";    
             }
+            
         }
     }
 }
