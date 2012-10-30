@@ -167,3 +167,89 @@ BEGIN TRANSACTION DELETEEMPRESA;
 			WHERE id = @id;
 COMMIT TRANSACTION DELETEEMPRESA; 	
 GO
+
+
+
+
+
+/****** Object:  StoredProcedure [dbo].[SP_EMPRESA_SAVE_OR_UPDATE]    Script Date: 10/28/2012 15:15:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_REGISTRACION_CREAR_PENDIENTE]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[SP_REGISTRACION_CREAR_PENDIENTE]
+GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_REGISTRACION_CREAR_PENDIENTE]    Script Date: 10/28/2012 15:15:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_REGISTRACION_CREAR_PENDIENTE]
+    @userId					uniqueidentifier,
+    @telefono				varchar(100),
+    @cuit					varchar(13),
+    @razonSocial			varchar(20)
+AS
+DECLARE @rows int;
+DECLARE @maximoSalasDefault int;
+DECLARE @userName varchar(256);
+SET @rows = 0;
+
+BEGIN TRANSACTION REGISTRACION_PENDIENTE_CREAR; 
+
+
+	SET @userName = (SELECT U.UserName FROM aspnet_Users U WHERE U.UserId = @userId);
+	
+	INSERT INTO Registracion (cuit, email, fechaHoraRegistro, razonSocial, pendiente, telefono, userId)
+	VALUES (@cuit, @userName, GETDATE(), @razonSocial, 1, @telefono, @userId);
+
+COMMIT TRANSACTION REGISTRACION_PENDIENTE_CREAR; 	
+GO
+
+USE [STGO]
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[SP_ACTIVAR_CUENTA]    Script Date: 10/28/2012 15:15:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_ACTIVAR_CUENTA]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[SP_ACTIVAR_CUENTA]
+GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_ACTIVAR_CUENTA]    Script Date: 10/28/2012 15:15:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_ACTIVAR_CUENTA]
+    @key					uniqueidentifier
+AS
+
+DECLARE @userId uniqueidentifier;
+DECLARE @telefono varchar(20);
+DECLARE @cuit varchar(13);
+DECLARE @razonSocial varchar(100);
+DECLARE @mail varchar(256);
+DECLARE @maximoSalas smallint;
+
+BEGIN TRANSACTION ACTIVAR_CUENTA; 
+	
+	SELECT @userId = U.UserId,@cuit = R.cuit, @mail = R.email,@razonSocial = R.razonSocial,@telefono = R.telefono FROM aspnet_Users U INNER JOIN Registracion R ON (R.userId = U.UserId) WHERE R.link = @key;
+	UPDATE Registracion SET pendiente = 0 WHERE link = @key;
+	SET @maximoSalas = (SELECT CAST(valor AS int) FROM Parametro where clave = 'MAX_SALAS_DEFAULT');
+	INSERT INTO Empresa(cuit, activa, razonSocial, telefono, userId, maximoSalas)
+	VALUES (@cuit, 1, @razonSocial, @telefono, @userId, @maximoSalas);
+
+COMMIT TRANSACTION ACTIVAR_CUENTA; 	
+GO
+
+USE [STGO]
+GO
