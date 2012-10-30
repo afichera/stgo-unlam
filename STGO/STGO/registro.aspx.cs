@@ -105,19 +105,12 @@ namespace STGO
             TextBox txtRazonSocial = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("txtRazonSocialReg");
             MembershipUser user = Membership.GetUser(txtUserName.Text);
             Roles.AddUserToRole(user.UserName, "EMPRESA");
-
+            CreateUserWizard1.LoginCreatedUser = false;
             Registracion registracion = new Registracion();
             registracion.Telefono = txtTelefono.Text;
             registracion.Cuit = txtCUIT.Text;
             registracion.RazonSocial = txtRazonSocial.Text;
-            
-
             this.registracionService.completarRegistro(registracion, (Guid)user.ProviderUserKey);            
-            
-            if (user.IsOnline) {
-                user.IsApproved = false;
-                Membership.UpdateUser(user);
-            }
             this.enviarMail();
         }
 

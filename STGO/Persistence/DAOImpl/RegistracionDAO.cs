@@ -6,6 +6,7 @@ using Persistence.DAO;
 using Model;
 using System.Data.SqlClient;
 using System.Data;
+using Model.Exceptions;
 
 namespace Persistence.DAOImpl
 {
@@ -99,6 +100,60 @@ namespace Persistence.DAOImpl
                 base.Desconectar();
             }
             
+        }
+
+
+        public Registracion getFindByActivationKey(Guid activationKey)
+        {
+            Registracion registracion = null;
+            if (base.Conectar())
+            {
+                SqlDataReader dataReader;
+                base.Command = new SqlCommand();
+
+                base.Command.Connection = base.Conexion;
+                Command.CommandText = "SELECT r.razonSocial, r.email, r.cuit, r.telefono, r.fechaHoraRegistro, r.pendiente, r.link FROM Registracion r WHERE r.link= @key";
+                Command.CommandType = CommandType.Text;
+                Command.Parameters.AddWithValue("key", activationKey);
+                dataReader = Command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    registracion = new Registracion();
+                    registracion.RazonSocial = dataReader.GetSqlString(0).ToString();
+                    registracion.Email = dataReader.GetSqlString(1).ToString();
+                    registracion.Cuit = dataReader.GetSqlString(2).ToString();
+                    registracion.Telefono = dataReader.GetSqlString(3).ToString();
+                    registracion.FechaHoraRegistro = DateTime.Parse(dataReader.GetSqlDateTime(4).ToString());
+                    registracion.Pendiente = Convert.ToBoolean(dataReader.GetSqlByte(5).Value);
+                    registracion.linkActivacion = new Guid(dataReader.GetSqlGuid(6).ToString());
+                }
+                base.Desconectar();
+            }
+            return registracion;
+        }
+
+        public void activarCuenta(Guid activationKey)
+        {
+           if (base.Conectar())
+            {
+
+                string sp = "SP_ACTIVAR_CUENTA";
+                SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                Command.CommandType = CommandType.StoredProcedure;
+                SqlParameter paramKeyId = new SqlParameter("key", SqlDbType.UniqueIdentifier);
+                paramKeyId.Direction = ParameterDirection.Input;
+                paramKeyId.Value = activationKey;
+
+                Command.Parameters.Add(paramKeyId);
+
+                int filasAfectadas = Command.ExecuteNonQuery();
+                base.Desconectar();
+                if (filasAfectadas < 1)
+                {
+                    throw new BusinessException("Error al activar cuenta.");
+                }
+            }
         }
     }
 }

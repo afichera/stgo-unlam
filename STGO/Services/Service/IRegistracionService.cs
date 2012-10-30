@@ -14,5 +14,7 @@ namespace Services.Service
         void completarRegistro(Registracion registracion, Guid guid);
 
         String obtenerCuerpoMailActivacion(String userName);
+
+        void activarCuenta(Guid activationKey);
     }
 }
