@@ -198,7 +198,6 @@
     <Content Include="Libraries\WSExchange\Microsoft.Exchange.WebServices.xml" />
     <Content Include="Login.aspx" />
     <Content Include="miperfil.aspx" />
-    <Content Include="pruebillas.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="sala-alta.aspx" />
     <Content Include="sala-editar.aspx" />
@@ -359,13 +358,6 @@
       <DependentUpon>popup.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="pruebillas.aspx.cs">
-      <DependentUpon>pruebillas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pruebillas.aspx.designer.cs">
-      <DependentUpon>pruebillas.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
