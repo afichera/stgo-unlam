@@ -5,12 +5,9 @@ using System.Text;
 
 namespace Model.Exceptions
 {
-    public class BusinessException : Exception
+    public class EMailRegistradoException:BusinessException
     {
-        public BusinessException(String msgError)
-            : base(msgError)
-        {
-
+        public EMailRegistradoException(String msgError) : base(msgError) { 
         }
     }
 }

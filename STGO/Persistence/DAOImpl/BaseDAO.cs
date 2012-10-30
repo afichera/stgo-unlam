@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
 using Model;
+using Model.Exceptions;
 
 
 namespace Persistence.DAOImpl
