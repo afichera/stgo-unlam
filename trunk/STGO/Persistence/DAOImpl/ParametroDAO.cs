@@ -47,20 +47,23 @@ namespace Persistence.DAOImpl
 
 
                 base.Command.Connection = base.Conexion;
-                Command.CommandText = "SELECT clave, valor FROM parametro WHERE clave = @clave";
+                Command.CommandText = "SELECT id, clave, valor FROM parametro WHERE clave = @clave";
                 Command.CommandType = CommandType.Text;
+                Command.Parameters.AddWithValue("clave", clave);
+               
                 dataReader = Command.ExecuteReader();
 
                 //Deberia entrar solo una vez.
                 while (dataReader.Read())
                 {
                     parametro = new Parametro();
-                    parametro.Clave = dataReader.GetSqlString(0).ToString();
-                    parametro.Valor = dataReader.GetSqlString(1).ToString();
-
+                    parametro.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    parametro.Clave = dataReader.GetSqlString(1).ToString();
+                    parametro.Valor = dataReader.GetSqlString(2).ToString();
                 }
 
             }
+            base.Desconectar();
             return parametro;
 
         }

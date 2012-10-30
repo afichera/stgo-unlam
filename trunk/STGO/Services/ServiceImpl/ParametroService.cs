@@ -36,7 +36,7 @@ namespace Services.ServiceImpl
 
         public Parametro getFindByClave(string clave)
         {
-            throw new NotImplementedException();
+            return this.parametroDAO.getFindByClave(clave);
         }
     }
 }

@@ -9,5 +9,8 @@ namespace Persistence.DAO
     public interface IRegistracionDAO:ICommonDAO<Registracion>
     {
 
+        Registracion getFindByUserName(String userName);
+
+        void crearPendiente(Registracion registracion, Guid guid);
     }
 }

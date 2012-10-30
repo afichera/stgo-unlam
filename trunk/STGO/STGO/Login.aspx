@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="Ingreso al Sistema" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="Login.aspx.cs" Inherits="STGO.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -7,18 +7,20 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <asp:Login ID="loginSTGOId" runat="server" 
-            onauthenticate="loginSTGOId_Authenticate" onloginerror="loginSTGOId_LoginError">
+        <asp:Login ID="loginSTGOId" runat="server" OnAuthenticate="loginSTGOId_Authenticate"
+            OnLoginError="loginSTGOId_LoginError">
             <LayoutTemplate>
                 <table cellpadding="1" cellspacing="0" style="border-collapse: collapse;">
                     <tr>
                         <td>
                             <table cellpadding="0">
-                                <tr>
-                                    <td align="center" colspan="2">
-                                        Log In
-                                    </td>
-                                </tr>
+                                <div class="grid_6 ">
+                                    <tr>
+                                        <td align="center" colspan="2">
+                                            <h2>Ingrese al Sistema</h2>
+                                        </td>
+                                    </tr>
+                                </div>
                                 <tr>
                                     <td align="right">
                                         <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">Usuario:</asp:Label>

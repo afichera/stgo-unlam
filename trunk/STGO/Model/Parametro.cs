@@ -7,6 +7,7 @@ namespace Model
 {
     public class Parametro
     {
+        public long Id { get; set; }
         public String Clave { get; set; }
         public String Valor { get; set; }
     }

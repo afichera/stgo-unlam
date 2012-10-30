@@ -13,6 +13,7 @@ namespace Model
         public String Telefono { get; set; }
         public DateTime FechaHoraRegistro { get; set; }
         public bool Pendiente { get; set; }
-        public String password { get; set; }
+        public Guid linkActivacion { get; set; }
+
     }
 }

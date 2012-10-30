@@ -9,11 +9,30 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div class="grid_12">
         <h1>
-            Bienvenidos</h1>
+            Bienvenidos a STGO</h1>
+        <br />
+        <br />
+        STGO (Sistema de Turnos Genérico Online) le facilitá a su compañías y-o pymes la
+        administración de salas/servicios que funcionan bajo la modalidad de “turnos”, dando
+        un seguimiento de disponibilidad de los mismos y además proveer una API para el
+        consumo de esta información. Con STGO ud pordrá administrar sus propias salas, clientes
+        y turnos.
+        <br />
+        Si su empresa aún no se registro, haga clic en "registrese". Al finalizar el registro
+        se le enviará un mail para confirmar el mismo.
+        <br />
+        <asp:Panel ID="Panel1" runat="server" HorizontalAlign="Center">
+            <asp:LinkButton ForeColor="DarkGray" ID="linkBtnRegistrese" PostBackUrl="~/Registro.aspx"
+                runat="server">Registrarse</asp:LinkButton>
+            <asp:LinkButton ForeColor="DarkGray" ID="linkBtnLogin" PostBackUrl="~/Login.aspx"
+                runat="server">Ingresar</asp:LinkButton>
+        </asp:Panel>
+        <div class="clear">
+        </div>
     </div>
-    <div class="clear">
-    </div>
-    <div class="grid_6">
+    <%--    Todo lo que esta aca abajo es lo viejo Juan.
+
+        <div class="grid_6">
         <h2>
             Ingrese al Sistema</h2>
         <br />
@@ -119,5 +138,5 @@
                 ValidationGroup="valGrupoReg" />
         </div>
     </div>
-    </div>
+    --%>
 </asp:Content>
