@@ -12,5 +12,10 @@ namespace Model.Exceptions
         {
 
         }
+
+        public BusinessException():base("Ocurrio un error. Contactese con el administrador del sistema.") {
+            
+            
+        }
     }
 }

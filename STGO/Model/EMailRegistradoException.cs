@@ -9,5 +9,8 @@ namespace Model.Exceptions
     {
         public EMailRegistradoException(String msgError) : base(msgError) { 
         }
+
+        public EMailRegistradoException() : base("El Email ingresado ya se encuentra registrado.") { 
+        }
     }
 }

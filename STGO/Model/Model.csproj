@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessException.cs" />
+    <Compile Include="Constantes.cs" />
     <Compile Include="EMailRegistradoException.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Parametro.cs" />

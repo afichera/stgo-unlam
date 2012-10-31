@@ -38,5 +38,11 @@ namespace Services.ServiceImpl
         {
             return this.empresaDAO.saveOrUpdate(empresa, userIdenficator);
         }
+
+
+        public Empresa getFindByGuid(Guid userId)
+        {
+            return this.empresaDAO.getFindByGuid(userId);
+        }
     }
 }
