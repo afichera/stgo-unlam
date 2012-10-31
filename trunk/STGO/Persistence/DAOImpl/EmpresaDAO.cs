@@ -161,5 +161,44 @@ namespace Persistence.DAOImpl
             }
             return empresa;
         }
+
+
+        public Empresa getFindByGuid(Guid userId)
+        {
+            Empresa empresa = null;
+            if (base.Conectar())
+            {
+                SqlDataReader dataReader;
+                base.Command = new SqlCommand();
+                Usuario usuario;
+                base.Command.Connection = base.Conexion;
+                Command.CommandText = "SELECT e.id, e.activa, e.cuit, e.maximoSalas, e.razonSocial, e.telefono, u.UserName, u.UserId " +
+                    "FROM Empresa e " +
+                    "INNER JOIN aspnet_Users u ON (u.UserId = e.UserId) WHERE u.id = @userId";
+
+                Command.CommandType = CommandType.Text;
+                Command.Parameters.AddWithValue("userId", userId);
+                dataReader = Command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    empresa = new Empresa();
+                    usuario = new Usuario();
+                    empresa.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    empresa.activo = Convert.ToBoolean(dataReader.GetSqlByte(1).Value);
+                    empresa.CUIT = dataReader.GetSqlString(2).ToString();
+                    empresa.maximoSalas = int.Parse(dataReader.GetSqlInt16(3).ToString());
+                    empresa.RazonSocial = dataReader.GetSqlString(4).ToString();
+                    empresa.Telefono = dataReader.GetSqlString(5).ToString();
+                    usuario.EMail = dataReader.GetSqlString(6).ToString();
+                    usuario.Id = new Guid(dataReader.GetSqlGuid(7).ToString());
+                    empresa.Usuario = usuario;
+
+                }
+                base.Desconectar();
+            }
+            return empresa;
+ 
+        }
     }
 }

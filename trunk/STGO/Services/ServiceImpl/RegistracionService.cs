@@ -48,16 +48,17 @@ namespace Services.ServiceImpl
                     fechaHoraActual = fechaHoraActual.Subtract(timeSpan);
                     if (registracion.FechaHoraRegistro <= fechaHoraActual)
                     {
+                        //TODO: Duda, Eliminamos el registro, lo marcamos como historico o bien impedimos que se vuelva a registrar???
                         //Loggear que se va a hacer pelota el registro caducado y hacer pelota el registro caducado y demas.
 
                         //throw new RegistracionExpiradaException("Expiro el tiempo para activar la cuenta. Se deberán eliminar registros para permitir la reutilización.");
                     }
                     else {
-                        throw new EMailRegistradoException("El Email ingresado ya se encuentra registrado.");
+                        throw new EMailRegistradoException();
                     }                    
                 }
                 else {
-                    throw new EMailRegistradoException("El Email ingresado ya se encuentra registrado.");
+                    throw new EMailRegistradoException();
                 }
             }
             
@@ -75,13 +76,12 @@ namespace Services.ServiceImpl
             StringBuilder mensaje = new StringBuilder();
             Registracion registracion = this.registracionDAO.getFindByUserName(userName);
             Parametro hostActivationURL = this.parametroDAO.getFindByClave("HOST_ACTIVATION_URL");
-
             mensaje.AppendLine(String.Format("Bienvenido {0}: <br />", registracion.RazonSocial));
             mensaje.AppendLine("Para acceder a nuestro Sistema de gestion de turnos ingrese al siguiente enlace: " + hostActivationURL.Valor + registracion.linkActivacion.ToString() + " <br />");
             mensaje.AppendLine("El mismo caducará a en media hora. <br />");
-            mensaje.AppendLine("Muchas Gracias. <br />");
-            mensaje.AppendLine("Atentamente STGO.<br />");
-            
+            mensaje.AppendLine("Muchas Gracias. <br /><br />");
+            mensaje.AppendLine("Saluda Atentamente: <br />");
+            mensaje.AppendLine("STGO.<br />");
             return mensaje.ToString();
         }
 
@@ -99,17 +99,16 @@ namespace Services.ServiceImpl
                     if (registracion.FechaHoraRegistro <= fechaHoraActual)
                     {
                         //Loggear que se va a hacer pelota el registro caducado y hacer pelota el registro caducado y demas.
-                        throw new RegistracionExpiradaException("Expiro el tiempo para activar la cuenta.");
+                        throw new RegistracionExpiradaException();
                     }
                     else
                     {
-                        //TODO: Activarla.
                         this.registracionDAO.activarCuenta(activationKey);
                     }
                 }
                 else
                 {
-                    throw new EMailRegistradoException("La cuenta ya se encuentra activa.");
+                    throw new EMailRegistradoException();
                 }
             }
         }

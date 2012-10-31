@@ -20,12 +20,11 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           Membership.DeleteUser("alejandrofichera@gmail.com");
+           //Membership.DeleteUser("alejandrofichera@gmail.com");
         }
 
         private void enviarMail()
         {
-
             String mensaje = this.registracionService.obtenerCuerpoMailActivacion(CreateUserWizard1.UserName);
             MailMessage mailMessage = new MailMessage();
             //Modificamos el cuerpo y el asunto
@@ -36,45 +35,14 @@ namespace STGO
             mailMessage.To.Add(new MailAddress(CreateUserWizard1.UserName));
             //Send the message
             SmtpClient client = new SmtpClient();
-            client.Send(mailMessage);
-        }
-
-
-        protected void CreateAccountButton_Click(object sender, EventArgs e)
-        {
-            TextBox txtUserName =  (TextBox) CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("UserName");
-            TextBox txtPassword =  (TextBox) CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("Password");
-            TextBox txtTelefono = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("txtTelefonoReg");
-            TextBox txtCUIT = (TextBox)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("txtCuitReg");
-            TextBox txtRazonSocial =  (TextBox) CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("txtRazonSocialReg");
-            MembershipCreateStatus createStatus;
-            
-            MembershipUser newUser = Membership.CreateUser(txtUserName.Text, txtPassword.Text, txtUserName.Text, "", "", false, out createStatus);
-            switch (createStatus)
+            try
             {
-                case MembershipCreateStatus.Success:
-                   // CreateUserWizard1. CreateAccountResults.Text = "La cuenta se creo exitosamente. Para activar su cuenta verifique su E-mail.";
-                    break;
-                case MembershipCreateStatus.DuplicateUserName:
-                    //CreateAccountResults.Text = "El E-Mail ingresado ya existe.";
-                    break;
-                case MembershipCreateStatus.DuplicateEmail:
-//                    CreateAccountResults.Text = "El E-Mail ingresado ya existe.";
-                    break;
-                case MembershipCreateStatus.InvalidEmail:
-  //                  CreateAccountResults.Text = "El E-Mail provisto es Inválido.";
-                    break;
-                case MembershipCreateStatus.InvalidAnswer:
-    //                CreateAccountResults.Text = "There security answer was invalid.";
-                    break;
-                case MembershipCreateStatus.InvalidPassword:
-      //              CreateAccountResults.Text = "EL Password Provisto es Inválido. Debe contener al menos 7 carateres.";
-
-                    break;
-                default:
-                    //CreateAccountResults.Text = "Ocurrio un error. El usuario no se ha creado";
-                    break;
+                client.Send(mailMessage);
             }
+            catch (Exception ex) {
+                Console.WriteLine("Error al Enviar Mail.");
+            }
+            
         }
 
         protected void CreateUserWizard1_CreatingUser(object sender, LoginCancelEventArgs e)

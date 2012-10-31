@@ -10,5 +10,7 @@ namespace Services.Service
     {
         Empresa saveOrUpdate(Empresa empresa, Guid userIdenficator);
 
+        Empresa getFindByGuid(Guid userId);
+
     }
 }

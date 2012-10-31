@@ -9,5 +9,7 @@ namespace Persistence.DAO
     public interface IEmpresaDAO:ICommonDAO<Empresa>
     {
         Empresa saveOrUpdate(Empresa entity, Guid userIdentification);
+
+        Empresa getFindByGuid(Guid userId);
     }
 }
