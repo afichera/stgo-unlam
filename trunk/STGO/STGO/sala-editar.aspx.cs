@@ -29,7 +29,7 @@ namespace STGO
                 {
 
 
-                    long idSala = (long)Convert.ToDouble(Request.QueryString["id"]);
+                    long idSala = long.Parse(Request.QueryString["id"]);
 
                     sala = salaService.getFindById(idSala);
 
@@ -59,7 +59,7 @@ namespace STGO
 
 
                 Sala salaEdit = new Sala();
-                salaEdit.Id = (long)Convert.ToDouble(txtId.Text);
+                salaEdit.Id = long.Parse(txtId.Text);
                 salaEdit.Nombre = txtNombre.Text;
                 if (ddlPermiteMultiplos.SelectedItem.Text == "Si")
                     salaEdit.PermiteMultiplo = true;

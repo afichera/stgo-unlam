@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <div>
+    <div class="grid_4 prefix_4">
         <asp:Login ID="loginSTGOId" runat="server" OnAuthenticate="loginSTGOId_Authenticate"
             OnLoginError="loginSTGOId_LoginError">
             <LayoutTemplate>
@@ -17,7 +17,7 @@
                                 <div class="grid_6 ">
                                     <tr>
                                         <td align="center" colspan="2">
-                                            <h2>Ingrese al Sistema</h2>
+                                            <h1>Ingrese al Sistema</h1>
                                         </td>
                                     </tr>
                                 </div>
@@ -49,8 +49,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right" colspan="2">
-                                        <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Ingresar" ValidationGroup="loginSTGOId" />
+                                    <td></td><td>
+                                        <asp:Button ID="LoginButton" class="boton" runat="server" CommandName="Login" Text="Ingresar" ValidationGroup="loginSTGOId" />
                                     </td>
                                 </tr>
                             </table>

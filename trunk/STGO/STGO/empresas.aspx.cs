@@ -38,7 +38,7 @@ namespace STGO
         {
             if (e.CommandName == "cambiarEstado")
             {
-                long id = (long)Convert.ToDouble(e.CommandArgument.ToString());
+                long id = long.Parse(e.CommandArgument.ToString());
                 Empresa empresaACambiar = empresaService.getFindById(id);
                 if (empresaACambiar.activo == true)
                     empresaACambiar.activo = false;
