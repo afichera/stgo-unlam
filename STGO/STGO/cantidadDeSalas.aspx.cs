@@ -29,7 +29,7 @@ namespace STGO
                 {
 
 
-                    long idEmpresa = (long)Convert.ToDouble(Request.QueryString["id"]);
+                    long idEmpresa = long.Parse(Request.QueryString["id"]);
 
                     empresa = empresaService.getFindById(idEmpresa);
 

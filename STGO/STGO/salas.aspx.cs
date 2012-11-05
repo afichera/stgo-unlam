@@ -21,6 +21,21 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            grid_Salas.Columns[0].Visible = false;
+
+            if (Roles.IsUserInRole(Constantes.ROLES_ADMIN))
+            {
+                lblListaEmpresas.Visible = true;
+                liEmpresas.Visible = true;
+            }
+            else
+            {
+                lblListaEmpresas.Visible = false;
+                liEmpresas.Visible = false;
+            }
+
+
+
             if (!Page.IsPostBack)
             {
                 //MembershipUser userLogged = Membership.GetUser();
@@ -58,25 +73,14 @@ namespace STGO
 
         protected void Page_SaveStateComplete(object sender, EventArgs e)
         {
-            grid_Salas.Columns[0].Visible = false;
-
-            if (Roles.IsUserInRole(Constantes.ROLES_ADMIN))
-            {
-                lblListaEmpresas.Visible = true;
-                liEmpresas.Visible = true;
-            }
-            else
-            {
-                lblListaEmpresas.Visible = false;
-                liEmpresas.Visible = false;
-            }
+            
 
         }
 
         //protected void grid_Salas_RowDeleting(object sender, GridViewDeleteEventArgs e)
         //{
         //    string id = grid_Salas.Rows[e.RowIndex].Cells[1].Text;
-        //    long id2 = (long)Convert.ToDouble(id);
+        //    long id2 = long.Parse(id);
         //    salaService.delete(salaService.getFindById(id2));
         //    this.todasLasSalas = salaService.obtenerSalas();
         //    grid_Salas.DataSource = this.todasLasSalas;
@@ -93,7 +97,7 @@ namespace STGO
 
             else
             {
-                this.todasLasSalas = salaService.obtenerSalasEmpresa((long)Convert.ToDouble(liEmpresas.SelectedValue));
+                this.todasLasSalas = salaService.obtenerSalasEmpresa(long.Parse(liEmpresas.SelectedValue));
             }
 
             grid_Salas.DataSource = this.todasLasSalas;
@@ -116,7 +120,7 @@ namespace STGO
 
             if (e.CommandName == "BorradoMio")
             {
-                long id = (long)Convert.ToDouble(e.CommandArgument.ToString());
+                long id = long.Parse(e.CommandArgument.ToString());
 
                 salaService.delete(salaService.getFindById(id));
                 this.todasLasSalas = salaService.obtenerSalas();

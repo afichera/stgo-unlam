@@ -4,5 +4,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    Ocurrio Un Error. Por favor contactese con el administrador del sitio.
+  <div class="grid_12">  
+ <h1>ERROR</h1>
+    <p>Ocurrio Un Error.</p>
+    <br />
+    <p>Por favor contactese con el administrador del sitio.</p>
+</div>
 </asp:Content>
