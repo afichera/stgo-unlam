@@ -3,7 +3,7 @@
     
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadPagConMenu" runat="server">
-       <script src="Scripts/wdCalendar/src/jquery.js" type="text/javascript"></script>  
+<%--       <script src="Scripts/wdCalendar/src/jquery.js" type="text/javascript"></script>  
     <script src="Scripts/wdCalendar/src/Plugins/Common.js" type="text/javascript"></script>    
     <script src="Scripts/wdCalendar/src/Plugins/datepicker_lang_ES.js" type="text/javascript"></script>     
     <script src="Scripts/wdCalendar/src/Plugins/jquery.datepicker.js" type="text/javascript"></script>
@@ -12,7 +12,7 @@
     <script src="Scripts/wdCalendar/src/Plugins/wdCalendar_lang_ES.js" type="text/javascript"></script>    
     <script src="Scripts/wdCalendar/src/Plugins/jquery.calendar.js" type="text/javascript"></script>
     <script src="Scripts/wdCalendar/src/jquery.getQueryParam.min.js" type="text/javascript"></script>
-    <script src="Scripts/wdCalendar/lanzaCalendar.js" type="text/javascript"></script>
+    <script src="Scripts/wdCalendar/lanzaCalendar.js" type="text/javascript"></script>--%>
 
    
    
@@ -22,11 +22,13 @@
     <div class="grid_12">
         <h1>Turnos</h1>
         <asp:Label ID="lblListaEmpresas" runat="server" AssociatedControlID="liEmpresas">Seleccione una Empresa: </asp:Label>
-        <asp:DropDownList ID="liEmpresas" runat="server">
+<asp:DropDownList ID="liEmpresas" runat="server" DataValueField="Id" DataTextField="RazonSocial"
+            AutoPostBack="true" OnSelectedIndexChanged="liEmpresas_SelectedIndexChanged">
+            <asp:ListItem Value="0" Enabled="true" Selected="True" Text="Todas" />
         </asp:DropDownList>
         (sólo para superusuario)<br />
         <asp:Label ID="lblLiSalas" runat="server" AssociatedControlID="liSalas">Seleccione una Sala: </asp:Label>
-        <asp:DropDownList ID="liSalas" runat="server">
+        <asp:DropDownList ID="liSalas" runat="server" AutoPostBack="true" DataValueField="Id" DataTextField="Nombre">
         </asp:DropDownList><br />
        
    
@@ -35,8 +37,19 @@
 
 
     <div class="grid_12">
+     
+     
+    <asp:Calendar ID="Calendario" runat="server" 
+            onselectionchanged="Calendario_SelectionChanged" ></asp:Calendar>
+     <br />
+
+      
+        <asp:GridView ID="GrillaDia" runat="server">
+        </asp:GridView>
+        
+     
             
-          <div id="calhead" style="padding-left:1px;padding-right:1px;">          
+   <%--       <div id="calhead" style="padding-left:1px;padding-right:1px;">          
                 <div class="cHead"><div class="ftitle">Turnos</div>
                 <div id="loadingpannel" class="ptogtitle loadicon" style="display: none;">Recuperando información...</div>
                  <div id="errorpannel" class="ptogtitle loaderror" style="display: none;">No se pudo obtener la información, vuelva a intentarlo</div>
@@ -105,7 +118,7 @@
             <div class="t1 chromeColor">
                 &nbsp;
             </div>   
-            </div>
+            </div>--%>
          
       </div>
 </asp:Content>
