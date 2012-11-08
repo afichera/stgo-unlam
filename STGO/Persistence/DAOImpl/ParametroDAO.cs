@@ -68,9 +68,6 @@ namespace Persistence.DAOImpl
 
         }
 
-
-
-
         public Parametro getFindById(long id)
         {
             throw new NotImplementedException();

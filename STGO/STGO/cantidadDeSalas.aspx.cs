@@ -18,11 +18,7 @@ namespace STGO
         {
 
             if (!Page.IsPostBack)
-            {
-
-                
-
-                
+            {   
                 if (Request.QueryString["id"] == null)
                     Response.Redirect("empresas.aspx");
                 else
@@ -31,7 +27,7 @@ namespace STGO
 
                     long idEmpresa = long.Parse(Request.QueryString["id"]);
 
-                    empresa = empresaService.getFindById(idEmpresa);
+                    this.empresa = empresaService.getFindById(idEmpresa);
 
                     txtRazonSocial.Text =empresa.RazonSocial;
                     txtCantSalas.Text = empresa.maximoSalas.ToString();
@@ -49,8 +45,12 @@ namespace STGO
              Page.Validate();
              if (Page.IsValid)
              {
-                 empresa.maximoSalas = Convert.ToInt32(txtCantSalas);
-                 Empresa resultado = empresaService.saveOrUpdate(empresa);
+                 long idEmpresa = (long)Convert.ToDouble(Request.QueryString["id"]);
+
+                 this.empresa = empresaService.getFindById(idEmpresa);
+
+                 this.empresa.maximoSalas = Convert.ToInt32(txtCantSalas.Text);
+                 Empresa resultado = empresaService.saveOrUpdate(empresa, empresa.Usuario.Id);
 
                  if (resultado != null)
                  {

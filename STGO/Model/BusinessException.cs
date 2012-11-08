@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Model.Exceptions
 {
-    public class BusinessException : Exception
+    public class BusinessException : ApplicationException
     {
         public BusinessException(String msgError)
             : base(msgError)

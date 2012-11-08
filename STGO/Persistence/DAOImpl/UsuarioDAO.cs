@@ -64,8 +64,6 @@ namespace Persistence.DAOImpl
             //TODO:
         }
 
-
-
         public void delete(Usuario entity)
         {
             throw new NotImplementedException();
@@ -75,7 +73,6 @@ namespace Persistence.DAOImpl
         {
             throw new NotImplementedException();
         }
-
 
         public long login(string email, string password)
         {

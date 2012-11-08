@@ -58,6 +58,7 @@
     <Compile Include="DAO\IUsuarioDAO.cs" />
     <Compile Include="DAO\IRolDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\BDDException.cs" />
     <Compile Include="Util\DAOLocator.cs" />
   </ItemGroup>
   <ItemGroup>
