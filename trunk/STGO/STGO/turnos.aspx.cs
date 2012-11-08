@@ -19,9 +19,11 @@ namespace STGO
         ISalaService salaService = ServiceLocator.Instance.SalaService;
          List<Empresa> todasLasEmpresas;
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
-
+        long idSala;
         protected void Page_Load(object sender, EventArgs e)
         {
+            GrillaDia.Columns[0].Visible = false;
+            txtEditId.Visible = false;
 
             if (!Page.IsPostBack)
             {
@@ -33,6 +35,11 @@ namespace STGO
                 liEmpresas.DataSource = this.todasLasEmpresas;
                 liEmpresas.DataBind();
                 liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
+
+               idSala=3;
+               todosLosTurnos = turnoService.obtenerTurnos(idSala, DateTime.Now); //Crear servicio que trae todos los turnos
+                GrillaDia.DataSource = todosLosTurnos;
+                GrillaDia.DataBind();
                 
             }
            
@@ -42,6 +49,7 @@ namespace STGO
 
         protected void Calendario_SelectionChanged(object sender, EventArgs e)
         {
+            idSala = 3;
             todosLosTurnos = turnoService.obtenerTurnos(3, Calendario.SelectedDate); //Crear servicio que trae todos los turnos
             GrillaDia.DataSource = todosLosTurnos;
             GrillaDia.DataBind();
@@ -61,5 +69,27 @@ namespace STGO
              liSalas.DataBind();
 
         }
+
+        protected void GrillaDia_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "EditarMio")
+            {
+                long id = long.Parse(e.CommandArgument.ToString());
+
+                Turno turno = turnoService.obtenerTurno(3, id);
+
+
+                txtEditId.Text = turno.Id.ToString();
+                txtEditFecha.Text = turno.FechaHoraInicio.ToString();
+                txtEditHoraInicio.Text = turno.FechaHoraInicio.ToString();
+                txtEditHoraFin.Text = turno.FechaHoraFin.ToString();
+                txtEditReservador.Text = turno.Reservador.ToString();
+                txtEditDescripcion.Text = turno.Descripcion.ToString();
+            }
+        }
+
+
+
+
     }
 }
