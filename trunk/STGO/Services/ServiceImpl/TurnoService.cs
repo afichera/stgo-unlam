@@ -57,5 +57,12 @@ namespace Services.ServiceImpl
         {
             throw new NotImplementedException();
         }
+
+        public List<Turno> obtenerTurnos(long salaId, DateTime dateTime)
+        {
+            return this.turnoDAO.obtenerTurnos(salaId, dateTime);
+
+        }
+
     }
 }

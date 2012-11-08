@@ -17,5 +17,7 @@ namespace Services.Service
         void reservarTurno(long idSala, String nombreReservador, String descripcion, DateTime horaInicio, DateTime horaFin);
 
         void eliminarTurno(long idSala, long idTurno);
+
+        List<Turno> obtenerTurnos(long p, DateTime dateTime);
     }
 }

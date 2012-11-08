@@ -7,6 +7,7 @@ namespace Model
 {
     public class Turno
     {
+        public long Id { get; set; }
         public String Reservador { get; set; }
         public DateTime FechaHoraInicio { get; set; }
         public DateTime FechaHoraFin { get; set; }
