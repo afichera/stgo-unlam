@@ -45,7 +45,7 @@ namespace STGO
                 else
                     empresaACambiar.activo = true;
 
-               empresaService.saveOrUpdate(empresaACambiar);
+               empresaService.saveOrUpdate(empresaACambiar, empresaACambiar.Usuario.Id);
                 
                 this.todasLasEmpresas = empresaService.getAll();
                 grid_Empresas.DataSource = this.todasLasEmpresas;
