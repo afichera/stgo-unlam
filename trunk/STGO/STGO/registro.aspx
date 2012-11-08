@@ -6,14 +6,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="grid_6">
+  
     <asp:CreateUserWizard RequireEmail="true" ID="CreateUserWizard1" CreateUserButtonText="Registrarse"
-        runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser" OnCreatingUser="CreateUserWizard1_CreatingUser">
+        runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser" ContinueButtonStyle-CssClass="boton" Create CreateUserButtonStyle-CssClass="boton" OnCreatingUser="CreateUserWizard1_CreatingUser">
         <WizardSteps>
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                 <ContentTemplate>
                     <table>
                         <tr>
-                            <div class="grid_6 ">
+                            <div class="grid_5 ">
                                 <td align="center" colspan="2">
                                     <h2>
                                         Registre su Empresa</h2>
@@ -145,9 +147,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="right" colspan="2">
+                            <td align="left" colspan="2">
                                 <asp:Button ID="ContinueButton" PostBackUrl="~/Default.aspx" runat="server" CausesValidation="False" CommandName="Continue"
-                                    Text="Continuar" ValidationGroup="CreateUserWizard1" />
+                                    Text="Continuar" CssClass="boton" ValidationGroup="CreateUserWizard1" />
                             </td>
                         </tr>
                     </table>
@@ -155,4 +157,6 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
+
+</div>
 </asp:Content>
