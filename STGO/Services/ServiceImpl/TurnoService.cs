@@ -45,7 +45,7 @@ namespace Services.ServiceImpl
 
         public Turno obtenerTurno(long idSala, long idTurno)
         {
-            throw new NotImplementedException();
+            return this.turnoDAO.obtenerTurno(idSala, idTurno);
         }
 
         public void reservarTurno(long idSala, string nombreReservador, string descripcion, DateTime horaInicio, DateTime horaFin)

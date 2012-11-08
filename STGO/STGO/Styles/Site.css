@@ -101,7 +101,7 @@ body
 	background-color:#ededed;
 	border:1px solid #dcdcdc;
 	display:inline-block;
-	color:#777777;
+	color:#333;
 	font-family:arial;
 	font-size:13px;
 	font-weight:bold;
@@ -197,10 +197,29 @@ width:440px;
 }
 
 
+#calendario td input
+{
+    border: 0;
+}
+
+#calendario td input:hover
+{
+    background-color:#BBB;
+}
+
+
+
+
 /*HAckeo ubicación botón registro*/
 td input[type=submit]
 {
  margin: 10px 205px 10px 0;   
+}
+
+
+a:link, a:visited 
+{
+    color:#333;
 }
 
 

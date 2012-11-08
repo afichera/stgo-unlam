@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Persistence.DAOImpl
 {
-    public class TurnoDAO:BaseDAO, ITurnoDAO
+    public class TurnoDAO : BaseDAO, ITurnoDAO
     {
 
         public List<Turno> getAll()
@@ -39,7 +39,39 @@ namespace Persistence.DAOImpl
 
         public Turno obtenerTurno(long idSala, long idTurno)
         {
-            throw new NotImplementedException();
+
+            Turno turno = null;
+
+            if (base.Conectar())
+            {
+                SqlDataReader dataReader;
+                base.Command = new SqlCommand();
+
+
+                base.Command.Connection = base.Conexion;
+                Command.CommandText = "SELECT t.id, t.reservador, t.fechaHoraInicio, t.fechaHoraFin, t.descripcion, t.salaId  FROM Turno t WHERE t.Id = @idTurno AND t.fechaHoraBaja is null";
+
+                Command.CommandType = CommandType.Text;
+                Command.Parameters.AddWithValue("idTurno", idTurno);
+
+                dataReader = Command.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+
+                    turno = new Turno();
+                    turno.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                    turno.Reservador = dataReader.GetSqlString(1).ToString();
+                    turno.FechaHoraInicio = DateTime.Parse(dataReader.GetSqlDateTime(2).ToString());
+                    turno.FechaHoraFin = DateTime.Parse(dataReader.GetSqlDateTime(3).ToString());
+                    turno.Descripcion = dataReader.GetSqlString(4).ToString();
+
+                }
+                base.Desconectar();
+
+            }
+            return turno;
+
         }
 
         public void reservarTurno(long idSala, string nombreReservador, string descripcion, DateTime horaInicio, DateTime horaFin)
@@ -72,7 +104,7 @@ namespace Persistence.DAOImpl
 
                 while (dataReader.Read())
                 {
-                   
+
                     turno = new Turno();
                     turno.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
                     turno.Reservador = dataReader.GetSqlString(1).ToString();

@@ -191,6 +191,7 @@
     <Content Include="empresas.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="images\logo.png" />
+    <Content Include="images\pencil.png" />
     <Content Include="images\ruido.png" />
     <Content Include="Libraries\JSON\Newtonsoft.Json.Net35.dll" />
     <Content Include="Libraries\JSON\Newtonsoft.Json.Net35.xml" />
