@@ -16,7 +16,7 @@
                             <table cellpadding="0">
                                 <div class="grid_6 ">
                                     <tr>
-                                        <td align="center" colspan="2">
+                                        <td  colspan="2">
                                             <h1>Ingrese al Sistema</h1>
                                         </td>
                                     </tr>

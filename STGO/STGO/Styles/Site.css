@@ -197,3 +197,10 @@ width:440px;
 }
 
 
+/*HAckeo ubicación botón registro*/
+td input[type=submit]
+{
+ margin: 10px 205px 10px 0;   
+}
+
+

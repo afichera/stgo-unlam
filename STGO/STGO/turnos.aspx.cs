@@ -21,34 +21,22 @@ namespace STGO
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
 
         protected void Page_Load(object sender, EventArgs e)
-        {     
-         
-             if (!Page.IsPostBack)
-            {
-                //MembershipUser userLogged = Membership.GetUser();
+        {
 
-                //if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
-                if (true)
-                {
+            if (!Page.IsPostBack)
+            {
                     this.todasLasEmpresas = empresaService.getAll();
-                    liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
-                    this.todasLasSalas = salaService.obtenerSalas();
-                }
-                else
-                {
-                    this.todasLasEmpresas = new List<Empresa>();
-                    liEmpresas.Visible = false;
-                    //Empresa empresa = this.empresaService.getFindByGuid(new Guid(userLogged.ProviderUserKey.toString()));                  
-                    //this.todasLasSalas = salaService.obtenerSalasEmpresa();
-                }
+                    
+                    
+              
 
                 liEmpresas.DataSource = this.todasLasEmpresas;
                 liEmpresas.DataBind();
-                liSalas.DataSource = this.todasLasSalas;
-                liSalas.DataBind();
-
+                liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
+                
+            }
            
-               
+              
 
         }
 
@@ -61,6 +49,16 @@ namespace STGO
 
         protected void liEmpresas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (liEmpresas.SelectedValue == "0")
+            {
+                this.todasLasSalas = salaService.obtenerSalas();
+            }
+            else
+            {
+                this.todasLasSalas = salaService.obtenerSalasEmpresa(long.Parse(liEmpresas.SelectedValue));
+            }
+            liSalas.DataSource = this.todasLasSalas;
+             liSalas.DataBind();
 
         }
     }
