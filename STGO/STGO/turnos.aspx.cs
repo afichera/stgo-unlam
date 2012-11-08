@@ -42,9 +42,9 @@ namespace STGO
 
         protected void Calendario_SelectionChanged(object sender, EventArgs e)
         {
-           // todosLosTurnos = turnoService.obtenerTurnos(liSalas.SelectedValue, Calendario.SelectedDate); //Crear servicio que trae todos los turnos
-           // GrillaDia.DataSource = todosLosTurnos;
-           // GrillaDia.DataBind();
+            todosLosTurnos = turnoService.obtenerTurnos(3, Calendario.SelectedDate); //Crear servicio que trae todos los turnos
+            GrillaDia.DataSource = todosLosTurnos;
+            GrillaDia.DataBind();
         }
 
         protected void liEmpresas_SelectedIndexChanged(object sender, EventArgs e)
