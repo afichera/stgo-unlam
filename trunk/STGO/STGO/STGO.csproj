@@ -40,13 +40,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Microsoft.Exchange.WebServices.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json.Net35, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\JSON\Newtonsoft.Json.Net35.dll</HintPath>
-    </Reference>
-    <Reference Include="Schedule2, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -67,126 +60,7 @@
     <Content Include="About.aspx" />
     <Content Include="activarCuenta.aspx" />
     <Content Include="Add.aspx" />
-    <Content Include="App_Themes\wdCalendar\alert.css" />
-    <Content Include="App_Themes\wdCalendar\calendar.css" />
-    <Content Include="App_Themes\wdCalendar\colorselect.css" />
-    <Content Include="App_Themes\wdCalendar\dailog.css" />
-    <Content Include="App_Themes\wdCalendar\dp.css" />
-    <Content Include="App_Themes\wdCalendar\dropdown.css" />
-    <Content Include="App_Themes\wdCalendar\Error.css" />
-    <Content Include="App_Themes\wdCalendar\images\alert\bot.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\close.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\corners.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\cornersBlue.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\help.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\important.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\info.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\title.gif" />
-    <Content Include="App_Themes\wdCalendar\images\alert\title1.gif" />
-    <Content Include="App_Themes\wdCalendar\images\bgs\CardHeadbg.jpg" />
-    <Content Include="App_Themes\wdCalendar\images\bgs\CardHeadbg.png" />
-    <Content Include="App_Themes\wdCalendar\images\bgs\ch.gif" />
-    <Content Include="App_Themes\wdCalendar\images\bgs\headbg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\bgs\minus1.gif" />
-    <Content Include="App_Themes\wdCalendar\images\bgs\plus1.gif" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\bubble_combined.png" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\combined.gif" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\grid.png" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\gridth.gif" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\headbg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\indicator_web20_working.gif" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\load-bg.png" />
-    <Content Include="App_Themes\wdCalendar\images\calendar\tbg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\dailog\app-form.png" />
-    <Content Include="App_Themes\wdCalendar\images\dailog\headbg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\dailog\left-corners.png" />
-    <Content Include="App_Themes\wdCalendar\images\dailog\left-right.png" />
-    <Content Include="App_Themes\wdCalendar\images\dailog\right-corners.png" />
-    <Content Include="App_Themes\wdCalendar\images\dailog\tool-sprites.gif" />
-    <Content Include="App_Themes\wdCalendar\images\dailog\top-bottom.png" />
-    <Content Include="App_Themes\wdCalendar\images\dp\btn-arrow-light.gif" />
-    <Content Include="App_Themes\wdCalendar\images\dp\btn-arrow.gif" />
-    <Content Include="App_Themes\wdCalendar\images\dropdown\dropdown.gif" />
-    <Content Include="App_Themes\wdCalendar\images\dropdown\dropdownhover.gif" />
-    <Content Include="App_Themes\wdCalendar\images\home\logo.gif" />
-    <Content Include="App_Themes\wdCalendar\images\home\toolbarbg.jpg" />
-    <Content Include="App_Themes\wdCalendar\images\home\top_bg.jpg" />
-    <Content Include="App_Themes\wdCalendar\images\icons\add.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\appt.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\au.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\Btn.Close.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cacheClear.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cal-day.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cal-month.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cal-proc.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cal-rsc-perm.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cal-week.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cal-wk-week.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cal.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\calendar.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\calwrkwk.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\canmtg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\circle_animation.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\clndr.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\clndrsmll.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\cn.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\date.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\date_add.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\date_reflash.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\delete.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\edit.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\folder_user.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\group.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\group_add.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\hk.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\ico1.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\indicator.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\Item.Add.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\Item.Delete.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\Item.Edit.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\Item.Input.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\Item.Save.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\Item.Search.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\msg_center.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\msg_email.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\msg_im.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\msg_mobile.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\mtgreq-cancel.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\mtgreq.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\mtgrsp-accept.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\mtgrsp-decline.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\mtgrsp-tent.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\pgrs-sm.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\resultset_next.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\resultset_previous.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\rowdelete.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\table.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\table_c.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\table_copy.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\table_r.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\table_refresh.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\tick.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\turnback.png" />
-    <Content Include="App_Themes\wdCalendar\images\icons\us.gif" />
-    <Content Include="App_Themes\wdCalendar\images\icons\view.png" />
-    <Content Include="App_Themes\wdCalendar\images\share\card.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\glass-bg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\hd-sprite.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\headbg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\information.png" />
-    <Content Include="App_Themes\wdCalendar\images\share\left-btn.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\right-btn.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\table.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\table_c.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\tbg.gif" />
-    <Content Include="App_Themes\wdCalendar\images\share\tool-sprites.gif" />
-    <Content Include="App_Themes\wdCalendar\images\validation\accept.png" />
-    <Content Include="App_Themes\wdCalendar\images\validation\exclamation.png" />
-    <Content Include="App_Themes\wdCalendar\images\validation\tooltop.gif" />
-    <Content Include="App_Themes\wdCalendar\images\validation\warning.gif" />
-    <Content Include="App_Themes\wdCalendar\main.css" />
     <Content Include="cantidadDeSalas.aspx" />
-    <Content Include="DataFeed.aspx" />
     <Content Include="Edit.aspx" />
     <Content Include="empresas.aspx" />
     <Content Include="Error.aspx" />
@@ -230,27 +104,6 @@
     <Content Include="Scripts\fancybox\jquery.mousewheel-3.0.4.pack.js" />
     <Content Include="Scripts\fancybox\launch.fancybox.js" />
     <Content Include="Scripts\validarLargos.js" />
-    <Content Include="Scripts\wdCalendar\lanzaCalendar.js" />
-    <Content Include="Scripts\wdCalendar\src\jquery.getQueryParam.min.js" />
-    <Content Include="Scripts\wdCalendar\src\jquery.js" />
-    <Content Include="Scripts\wdCalendar\src\jquery.min.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\Common.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_AU.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_ES.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_HK.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\datepicker_lang_US.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.alert.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.calendar.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.colorselect.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.datepicker.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.dropdown.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.form.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.ifrmdailog.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\jquery.validate.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_AU.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_ES.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_HK.js" />
-    <Content Include="Scripts\wdCalendar\src\Plugins\wdCalendar_lang_US.js" />
     <Content Include="Styles\960.css" />
     <Content Include="Styles\league.svg" />
     <Content Include="Styles\reset.css" />
@@ -291,14 +144,6 @@
     <Compile Include="cantidadDeSalas.aspx.designer.cs">
       <DependentUpon>cantidadDeSalas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DataFeed.aspx.cs">
-      <DependentUpon>DataFeed.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DataFeed.aspx.designer.cs">
-      <DependentUpon>DataFeed.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DataFeedClass.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -433,8 +278,6 @@
     <Content Include="App_Themes\STGO\STGO.skin" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Themes\wdCalendar\images\alert\Thumbs.db" />
-    <None Include="App_Themes\wdCalendar\images\icons\Thumbs.db" />
     <None Include="Styles\league.eot" />
     <None Include="Styles\league.otf" />
     <None Include="Styles\league.ttf" />
