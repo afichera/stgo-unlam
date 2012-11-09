@@ -22,8 +22,7 @@ namespace STGO
         long idSala;
         protected void Page_Load(object sender, EventArgs e)
         {
-            GrillaDia.Columns[0].Visible = false;
-            txtEditId.Visible = false;
+           
 
             if (!Page.IsPostBack)
             {
@@ -42,9 +41,14 @@ namespace STGO
                 GrillaDia.DataBind();
                 
             }
-           
-              
+         }
 
+
+        protected void Page_SaveStateComplete(object sender, EventArgs e)
+        {
+
+            GrillaDia.Columns[0].Visible = false;
+            txtEditId.Visible = false;
         }
 
         protected void Calendario_SelectionChanged(object sender, EventArgs e)
@@ -86,6 +90,19 @@ namespace STGO
                 txtEditReservador.Text = turno.Reservador.ToString();
                 txtEditDescripcion.Text = turno.Descripcion.ToString();
             }
+            else if (e.CommandName == "BorradoMio")
+            {
+                long id = long.Parse(e.CommandArgument.ToString());
+                if (id != null)
+                {
+                    turnoService.delete(turnoService.getFindById(id));
+                    idSala = 3;
+                    todosLosTurnos = turnoService.obtenerTurnos(idSala, DateTime.Now); //Crear servicio que trae todos los turnos
+                    GrillaDia.DataSource = todosLosTurnos;
+                    GrillaDia.DataBind();
+                }
+            }
+
         }
 
 

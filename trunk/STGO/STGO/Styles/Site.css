@@ -121,6 +121,10 @@ body
 	top:1px;
 }
 
+#ingreso a
+{
+  color:#333;  
+}
 
 .popup
 {background-color:#FFF;
@@ -220,6 +224,30 @@ td input[type=submit]
 a:link, a:visited 
 {
     color:#333;
+}
+
+#almanaque
+{
+    text-align:center;
+    margin:0 10px 20px 10px;
+}
+
+
+#almanaque a
+{
+ text-decoration:none;   
+ 
+}
+
+#almanaque td, #almanaque th
+{
+    padding:3px 5px;
+}
+
+#almanaque table
+{
+    
+    padding: 5px;
 }
 
 

@@ -31,8 +31,9 @@
             <br />
         </div>
     </div>
-    <div class="grid_6">
-        <asp:Calendar ID="Calendario" runat="server" OnSelectionChanged="Calendario_SelectionChanged">
+    <div class="grid_6" id="almanaque">
+        <asp:Calendar ID="Calendario" runat="server" 
+            OnSelectionChanged="Calendario_SelectionChanged">
         </asp:Calendar>
     </div>
     <div class="clear">
@@ -64,7 +65,12 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:ImageButton ID="BorradoMio" Text="Eliminar" runat="server" CommandName="BorradoMio"
+                            CommandArgument='<%# Eval("id") %>' ImageUrl="~/images/cross.png" OnClientClick="return confirm('¿Esta seguro que desea eliminar este turno?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
 
 
             </Columns>
