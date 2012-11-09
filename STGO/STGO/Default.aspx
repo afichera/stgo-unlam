@@ -27,11 +27,11 @@
     <br /></div>
 
     <div class="grid_2 prefix_1">
-        <asp:LinkButton ForeColor="DarkGray" ID="linkBtnLogin" PostBackUrl="~/Login.aspx"
+        <asp:LinkButton  ID="linkBtnLogin" PostBackUrl="~/Login.aspx"
             runat="server" class="boton">Ingresar</asp:LinkButton>
     </div>
     <div class="grid_2">
-        <asp:LinkButton ForeColor="DarkGray" ID="linkBtnRegistrese" PostBackUrl="~/Registro.aspx"
+        <asp:LinkButton  ID="linkBtnRegistrese" PostBackUrl="~/Registro.aspx"
             runat="server" class="boton">Registrarse</asp:LinkButton>
         <br />
     </div>

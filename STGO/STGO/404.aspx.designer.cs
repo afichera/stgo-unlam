@@ -10,7 +10,7 @@
 namespace STGO {
     
     
-    public partial class Error {
+    public partial class Formulario_web3 {
         
         /// <summary>
         /// Control linkCancelar.

@@ -21,7 +21,7 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            grid_Salas.Columns[0].Visible = false;
+            
 
             if (Roles.IsUserInRole(Constantes.ROLES_ADMIN))
             {
@@ -73,7 +73,7 @@ namespace STGO
 
         protected void Page_SaveStateComplete(object sender, EventArgs e)
         {
-            
+            grid_Salas.Columns[0].Visible = false;
 
         }
 

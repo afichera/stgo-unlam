@@ -57,6 +57,7 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404.aspx" />
     <Content Include="About.aspx" />
     <Content Include="activarCuenta.aspx" />
     <Content Include="Add.aspx" />
@@ -64,6 +65,7 @@
     <Content Include="Edit.aspx" />
     <Content Include="empresas.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="images\cross.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\pencil.png" />
     <Content Include="images\ruido.png" />
@@ -116,6 +118,13 @@
     <Content Include="turnos.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
