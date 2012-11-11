@@ -236,7 +236,7 @@ namespace Persistence.DAOImpl
                     base.Command.Connection = base.Conexion;
                     Command.CommandText = "SELECT e.id, e.activa, e.cuit, e.maximoSalas, e.razonSocial, e.telefono, u.UserName, u.UserId " +
                         "FROM Empresa e " +
-                        "INNER JOIN aspnet_Users u ON (u.UserId = e.UserId) WHERE u.id = @userId";
+                        "INNER JOIN aspnet_Users u ON (u.UserId = e.UserId) WHERE u.UserId = @userId";
 
                     Command.CommandType = CommandType.Text;
                     Command.Parameters.AddWithValue("userId", userId);

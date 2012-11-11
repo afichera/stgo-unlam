@@ -12,7 +12,7 @@
         <asp:Label ID="lblListaEmpresas" runat="server" AssociatedControlID="liEmpresas">Seleccione una empresa: </asp:Label>
         <asp:DropDownList ID="liEmpresas" runat="server" DataValueField="Id" DataTextField="RazonSocial"
             AutoPostBack="true" OnSelectedIndexChanged="liEmpresas_SelectedIndexChanged">
-            <asp:ListItem Value="0" Enabled="true" Selected="True" Text="Todas" />
+            
         </asp:DropDownList>
         <br />
     </div>

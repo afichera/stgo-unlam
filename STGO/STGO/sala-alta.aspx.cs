@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Services.Service;
 using Services.Util;
 using Model;
+using System.Web.Security;
 
 namespace STGO
 {
@@ -14,21 +15,47 @@ namespace STGO
     {
         ISalaService salaService = ServiceLocator.Instance.SalaService;
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
-
+        List<Empresa> todasLasEmpresas;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+
+            if (!Page.IsPostBack)
+            {
+                MembershipUser userLogged = Membership.GetUser(HttpContext.Current.User.Identity.Name);
+
+                if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
+                {
+                    this.todasLasEmpresas = empresaService.getAll();
+
+
+
+                }
+                else
+                {
+                    this.todasLasEmpresas = new List<Empresa>();
+                    Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
+                    todasLasEmpresas.Add(empresa);
+                    liEmpresas.Visible = false;
+                    lblListaEmpresas.Visible = false;
+
+                }
+                liEmpresas.DataSource = this.todasLasEmpresas;
+                liEmpresas.DataBind();
+
+            }
 
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+
             Page.Validate();
             if (Page.IsValid)
             {
-
-                int cantidadSalas = salaService.cantidadSalasEmpresa(1);
-                // int maxSalas = empresaService.cantidadSalasEmpresa(1);
-                Empresa empresa = empresaService.getFindById(1); //hay que tomar el id de empresa de la sesion
+                MembershipUser userLogged = Membership.GetUser(HttpContext.Current.User.Identity.Name);
+                Empresa empresa = this.empresaService.getFindById(long.Parse(liEmpresas.SelectedValue.ToString()));
+                int cantidadSalas = salaService.cantidadSalasEmpresa(empresa.Id);
                 if (cantidadSalas >= empresa.maximoSalas) //poner maxSalas cuando esté implementada
                     lblResultado.Text = "Ha alcanzado la cantidad máxima de salas permitidas para su empresa.";
                 else
