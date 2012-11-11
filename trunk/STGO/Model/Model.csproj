@@ -51,6 +51,7 @@
     <Compile Include="Rol.cs" />
     <Compile Include="Sala.cs" />
     <Compile Include="Turno.cs" />
+    <Compile Include="TurnoInvalidoException.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
