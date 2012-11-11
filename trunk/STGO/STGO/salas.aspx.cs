@@ -21,9 +21,9 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            MembershipUser userLogged = Membership.GetUser(HttpContext.Current.User.Identity.Name);
 
-            if (Roles.IsUserInRole(Constantes.ROLES_ADMIN))
+            if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
             {
                 lblListaEmpresas.Visible = true;
                 liEmpresas.Visible = true;
@@ -34,14 +34,11 @@ namespace STGO
                 liEmpresas.Visible = false;
             }
 
-
-
             if (!Page.IsPostBack)
             {
-                //MembershipUser userLogged = Membership.GetUser();
+                               
 
-                //if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
-                if (true)
+                if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))                
                 {
                     this.todasLasEmpresas = empresaService.getAll();
                     liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
@@ -60,14 +57,6 @@ namespace STGO
                 grid_Salas.DataSource = this.todasLasSalas;
                 grid_Salas.DataBind();
             }
-
-            if (false)
-            {
-                lblListaEmpresas.Visible = false;
-            }
-
-
-
 
         }
 
