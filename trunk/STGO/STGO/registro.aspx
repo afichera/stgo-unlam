@@ -135,8 +135,8 @@
                 <ContentTemplate>
                     <table>
                         <tr>
-                            <td align="center" colspan="2">
-                                Registro Completado.
+                            <td colspan="2">
+                            <h1>Registro Completado.</h1>
                             </td>
                         </tr>
                         <tr> 

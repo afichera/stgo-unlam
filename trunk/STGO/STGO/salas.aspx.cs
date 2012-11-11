@@ -36,24 +36,27 @@ namespace STGO
 
             if (!Page.IsPostBack)
             {
-                               
 
-                if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))                
+
+                if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
                 {
                     this.todasLasEmpresas = empresaService.getAll();
+
+
+                    liEmpresas.DataSource = this.todasLasEmpresas;
+
+                    liEmpresas.DataBind();
                     liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
                     this.todasLasSalas = salaService.obtenerSalas();
                 }
                 else
                 {
                     this.todasLasEmpresas = new List<Empresa>();
-                    liEmpresas.Visible = false;
-                    //Empresa empresa = this.empresaService.getFindByGuid(new Guid(userLogged.ProviderUserKey.toString()));                  
-                    //this.todasLasSalas = salaService.obtenerSalasEmpresa();
+                    Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
+                    this.todasLasSalas = salaService.obtenerSalasEmpresa(empresa.Id);
                 }
 
-                liEmpresas.DataSource = this.todasLasEmpresas;
-                liEmpresas.DataBind();
+
                 grid_Salas.DataSource = this.todasLasSalas;
                 grid_Salas.DataBind();
             }
