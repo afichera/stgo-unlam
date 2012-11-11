@@ -6,6 +6,7 @@ using Model;
 using Services.Service;
 using Persistence.DAO;
 using Persistence.Util;
+using Model.Exceptions;
 
 namespace Services.ServiceImpl
 {
@@ -55,7 +56,7 @@ namespace Services.ServiceImpl
             int frecuencia = sala.Frecuencia;
             
             if((horaInicio*60+minutosInicio)>=(horaFin*60+minutosFin)){
-                //TODO: Lanzar Exception.
+                throw new TurnoInvalidoException("La configuración de Horario de Inicio y Fin de turnos de la sala son inválidos.");
             }
             //Inicializo en el primer horario
             horarioInicioAux = sala.HoraInicio;
@@ -75,6 +76,7 @@ namespace Services.ServiceImpl
                 turnosTotales.Add(turno);
             }
             turnosLibres = this.extraerTurnosOcupados(turnosTotales, turnosReservados);
+            turnosLibres.Sort();
             return turnosLibres;
         }
 
@@ -114,7 +116,7 @@ namespace Services.ServiceImpl
             else {
                 turnosLibres = turnosTotales;
             }
-
+            
             return turnosLibres;
         }
 
