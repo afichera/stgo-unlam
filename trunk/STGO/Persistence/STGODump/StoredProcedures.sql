@@ -254,6 +254,11 @@ GO
 USE [STGO]
 GO
 
+/****** Object:  StoredProcedure [dbo].[SP_TURNO_RESERVAR]    Script Date: 10/28/2012 15:15:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_TURNO_RESERVAR]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[SP_TURNO_RESERVAR]
+GO
+
 USE [STGO]
 GO
 
