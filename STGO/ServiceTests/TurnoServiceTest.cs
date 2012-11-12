@@ -72,5 +72,13 @@ namespace ServiceTests
             this.turnoService.reservarTurno(1, "carlos", "Turno de Psicologia", horaInicio, horaFin);
             Assert.IsTrue(true);
         }
+        [TestMethod]
+        public void TestEliminarTurno(){
+            long idSala = 1;
+            long idTurno = 100;
+            this.turnoService.eliminarTurno(idSala, idTurno);
+            Assert.IsTrue(true);
+        }
+
     }
 }

@@ -8,8 +8,6 @@ namespace Persistence.DAO
 {
     public interface ITurnoDAO:ICommonDAO<Turno>
     {
-        List<Turno> obtenerTurnosReservados(long idSala, DateTime fecha);
-
         Turno obtenerTurno(long idSala, long idTurno);
 
         void reservarTurno(long idSala, String nombreReservador, String descripcion, DateTime horaInicio, DateTime horaFin);
