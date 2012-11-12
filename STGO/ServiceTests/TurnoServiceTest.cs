@@ -6,12 +6,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Services.ServiceImpl;
 using Model;
 using System.Diagnostics;
+using Services.Service;
+using Services.Util;
 
 namespace ServiceTests
 {
     [TestClass]
     public class TurnoServiceTest
     {
+        private ITurnoService turnoService = ServiceLocator.Instance.TurnoService;
+
         [TestMethod]
         public void TestExtraerTurnosReservados()
         {
@@ -59,6 +63,14 @@ namespace ServiceTests
             }
             
             Assert.IsTrue(turnosLibres.Count == 17);
+        }
+
+        [TestMethod]
+        public void TestReservarTurno() { 
+            DateTime horaInicio = DateTime.Now;
+            DateTime horaFin = DateTime.Now.AddMinutes(30);
+            this.turnoService.reservarTurno(1, "carlos", "Turno de Psicologia", horaInicio, horaFin);
+            Assert.IsTrue(true);
         }
     }
 }
