@@ -76,7 +76,38 @@ namespace Persistence.DAOImpl
 
         public void reservarTurno(long idSala, string nombreReservador, string descripcion, DateTime horaInicio, DateTime horaFin)
         {
-            throw new NotImplementedException();
+            if (base.Conectar())
+            {
+
+                string sp = "SP_TURNO_RESERVAR";
+                SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                Command.CommandType = CommandType.StoredProcedure;
+                SqlParameter paramSalaId = new SqlParameter("salaId", SqlDbType.BigInt);
+                SqlParameter paramReservador = new SqlParameter("nombreReservador", SqlDbType.VarChar);
+                SqlParameter paramDescripcion = new SqlParameter("descripcion", SqlDbType.VarChar);
+                SqlParameter paramHoraInicio = new SqlParameter("horaInicio", SqlDbType.DateTime);
+                SqlParameter paramHoraFin = new SqlParameter("horaFin", SqlDbType.DateTime);
+
+                paramSalaId.Direction = ParameterDirection.Input;
+                paramSalaId.Value = idSala;
+                paramReservador.Direction = ParameterDirection.Input;
+                paramReservador.Value = nombreReservador;
+                paramHoraInicio.Direction = ParameterDirection.Input;
+                paramHoraInicio.Value = horaInicio;
+                paramHoraFin.Direction = ParameterDirection.Input;
+                paramHoraFin.Value = horaFin;
+                paramDescripcion.Direction = ParameterDirection.Input;
+                paramDescripcion.Value = descripcion;
+
+                Command.Parameters.Add(paramSalaId);
+                Command.Parameters.Add(paramReservador);
+                Command.Parameters.Add(paramHoraInicio);
+                Command.Parameters.Add(paramHoraFin);
+                Command.Parameters.Add(paramDescripcion);
+                
+                int filasAfectadas = Command.ExecuteNonQuery();
+                base.Desconectar();
+            }
         }
 
         public void eliminarTurno(long idSala, long idTurno)

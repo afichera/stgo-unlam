@@ -253,3 +253,43 @@ GO
 
 USE [STGO]
 GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_TURNO_RESERVAR]    Script Date: 11/11/2012 21:03:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+
+CREATE PROCEDURE [dbo].[SP_TURNO_RESERVAR]
+    @salaId						bigint,
+    @nombreReservador             varchar(100),   
+    @horaInicio				DateTime,
+    @horaFin				DateTime,
+    @descripcion					varchar(200)
+AS
+DECLARE @rows int;
+SET @rows = 0;
+BEGIN TRANSACTION RESERVA_TURNO; 
+if(@salaId is not null and @salaId <> 0) 
+begin
+	SET @rows = (SELECT COUNT(*) FROM Turno T 
+				WHERE T.salaId = @salaId 
+				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
+				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio);
+end
+IF (@rows = 0)
+BEGIN
+	INSERT INTO TURNO (reservador, fechaHoraInicio, fechaHoraFin, descripcion, salaId)
+	VALUES (@nombreReservador, @horaInicio, @horaFin, @descripcion, @salaId);	 
+end
+COMMIT TRANSACTION RESERVA_TURNO;
+IF (@rows = 1)
+	RAISERROR("TURNO OCUPADO.",16,1)
+ 	
+
+GO
