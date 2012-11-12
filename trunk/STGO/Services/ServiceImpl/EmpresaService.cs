@@ -26,7 +26,7 @@ namespace Services.ServiceImpl
 
         public Empresa saveOrUpdate(Empresa entity)
         {
-            throw new NotImplementedException();
+            return this.empresaDAO.saveOrUpdate(entity);
         }
 
         public void delete(Empresa entity)

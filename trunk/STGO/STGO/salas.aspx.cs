@@ -69,15 +69,7 @@ namespace STGO
 
         }
 
-        //protected void grid_Salas_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    string id = grid_Salas.Rows[e.RowIndex].Cells[1].Text;
-        //    long id2 = long.Parse(id);
-        //    salaService.delete(salaService.getFindById(id2));
-        //    this.todasLasSalas = salaService.obtenerSalas();
-        //    grid_Salas.DataSource = this.todasLasSalas;
-        //    grid_Salas.DataBind();
-        //}
+
 
         protected void liEmpresas_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -112,12 +104,33 @@ namespace STGO
 
             if (e.CommandName == "BorradoMio")
             {
+
                 long id = long.Parse(e.CommandArgument.ToString());
 
                 salaService.delete(salaService.getFindById(id));
-                this.todasLasSalas = salaService.obtenerSalas();
+
+
+                MembershipUser userLogged = Membership.GetUser(HttpContext.Current.User.Identity.Name);
+                if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
+                {
+                    this.todasLasSalas = salaService.obtenerSalas();
+                }
+                else
+                {
+                    this.todasLasEmpresas = new List<Empresa>();
+                    Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
+                    this.todasLasSalas = salaService.obtenerSalasEmpresa(empresa.Id);
+                }
+
                 grid_Salas.DataSource = this.todasLasSalas;
                 grid_Salas.DataBind();
+
+
+
+
+
+
+
 
             }
         }

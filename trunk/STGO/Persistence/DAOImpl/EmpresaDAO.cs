@@ -125,7 +125,52 @@ namespace Persistence.DAOImpl
 
         public Empresa saveOrUpdate(Empresa entity)
         {
-            throw new NotImplementedException();
+            Empresa empresa = entity;
+
+            if (base.Conectar())
+            {
+
+                string sp = "SP_EMPRESA_SAVE_OR_UPDATE";
+                SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                Command.CommandType = CommandType.StoredProcedure;
+                SqlParameter paramId = new SqlParameter("id", SqlDbType.BigInt);
+                SqlParameter paramRazonSocial = new SqlParameter("razonSocial", SqlDbType.VarChar);
+                SqlParameter paramCuit = new SqlParameter("cuit", SqlDbType.VarChar);
+                SqlParameter paramTelefono = new SqlParameter("telefono", SqlDbType.VarChar);
+                SqlParameter paramMaximoSalas = new SqlParameter("maximoSalas", SqlDbType.SmallInt);
+                SqlParameter paramActiva = new SqlParameter("activa", SqlDbType.TinyInt);
+                SqlParameter paramUserId = new SqlParameter("userId", SqlDbType.UniqueIdentifier);
+                
+                paramId.Direction = ParameterDirection.InputOutput;
+                paramId.Value = empresa.Id;
+                paramRazonSocial.Direction = ParameterDirection.Input;
+                paramRazonSocial.Value = empresa.RazonSocial;
+                paramCuit.Direction = ParameterDirection.Input;
+                paramCuit.Value = empresa.CUIT;
+                paramTelefono.Direction = ParameterDirection.Input;
+                paramTelefono.Value = empresa.Telefono;
+                paramMaximoSalas.Direction = ParameterDirection.Input;
+                paramMaximoSalas.Value = empresa.maximoSalas;
+                paramActiva.Direction = ParameterDirection.Input;
+                paramActiva.Value = empresa.activo;
+                paramUserId.Direction = ParameterDirection.Input;
+                paramUserId.Value = empresa.Usuario.Id;
+                
+
+                Command.Parameters.Add(paramId);
+                Command.Parameters.Add(paramRazonSocial);
+                Command.Parameters.Add(paramCuit);
+                Command.Parameters.Add(paramTelefono);
+                Command.Parameters.Add(paramMaximoSalas);
+                Command.Parameters.Add(paramActiva);
+                Command.Parameters.Add(paramUserId);
+
+                int filasAfectadas = Command.ExecuteNonQuery();
+
+                empresa.Id = long.Parse(Command.Parameters["id"].Value.ToString());
+                base.Desconectar();
+            }
+            return empresa;
         }
 
         public void delete(Empresa entity)

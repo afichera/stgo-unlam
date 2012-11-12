@@ -62,7 +62,6 @@
     <Content Include="activarCuenta.aspx" />
     <Content Include="Add.aspx" />
     <Content Include="cantidadDeSalas.aspx" />
-    <Content Include="Edit.aspx" />
     <Content Include="empresas.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="images\cross.png" />
@@ -159,13 +158,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Edit.aspx.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Edit.aspx.designer.cs">
-      <DependentUpon>Edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="empresas.aspx.cs">
       <DependentUpon>empresas.aspx</DependentUpon>
