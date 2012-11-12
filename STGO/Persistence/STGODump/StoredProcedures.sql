@@ -283,7 +283,8 @@ BEGIN TRANSACTION RESERVA_TURNO;
 if(@salaId is not null and @salaId <> 0) 
 begin
 	SET @rows = (SELECT COUNT(*) FROM Turno T 
-				WHERE T.salaId = @salaId 
+				WHERE T.salaId = @salaId
+				AND T.fechaHoraBaja IS NULL 
 				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
 				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio);
 end
