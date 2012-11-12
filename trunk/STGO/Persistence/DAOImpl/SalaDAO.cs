@@ -88,7 +88,7 @@ namespace Persistence.DAOImpl
                 base.Command = new SqlCommand();
                
                 base.Command.Connection = base.Conexion;
-                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.id = @id";
+                Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.id = @id and s.fechaHoraBaja is null";
 
                 Command.CommandType = CommandType.Text;
                 Command.Parameters.AddWithValue("id", id);
