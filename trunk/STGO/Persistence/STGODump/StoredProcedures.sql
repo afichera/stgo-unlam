@@ -299,3 +299,29 @@ IF (@rows = 1)
  	
 
 GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_TURNO_DELETE]    Script Date: 10/28/2012 15:15:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_TURNO_DELETE]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[SP_TURNO_DELETE]
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_TURNO_DELETE]    Script Date: 11/11/2012 21:25:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_TURNO_DELETE]
+    @idTurno	bigint,
+    @idSala		bigint
+AS
+BEGIN TRANSACTION TURNO_DELETE; 
+	UPDATE Turno SET fechaHoraBaja = GETDATE()
+			WHERE id = @idTurno AND
+			salaId = @idSala;
+COMMIT TRANSACTION TURNO_DELETE; 	
