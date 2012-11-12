@@ -36,7 +36,7 @@
                 <asp:CommandField ShowEditButton="True" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:LinkButton ID="BorradoMio" Text="Eliminar" runat="server" CommandName="BorradoMio"
+                        <asp:LinkButton ID="BorradoMio" Text="Eliminar" runat="server" CommandName="BorradoMio" 
                             CommandArgument='<%# Eval("id") %>' OnClientClick="return confirm('¿Esta seguro que desea eliminar la sala? si posee turnos, los mismos se perderán');" />
                     </ItemTemplate>
                 </asp:TemplateField>
