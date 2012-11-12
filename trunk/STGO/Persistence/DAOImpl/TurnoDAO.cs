@@ -32,11 +32,6 @@ namespace Persistence.DAOImpl
             throw new NotImplementedException();
         }
 
-        public List<Turno> obtenerTurnosReservados(long idSala, DateTime fecha)
-        {
-            throw new NotImplementedException();
-        }
-
         public Turno obtenerTurno(long idSala, long idTurno)
         {
 
@@ -112,7 +107,27 @@ namespace Persistence.DAOImpl
 
         public void eliminarTurno(long idSala, long idTurno)
         {
-            throw new NotImplementedException();
+            if (base.Conectar())
+            {
+
+                string sp = "SP_TURNO_DELETE";
+                SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                Command.CommandType = CommandType.StoredProcedure;
+                SqlParameter paramIdTurno = new SqlParameter("idTurno", SqlDbType.BigInt);
+                SqlParameter paramIdSala = new SqlParameter("idSala", SqlDbType.BigInt);
+
+
+                paramIdTurno.Direction = ParameterDirection.Input;
+                paramIdTurno.Value = idSala;
+                paramIdSala.Direction = ParameterDirection.Input;
+                paramIdSala.Value = idTurno;
+
+                Command.Parameters.Add(paramIdTurno);
+                Command.Parameters.Add(paramIdSala);
+
+                int filasAfectadas = Command.ExecuteNonQuery();
+                base.Desconectar();
+            }
         }
 
         public List<Turno> obtenerTurnos(long salaId, DateTime dateTime)

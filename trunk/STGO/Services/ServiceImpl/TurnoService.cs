@@ -152,7 +152,12 @@ namespace Services.ServiceImpl
 
         public void eliminarTurno(long idSala, long idTurno)
         {
-            throw new NotImplementedException();
+            Sala sala = this.salaDAO.getFindById(idSala);
+            if (sala == null) {
+                throw new BusinessException("No se puede eliminar el turno porque la sala no existe.");
+            }
+
+            this.turnoDAO.eliminarTurno(idSala, idTurno);
         }
 
         public List<Turno> obtenerTurnos(long salaId, DateTime dateTime)
