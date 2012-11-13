@@ -99,7 +99,6 @@ GO
 
 SET QUOTED_IDENTIFIER OFF
 GO
-
 CREATE PROCEDURE [dbo].[SP_EMPRESA_SAVE_OR_UPDATE]
     @id						bigint OUTPUT,
     @razonSocial             varchar(100),
@@ -117,7 +116,7 @@ SET @rows = 0;
 BEGIN TRANSACTION UPSERTEMPRESA; 
 if(@id is not null and @id <> 0) 
 begin
-	SET @rows = (SELECT COUNT(*) FROM Sala WHERE id = @id);
+	SET @rows = (SELECT COUNT(*) FROM Empresa WHERE id = @id);
 end
 
 IF (@rows = 0)
