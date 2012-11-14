@@ -39,7 +39,8 @@
     <div class="clear">
     </div>
     <div class="grid_6 tabla-datos" id="calendario">
-        <asp:GridView ID="GrillaDia" runat="server" AutoGenerateColumns="False" onrowcommand="GrillaDia_RowCommand" 
+        <asp:GridView ID="GrillaDia" runat="server" AutoGenerateColumns="False" 
+            onrowcommand="GrillaDia_RowCommand" onrowcreated="GrillaDia_RowCreated" SelectionMode="FullRowSelect" MultiSelect="false"
             >
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" Visible="true" />
