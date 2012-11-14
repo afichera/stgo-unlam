@@ -35,7 +35,7 @@ namespace STGO
                 liEmpresas.DataBind();
                 liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
 
-               idSala=3;
+               idSala=11;
                todosLosTurnos = turnoService.obtenerTurnos(idSala, DateTime.Now); //Crear servicio que trae todos los turnos
                 GrillaDia.DataSource = todosLosTurnos;
                 GrillaDia.DataBind();
@@ -53,8 +53,8 @@ namespace STGO
 
         protected void Calendario_SelectionChanged(object sender, EventArgs e)
         {
-            idSala = 3;
-            todosLosTurnos = turnoService.obtenerTurnos(3, Calendario.SelectedDate); //Crear servicio que trae todos los turnos
+            idSala = 11;
+            todosLosTurnos = turnoService.obtenerTurnos(11, Calendario.SelectedDate); //Crear servicio que trae todos los turnos
             GrillaDia.DataSource = todosLosTurnos;
             GrillaDia.DataBind();
         }
@@ -80,7 +80,7 @@ namespace STGO
             {
                 long id = long.Parse(e.CommandArgument.ToString());
 
-                Turno turno = turnoService.obtenerTurno(3, id);
+                Turno turno = turnoService.obtenerTurno(11, id);
 
 
                 txtEditId.Text = turno.Id.ToString();
@@ -96,7 +96,7 @@ namespace STGO
                 if (id != null)
                 {
                     turnoService.delete(turnoService.getFindById(id));
-                    idSala = 3;
+                    idSala = 11;
                     todosLosTurnos = turnoService.obtenerTurnos(idSala, DateTime.Now); //Crear servicio que trae todos los turnos
                     GrillaDia.DataSource = todosLosTurnos;
                     GrillaDia.DataBind();
@@ -104,6 +104,24 @@ namespace STGO
             }
 
         }
+
+        protected void GrillaDia_RowCreated(object sender, GridViewRowEventArgs e)
+        {string t="";
+            if (e.Row.RowType==DataControlRowType.DataRow)
+            {
+                t = DataBinder.Eval(e.Row.DataItem, "id").ToString();
+                if (!(t.Equals("")))
+                {
+                    e.Row.BackColor = System.Drawing.Color.LightGreen;
+
+                }
+
+                
+            }
+
+            //else quitar botón eliminar
+        }
+
 
 
 
