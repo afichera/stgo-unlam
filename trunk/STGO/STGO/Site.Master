@@ -18,11 +18,12 @@
 <body>
 <form runat="server" id="form">
     <div class="container_12" id="encabezado">
-        <div class="grid_9">
+        <div class="grid_7">
            <a href="/Default.aspx"> <img src="images/logo.png" alt="STGO - Sistema de Turnos Genérico Online" /></a>
         </div>
-        <div class="grid_3" id="LoginStatusDiv">
-            <asp:LoginStatus ID="LoginStatus" runat="server" />
+        <div class="grid_5" id="LoginStatusDiv">
+            <asp:Label ID="usuarioLogueado" runat="server" Text=""></asp:Label>
+            <asp:LoginStatus ID="LoginStatus" runat="server"/>
         </div>
     </div>
 
