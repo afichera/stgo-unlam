@@ -20,12 +20,14 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
-            txtMail.Text = empresa.Usuario.EMail.ToString();
-            txtRazonSocial.Text = empresa.RazonSocial.ToString();
-            txtCuit.Text = empresa.CUIT.ToString();
-            txtTelefono.Text = empresa.Telefono.ToString();
-
+            if (!Page.IsPostBack)
+            {
+                Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
+                txtMail.Text = empresa.Usuario.EMail.ToString();
+                txtRazonSocial.Text = empresa.RazonSocial.ToString();
+                txtCuit.Text = empresa.CUIT.ToString();
+                txtTelefono.Text = empresa.Telefono.ToString();
+            }
         }
 
         protected void btnGuardarPerfil_Click(object sender, EventArgs e)
