@@ -166,6 +166,15 @@ namespace STGO {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditHoraInicio;
         
         /// <summary>
+        /// Control ergEditHoraInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ergEditHoraInicio;
+        
+        /// <summary>
         /// Control lblEditHoraFin.
         /// </summary>
         /// <remarks>
@@ -191,6 +200,15 @@ namespace STGO {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditHoraFin;
+        
+        /// <summary>
+        /// Control regEditHoraFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regEditHoraFin;
         
         /// <summary>
         /// Control lblEditReservador.
@@ -220,6 +238,15 @@ namespace STGO {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditReservador;
         
         /// <summary>
+        /// Control customReservador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator customReservador;
+        
+        /// <summary>
         /// Control lblEditDescripcion.
         /// </summary>
         /// <remarks>
@@ -236,6 +263,15 @@ namespace STGO {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEditDescripcion;
+        
+        /// <summary>
+        /// Control customEditDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator customEditDescripcion;
         
         /// <summary>
         /// Control btnGuardar.
