@@ -5,7 +5,7 @@
     <title>STGO-Turnos</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="grid_6">
+    <div class="grid_6" >
         <h1>
             Turnos</h1>
         <div class="grid_3 alpha">
@@ -67,6 +67,9 @@
             </Columns>
         </asp:GridView>
     </div>
+        <div class="clear">
+        </div>
+
     <%--A partir de acá está el overlay de editar turnos--%>
     <div class="fondoTurno" id="fondoTurno" runat="server">
         <div class="grid_6 editTurno" id="editTurno" runat="server">
