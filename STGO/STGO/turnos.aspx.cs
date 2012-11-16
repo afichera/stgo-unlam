@@ -17,31 +17,51 @@ namespace STGO
         ITurnoService turnoService = ServiceLocator.Instance.TurnoService;
         List<Sala> todasLasSalas;
         ISalaService salaService = ServiceLocator.Instance.SalaService;
-         List<Empresa> todasLasEmpresas;
+        List<Empresa> todasLasEmpresas;
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
-        long idSala;
+        Empresa miEmpresa;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            MembershipUser userLogged = Membership.GetUser(HttpContext.Current.User.Identity.Name);
+
 
             if (!Page.IsPostBack)
             {
-                    this.todasLasEmpresas = empresaService.getAll();
-                    
-                    
-              
-
+            if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
+            {
+                this.todasLasEmpresas = empresaService.getAll();
                 liEmpresas.DataSource = this.todasLasEmpresas;
                 liEmpresas.DataBind();
                 liEmpresas.Items.Insert(0, new ListItem("TODAS", "0"));
+            }
+            else
+            {
+                miEmpresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
+                this.todasLasEmpresas.Add(miEmpresa);
+                liEmpresas.DataSource = this.todasLasEmpresas;
+                liEmpresas.DataBind();
+            }
 
-               idSala=11;
-               todosLosTurnos = turnoService.obtenerTurnos(idSala, DateTime.Now); //Crear servicio que trae todos los turnos
+                           
+
+            if (liEmpresas.SelectedValue == "0")
+            {
+                this.todasLasSalas = salaService.obtenerSalas();
+            }
+            else
+            {
+                this.todasLasSalas = salaService.obtenerSalasEmpresa(long.Parse(liEmpresas.SelectedValue));
+            }
+            liSalas.DataSource = this.todasLasSalas;
+            liSalas.DataBind();
+                
+                
+                todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now); 
                 GrillaDia.DataSource = todosLosTurnos;
                 GrillaDia.DataBind();
-                
+
             }
-         }
+        }
 
 
         protected void Page_SaveStateComplete(object sender, EventArgs e)
@@ -53,8 +73,8 @@ namespace STGO
 
         protected void Calendario_SelectionChanged(object sender, EventArgs e)
         {
-            idSala = 11;
-            todosLosTurnos = turnoService.obtenerTurnos(11, Calendario.SelectedDate); //Crear servicio que trae todos los turnos
+
+            todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate); 
             GrillaDia.DataSource = todosLosTurnos;
             GrillaDia.DataBind();
         }
@@ -70,7 +90,7 @@ namespace STGO
                 this.todasLasSalas = salaService.obtenerSalasEmpresa(long.Parse(liEmpresas.SelectedValue));
             }
             liSalas.DataSource = this.todasLasSalas;
-             liSalas.DataBind();
+            liSalas.DataBind();
 
         }
 
@@ -80,7 +100,7 @@ namespace STGO
             {
                 long id = long.Parse(e.CommandArgument.ToString());
 
-                Turno turno = turnoService.obtenerTurno(11, id);
+                Turno turno = turnoService.obtenerTurno(long.Parse(liSalas.SelectedValue), id);
 
 
                 txtEditId.Text = turno.Id.ToString();
@@ -96,8 +116,7 @@ namespace STGO
                 if (id != null)
                 {
                     turnoService.delete(turnoService.getFindById(id));
-                    idSala = 11;
-                    todosLosTurnos = turnoService.obtenerTurnos(idSala, DateTime.Now); //Crear servicio que trae todos los turnos
+                    todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now); 
                     GrillaDia.DataSource = todosLosTurnos;
                     GrillaDia.DataBind();
                 }
@@ -106,20 +125,42 @@ namespace STGO
         }
 
         protected void GrillaDia_RowCreated(object sender, GridViewRowEventArgs e)
-        {string t="";
-            if (e.Row.RowType==DataControlRowType.DataRow)
-            {
-                t = DataBinder.Eval(e.Row.DataItem, "id").ToString();
-                if (!(t.Equals("")))
+        {
+            
+
+            
+        }
+
+        protected void GrillaDia_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
+                string t = "";
+                if (e.Row.RowType == DataControlRowType.DataRow)
                 {
-                    e.Row.BackColor = System.Drawing.Color.LightGreen;
+                    t = DataBinder.Eval(e.Row.DataItem, "id").ToString();
+                    if (!(t.Equals("")))
+                    {
+                        e.Row.BackColor = System.Drawing.Color.LightGreen;
+
+                    }
+
 
                 }
-
-                
-            }
-
             //else quitar botón eliminar
+
+        }
+
+        protected void Calendario_Init(object sender, EventArgs e)
+        {
+            Calendario.SelectedDate = DateTime.Now;
+        }
+
+        protected void liSalas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DateTime dia = Calendario.SelectedDate;
+            todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), dia);
+            GrillaDia.DataSource = todosLosTurnos;
+            GrillaDia.DataBind();
         }
 
 

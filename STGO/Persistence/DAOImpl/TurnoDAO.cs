@@ -141,10 +141,15 @@ namespace Persistence.DAOImpl
                 Turno turno;
 
                 base.Command.Connection = base.Conexion;
-                Command.CommandText = "SELECT t.id, t.reservador, t.fechaHoraInicio, t.fechaHoraFin, t.descripcion, t.salaId  FROM Turno t WHERE t.salaId = @salaId AND t.fechaHoraBaja is null";
+                Command.CommandText = "SELECT t.id, t.reservador, t.fechaHoraInicio, t.fechaHoraFin, t.descripcion, t.salaId  FROM Turno t WHERE t.salaId = @salaId AND Convert(Char(10), t.fechaHoraInicio , 103) = @dia AND t.fechaHoraBaja is null";
 
                 Command.CommandType = CommandType.Text;
                 Command.Parameters.AddWithValue("salaId", salaId);
+
+                Command.CommandType = CommandType.Text;
+
+                string fecha = dateTime.Date.ToShortDateString();
+                Command.Parameters.AddWithValue("dia",fecha );
 
                 dataReader = Command.ExecuteReader();
 

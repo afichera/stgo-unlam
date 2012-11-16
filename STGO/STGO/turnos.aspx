@@ -26,21 +26,23 @@
         </div>
         <div class="grid_3 omega">
             <asp:DropDownList ID="liSalas" runat="server" AutoPostBack="true" DataValueField="Id"
-                DataTextField="Nombre">
+                DataTextField="Nombre" 
+                onselectedindexchanged="liSalas_SelectedIndexChanged">
             </asp:DropDownList>
             <br />
         </div>
     </div>
     <div class="grid_6" id="almanaque">
         <asp:Calendar ID="Calendario" runat="server" 
-            OnSelectionChanged="Calendario_SelectionChanged">
+            OnSelectionChanged="Calendario_SelectionChanged" 
+            SelectedDayStyle-CssClass="dia_seleccionado" oninit="Calendario_Init" >
         </asp:Calendar>
     </div>
     <div class="clear">
     </div>
     <div class="grid_6 tabla-datos" id="calendario">
         <asp:GridView ID="GrillaDia" runat="server" AutoGenerateColumns="False" 
-            onrowcommand="GrillaDia_RowCommand" onrowcreated="GrillaDia_RowCreated" SelectionMode="FullRowSelect" MultiSelect="false"
+            onrowcommand="GrillaDia_RowCommand" onrowcreated="GrillaDia_RowCreated" onrowdatabound="GrillaDia_RowDataBound" 
             >
             <Columns>
                 <asp:BoundField DataField="Id" HeaderText="Id" Visible="true" />
