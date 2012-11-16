@@ -31,6 +31,12 @@ namespace Services.ServiceImpl
             throw new NotImplementedException();
         }
 
+
+        public Turno saveOrUpdate(long idSala, Turno entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void delete(Turno entity)
         {
             throw new NotImplementedException();

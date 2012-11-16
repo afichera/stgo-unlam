@@ -229,7 +229,7 @@ a:link, a:visited
 #almanaque
 {
     text-align:center;
-    margin:0 10px 20px 10px;
+    margin:20px 0;
 }
 
 
@@ -269,3 +269,25 @@ a:link, a:visited
  background-color:Gray;   
 }
 
+
+.fondoTurno
+{width:100%;
+ height:100%;   
+ position:absolute;
+ z-index:1;
+ left:0;
+ top:0; 
+ background-image:url(../images/overlay.png);
+   
+}
+.editTurno
+{
+    position:absolute;
+    z-index:2;
+    left:25%;
+    top:25%;  
+    background-color:#FFF;
+    padding:10px;
+    
+    
+}

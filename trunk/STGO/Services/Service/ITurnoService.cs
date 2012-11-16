@@ -19,5 +19,7 @@ namespace Services.Service
         void eliminarTurno(long idSala, long idTurno);
 
         List<Turno> obtenerTurnos(long p, DateTime dateTime);
+
+        Turno saveOrUpdate(long idSala, Turno entity);
     }
 }
