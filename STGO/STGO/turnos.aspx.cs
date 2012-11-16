@@ -27,6 +27,8 @@ namespace STGO
 
             if (!Page.IsPostBack)
             {
+                fondoTurno.Visible = false;
+                editTurno.Visible = false;
             if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
             {
                 this.todasLasEmpresas = empresaService.getAll();
@@ -106,15 +108,18 @@ namespace STGO
         {
             if (e.CommandName == "EditarMio")
             {
+                fondoTurno.Visible = true;
+                editTurno.Visible = true;
+
                 long id = long.Parse(e.CommandArgument.ToString());
 
                 Turno turno = turnoService.obtenerTurno(long.Parse(liSalas.SelectedValue), id);
 
 
                 txtEditId.Text = turno.Id.ToString();
-                txtEditFecha.Text = turno.FechaHoraInicio.ToString();
-                txtEditHoraInicio.Text = turno.FechaHoraInicio.ToString();
-                txtEditHoraFin.Text = turno.FechaHoraFin.ToString();
+                txtEditFecha.Text = turno.FechaHoraInicio.Date.ToShortDateString();
+                txtEditHoraInicio.Text = turno.FechaHoraInicio.TimeOfDay.ToString();
+                txtEditHoraFin.Text = turno.FechaHoraFin.TimeOfDay.ToString();
                 txtEditReservador.Text = turno.Reservador.ToString();
                 txtEditDescripcion.Text = turno.Descripcion.ToString();
             }
@@ -188,6 +193,54 @@ namespace STGO
             todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), dia);
             GrillaDia.DataSource = todosLosTurnos;
             GrillaDia.DataBind();
+        }
+
+        protected void btnNuevoTurno_Click(object sender, EventArgs e)
+        {
+
+            fondoTurno.Visible = true;
+            editTurno.Visible = true;
+
+                
+
+
+            txtEditId.Text = "";
+            txtEditFecha.Text = Calendario.SelectedDate.Date.ToShortDateString();
+            txtEditHoraInicio.Text = "";
+            txtEditHoraFin.Text = "";
+            txtEditReservador.Text = "";
+            txtEditDescripcion.Text = "";
+
+
+        }
+
+        protected void linkCancelar_Click(object sender, EventArgs e)
+        {
+            txtEditId.Text = "";
+            txtEditFecha.Text = "";
+            txtEditHoraInicio.Text = "";
+            txtEditHoraFin.Text = "";
+            txtEditReservador.Text = "";
+            txtEditDescripcion.Text = "";
+
+            fondoTurno.Visible = false;
+            editTurno.Visible = false;
+
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Turno turno = new Turno();
+
+            turno.Id = long.Parse(txtEditId.Text);
+            turno.FechaHoraInicio = DateTime.Parse(txtEditFecha.Text + txtEditHoraInicio.Text);
+            turno.FechaHoraFin = DateTime.Parse(txtEditFecha.Text + txtEditHoraFin.Text);
+            turno.Reservador= txtEditReservador.Text;
+            turno.Descripcion= txtEditDescripcion.Text;
+            Turno nuevoTurno = turnoService.saveOrUpdate(long.Parse(liSalas.SelectedValue), turno);
+
+            fondoTurno.Visible = false;
+            editTurno.Visible = false;
         }
 
 

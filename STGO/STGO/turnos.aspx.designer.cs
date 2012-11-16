@@ -49,6 +49,15 @@ namespace STGO {
         protected global::System.Web.UI.WebControls.DropDownList liSalas;
         
         /// <summary>
+        /// Control btnNuevoTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnNuevoTurno;
+        
+        /// <summary>
         /// Control Calendario.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,24 @@ namespace STGO {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GrillaDia;
+        
+        /// <summary>
+        /// Control fondoTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fondoTurno;
+        
+        /// <summary>
+        /// Control editTurno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl editTurno;
         
         /// <summary>
         /// Control txtEditId.
@@ -101,6 +128,15 @@ namespace STGO {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditFecha;
+        
+        /// <summary>
+        /// Control regEditFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator regEditFecha;
         
         /// <summary>
         /// Control lblEditHoraInicio.
@@ -208,7 +244,7 @@ namespace STGO {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGuardar;
+        protected global::System.Web.UI.WebControls.LinkButton btnGuardar;
         
         /// <summary>
         /// Control linkCancelar.
@@ -217,6 +253,6 @@ namespace STGO {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink linkCancelar;
+        protected global::System.Web.UI.WebControls.LinkButton linkCancelar;
     }
 }
