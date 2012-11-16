@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <title>STGO-Turnos</title>
+    <script type="text/javascript" src="/Scripts/validarLargos.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="grid_6" >
@@ -89,7 +90,7 @@
             <div class="grid_2 omega">
                 <asp:RequiredFieldValidator ID="rfvEditFecha" ControlToValidate="txtEditFecha" runat="server"
                     ErrorMessage="Este campo es obligatorio" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="regEditFecha" runat="server" ErrorMessage="El formato de fecha no es válidp" ControlToValidate="txtEditFecha"
+                <asp:RegularExpressionValidator Display="Dynamic" ID="regEditFecha" runat="server" ErrorMessage="El formato de fecha no es válidp" ControlToValidate="txtEditFecha"
                 ValidationExpression="^(?:(?:0?[1-9]|1\d|2[0-8])(\/|-)(?:0?[1-9]|1[0-2]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:31(\/|-)(?:0?[13578]|1[02]))|(?:(?:29|30)(\/|-)(?:0?[1,3-9]|1[0-2])))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(29(\/|-)0?2)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$"></asp:RegularExpressionValidator>
 
             </div>
@@ -102,8 +103,11 @@
                 <asp:TextBox ID="txtEditHoraInicio" runat="server"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
-                <asp:RequiredFieldValidator ID="rfvEditHoraInicio" ControlToValidate="txtEditHoraInicio"
+                <asp:RequiredFieldValidator Display="Dynamic" ID="rfvEditHoraInicio" ControlToValidate="txtEditHoraInicio"
                     runat="server" ErrorMessage="Este campo es obligatorio"></asp:RequiredFieldValidator>
+ <asp:RegularExpressionValidator Display="Dynamic" ID="ergEditHoraInicio" runat="server" ErrorMessage="El formato de hora no es válidp" ControlToValidate="txtEditHoraInicio"
+                ValidationExpression="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$"></asp:RegularExpressionValidator>
+
             </div>
             <div class="clear">
             </div>
@@ -114,8 +118,10 @@
                 <asp:TextBox ID="txtEditHoraFin" runat="server"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
-                <asp:RequiredFieldValidator ID="rfvEditHoraFin" ControlToValidate="txtEditHoraFin"
+                <asp:RequiredFieldValidator Display="Dynamic" ID="rfvEditHoraFin" ControlToValidate="txtEditHoraFin"
                     runat="server" ErrorMessage="Este campo es obligatorio"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator Display="Dynamic" ID="regEditHoraFin" runat="server" ErrorMessage="El formato de hora no es válidp" ControlToValidate="txtEditHoraFin"
+                ValidationExpression="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$"></asp:RegularExpressionValidator>
             </div>
             <div class="clear">
             </div>
@@ -126,8 +132,9 @@
                 <asp:TextBox ID="txtEditReservador" runat="server"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
-                <asp:RequiredFieldValidator ID="rfvEditReservador" ControlToValidate="txtEditReservador"
+                <asp:RequiredFieldValidator Display="Dynamic" ID="rfvEditReservador" ControlToValidate="txtEditReservador"
                     runat="server" ErrorMessage="Este campo es obligatorio"></asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="customReservador" runat="server" Display="Dynamic" ControlToValidate="txtEditReservador" ErrorMessage="El reservador no puede tener más de 100 caracteres" ClientValidationFunction="validaLargo100"></asp:CustomValidator>
             </div>
             <div class="clear">
             </div>
@@ -138,6 +145,7 @@
                 <asp:TextBox ID="txtEditDescripcion" runat="server"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
+             <asp:CustomValidator ID="customEditDescripcion" runat="server" Display="Dynamic" ControlToValidate="txtEditDescripcion" ErrorMessage="La descripción no puede tener más de 200 caracteres" ClientValidationFunction="validaLargo200"></asp:CustomValidator>
             </div>
             <div class="clear">
             </div>
