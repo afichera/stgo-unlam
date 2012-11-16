@@ -15,6 +15,7 @@ namespace Services.ServiceImpl
         private ITurnoDAO turnoDAO = DAOLocator.Instance.TurnoDAO;
         private ISalaDAO salaDAO = DAOLocator.Instance.SalaDAO;
 
+
         public List<Turno> getAll()
         {
             throw new NotImplementedException();
@@ -37,7 +38,7 @@ namespace Services.ServiceImpl
 
         public List<Turno> obtenerTurnosReservados(long idSala, DateTime fecha)
         {
-            throw new NotImplementedException();
+           return this.turnoDAO.obtenerTurnos(idSala, fecha);
         }
 
         public List<Turno> obtenerTurnosLibres(long idSala, DateTime fecha)

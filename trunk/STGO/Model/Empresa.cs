@@ -28,6 +28,13 @@ namespace Model
             // TODO: Complete member initialization
         }
 
+        public override string ToString()
+        {
+            return "Empresa id:" + this.Id + " Razon Social: " + this.RazonSocial +
+                " CUIT:" + this.CUIT + " Telefono: " + this.Telefono + " Usuario: " +
+                this.Usuario + " Activo: " + this.activo + " Maximo Salas: " + this.maximoSalas;
+        }
+
     }
 
 }

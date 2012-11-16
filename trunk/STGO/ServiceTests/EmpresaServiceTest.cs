@@ -27,7 +27,7 @@ namespace ServiceTests
         {
             List<Empresa> empresas = empresaService.getAll();
             Empresa empresaACambiar = empresas[0];
-            empresaACambiar.Telefono = "111111111";
+            empresaACambiar.Telefono = "0303456";
             empresaACambiar = this.empresaService.saveOrUpdate(empresaACambiar, empresaACambiar.Usuario.Id);
             Assert.IsTrue(true);
         }
