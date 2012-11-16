@@ -264,4 +264,8 @@ a:link, a:visited
  text-align:left;   
 }
 
+.dia_seleccionado
+{
+ background-color:Gray;   
+}
 
