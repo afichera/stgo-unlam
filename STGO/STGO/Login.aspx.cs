@@ -42,7 +42,7 @@ namespace STGO
                 {
                     if (this.usuarioService.login(user.UserName, loginSTGOId.Password) != -1)
                     {
-                        Context.Response.Redirect("~/salas.aspx", true);
+                        Context.Response.Redirect("~/turnos.aspx", true);
                     }
                     else
                     {
