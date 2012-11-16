@@ -337,7 +337,7 @@ namespace Persistence.DAOImpl
                 }
                 else
                 {
-                    logger.Error(Constantes.ERROR_BDD_CONEXION)
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
                     throw new BDDException();
                 }
             }
