@@ -35,8 +35,9 @@
     <Reference Include="Accessibility">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\..\..\..\Log4Net\log4net-1.2.11\bin\net\4.0\release\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Log4Net\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Exchange.WebServices, Version=14.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -73,6 +74,8 @@
     <Content Include="images\ruido.png" />
     <Content Include="Libraries\JSON\Newtonsoft.Json.Net35.dll" />
     <Content Include="Libraries\JSON\Newtonsoft.Json.Net35.xml" />
+    <Content Include="Libraries\Log4Net\log4net.dll" />
+    <Content Include="Libraries\Log4Net\log4net.xml" />
     <Content Include="Libraries\WSExchange\Microsoft.Exchange.WebServices.dll" />
     <Content Include="Libraries\WSExchange\Microsoft.Exchange.WebServices.xml" />
     <Content Include="Login.aspx" />
