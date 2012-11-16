@@ -188,13 +188,6 @@
     <Compile Include="miperfil.aspx.designer.cs">
       <DependentUpon>miperfil.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PaginaConMenu.Master.cs">
-      <DependentUpon>PaginaConMenu.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PaginaConMenu.Master.designer.cs">
-      <DependentUpon>PaginaConMenu.Master</DependentUpon>
-    </Compile>
     <Compile Include="popup.Master.cs">
       <DependentUpon>popup.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -261,9 +254,6 @@
       <Project>{540BAD86-7512-42AE-85F5-0D1ADB31A027}</Project>
       <Name>Services</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PaginaConMenu.Master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="popup.Master" />
