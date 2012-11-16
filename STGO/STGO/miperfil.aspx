@@ -56,10 +56,10 @@
             </div>
         <div class="clear">
         </div>
-        <div class="grid_2 ">
-            <asp:Button ID="btnGuardarPerfil" runat="server" Text="Guardar Cambios" CausesValidation="true"
+        <div class="grid_2 alpha guardar_perfil">
+            <asp:Button ID="btnGuardarPerfil" runat="server" Text="Guardar" CausesValidation="true"
                 ValidationGroup="valGrupoEdicion" onclick="btnGuardarPerfil_Click" /></div>
-        <div class="grid_2">
+        <div class="grid_2 omega guardar_perfil">
             <asp:Button ID="btnCancelarEditarPerfil" runat="server" Text="Cancelar" CausesValidation="false" /></div>
     
     <div class="clear"></div>
