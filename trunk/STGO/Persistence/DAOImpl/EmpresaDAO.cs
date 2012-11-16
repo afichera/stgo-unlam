@@ -8,11 +8,13 @@ using System.Data.SqlClient;
 using System.Data;
 using Model.Exceptions;
 using Persistence.Util;
+using log4net;
 
 namespace Persistence.DAOImpl
 {
-    public class EmpresaDAO : BaseDAO, IEmpresaDAO 
-    {        
+    public class EmpresaDAO : BaseDAO, IEmpresaDAO
+    {
+        private static ILog logger = log4net.LogManager.GetLogger(typeof(EmpresaDAO));
         public List<Empresa> getAll()
         {
             List<Empresa> empresas = new List<Empresa>();
@@ -56,11 +58,13 @@ namespace Persistence.DAOImpl
                 }
                 else
                 {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
                     throw new BDDException();
                 }
             }
             catch (SqlException ex)
             {
+                logger.Error("Error al intentar obtener las empresas de la base de datos. Detalle: " + ex.Message);
                 throw new BDDException("Error al intentar obtener las empresas de la base de datos. Detalle: " + ex.Message);
             }
             finally
@@ -68,7 +72,7 @@ namespace Persistence.DAOImpl
                 base.Desconectar();
             }
         }
-        
+
         public Empresa getFindById(long id)
         {
             try
@@ -108,6 +112,7 @@ namespace Persistence.DAOImpl
                 }
                 else
                 {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
                     throw new BDDException();
                 }
 
@@ -115,10 +120,11 @@ namespace Persistence.DAOImpl
             }
             catch (SqlException ex)
             {
-                throw new BDDException("Error al intentar recuperar la Empresa de la Base de datos. Detalle: "+ex.Message);
-
+                logger.Error("Error al intentar recuperar la Empresa de la Base de datos. Detalle: " + ex.Message);
+                throw new BDDException("Error al intentar recuperar la Empresa de la Base de datos. Detalle: " + ex.Message);
             }
-            finally {
+            finally
+            {
                 base.Desconectar();
             }
         }
@@ -127,50 +133,71 @@ namespace Persistence.DAOImpl
         {
             Empresa empresa = entity;
 
-            if (base.Conectar())
+
+            try
             {
+                if (base.Conectar())
+                {
 
-                string sp = "SP_EMPRESA_SAVE_OR_UPDATE";
-                SqlCommand Command = new SqlCommand(sp, base.Conexion);
-                Command.CommandType = CommandType.StoredProcedure;
-                SqlParameter paramId = new SqlParameter("id", SqlDbType.BigInt);
-                SqlParameter paramRazonSocial = new SqlParameter("razonSocial", SqlDbType.VarChar);
-                SqlParameter paramCuit = new SqlParameter("cuit", SqlDbType.VarChar);
-                SqlParameter paramTelefono = new SqlParameter("telefono", SqlDbType.VarChar);
-                SqlParameter paramMaximoSalas = new SqlParameter("maximoSalas", SqlDbType.SmallInt);
-                SqlParameter paramActiva = new SqlParameter("activa", SqlDbType.TinyInt);
-                SqlParameter paramUserId = new SqlParameter("userId", SqlDbType.UniqueIdentifier);
-                
-                paramId.Direction = ParameterDirection.InputOutput;
-                paramId.Value = empresa.Id;
-                paramRazonSocial.Direction = ParameterDirection.Input;
-                paramRazonSocial.Value = empresa.RazonSocial;
-                paramCuit.Direction = ParameterDirection.Input;
-                paramCuit.Value = empresa.CUIT;
-                paramTelefono.Direction = ParameterDirection.Input;
-                paramTelefono.Value = empresa.Telefono;
-                paramMaximoSalas.Direction = ParameterDirection.Input;
-                paramMaximoSalas.Value = empresa.maximoSalas;
-                paramActiva.Direction = ParameterDirection.Input;
-                paramActiva.Value = empresa.activo;
-                paramUserId.Direction = ParameterDirection.Input;
-                paramUserId.Value = empresa.Usuario.Id;
-                
+                    string sp = "SP_EMPRESA_SAVE_OR_UPDATE";
+                    SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                    Command.CommandType = CommandType.StoredProcedure;
+                    SqlParameter paramId = new SqlParameter("id", SqlDbType.BigInt);
+                    SqlParameter paramRazonSocial = new SqlParameter("razonSocial", SqlDbType.VarChar);
+                    SqlParameter paramCuit = new SqlParameter("cuit", SqlDbType.VarChar);
+                    SqlParameter paramTelefono = new SqlParameter("telefono", SqlDbType.VarChar);
+                    SqlParameter paramMaximoSalas = new SqlParameter("maximoSalas", SqlDbType.SmallInt);
+                    SqlParameter paramActiva = new SqlParameter("activa", SqlDbType.TinyInt);
+                    SqlParameter paramUserId = new SqlParameter("userId", SqlDbType.UniqueIdentifier);
 
-                Command.Parameters.Add(paramId);
-                Command.Parameters.Add(paramRazonSocial);
-                Command.Parameters.Add(paramCuit);
-                Command.Parameters.Add(paramTelefono);
-                Command.Parameters.Add(paramMaximoSalas);
-                Command.Parameters.Add(paramActiva);
-                Command.Parameters.Add(paramUserId);
+                    paramId.Direction = ParameterDirection.InputOutput;
+                    paramId.Value = empresa.Id;
+                    paramRazonSocial.Direction = ParameterDirection.Input;
+                    paramRazonSocial.Value = empresa.RazonSocial;
+                    paramCuit.Direction = ParameterDirection.Input;
+                    paramCuit.Value = empresa.CUIT;
+                    paramTelefono.Direction = ParameterDirection.Input;
+                    paramTelefono.Value = empresa.Telefono;
+                    paramMaximoSalas.Direction = ParameterDirection.Input;
+                    paramMaximoSalas.Value = empresa.maximoSalas;
+                    paramActiva.Direction = ParameterDirection.Input;
+                    paramActiva.Value = empresa.activo;
+                    paramUserId.Direction = ParameterDirection.Input;
+                    paramUserId.Value = empresa.Usuario.Id;
 
-                int filasAfectadas = Command.ExecuteNonQuery();
 
-                empresa.Id = long.Parse(Command.Parameters["id"].Value.ToString());
+                    Command.Parameters.Add(paramId);
+                    Command.Parameters.Add(paramRazonSocial);
+                    Command.Parameters.Add(paramCuit);
+                    Command.Parameters.Add(paramTelefono);
+                    Command.Parameters.Add(paramMaximoSalas);
+                    Command.Parameters.Add(paramActiva);
+                    Command.Parameters.Add(paramUserId);
+
+                    int filasAfectadas = Command.ExecuteNonQuery();
+
+                    empresa.Id = long.Parse(Command.Parameters["id"].Value.ToString());
+
+                }
+                else
+                {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
+                    throw new BDDException();
+                }
+                return empresa;
+            }
+            catch (SqlException ex)
+            {
+                logger.Error("Error al intentar guardar la Empresa de la Base de datos. Detalle: " + ex.Message);
+                throw new BDDException("Error al intentar guardar la Empresa de la Base de datos. Detalle: " + ex.Message);
+            }
+            finally
+            {
                 base.Desconectar();
             }
-            return empresa;
+
+
+
         }
 
         public void delete(Empresa entity)
@@ -191,11 +218,13 @@ namespace Persistence.DAOImpl
                 }
                 else
                 {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
                     throw new BDDException();
                 }
             }
             catch (SqlException ex)
             {
+                logger.Error("Error al borrar la empresa. Detalle: " + ex.Message); 
                 throw new BDDException("Error al borrar la empresa. Detalle: " + ex.Message);
             }
             finally
@@ -253,12 +282,14 @@ namespace Persistence.DAOImpl
                 }
                 else
                 {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
                     throw new BDDException();
                 }
 
             }
             catch (SqlException ex)
             {
+                logger.Error("Error al querer modificar/agregar la empresa en la base de datos." + ex.Message);
                 throw new BDDException("Error al querer modificar/agregar la empresa en la base de datos." + ex.Message);
             }
             finally
@@ -306,11 +337,13 @@ namespace Persistence.DAOImpl
                 }
                 else
                 {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION)
                     throw new BDDException();
                 }
             }
             catch (SqlException ex)
             {
+                logger.Error("Error al intentar recuperar la empresa de la base de datos. Detalle: " + ex.Message);
                 throw new BDDException("Error al intentar recuperar la empresa de la base de datos. Detalle: " + ex.Message);
             }
             finally

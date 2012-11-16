@@ -66,6 +66,7 @@ namespace Persistence.DAOImpl
             }
             catch (SqlException sqlEx)
             {
+
                 throw new BusinessException("No se pudo iniciar la transacción. Causa: " + sqlEx.Message);
             }
 
