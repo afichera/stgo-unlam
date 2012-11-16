@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaConMenu.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeBehind="sala-alta.aspx.cs" Inherits="STGO.Formulario_web12" Theme="STGO" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadPagConMenu" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script type="text/javascript" src="/Scripts/validarLargos.js"></script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="grid_12">
         <h1>
             Nueva Sala</h1></div>

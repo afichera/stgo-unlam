@@ -17,7 +17,7 @@ namespace STGO
         ITurnoService turnoService = ServiceLocator.Instance.TurnoService;
         List<Sala> todasLasSalas;
         ISalaService salaService = ServiceLocator.Instance.SalaService;
-        List<Empresa> todasLasEmpresas;
+        List<Empresa> todasLasEmpresas=new List<Empresa>();
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
         Empresa miEmpresa;
         protected void Page_Load(object sender, EventArgs e)
@@ -66,9 +66,17 @@ namespace STGO
 
         protected void Page_SaveStateComplete(object sender, EventArgs e)
         {
+            MembershipUser userLogged = Membership.GetUser(HttpContext.Current.User.Identity.Name);
 
             GrillaDia.Columns[0].Visible = false;
             txtEditId.Visible = false;
+
+            if (!(Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN)))
+            {
+                lblListaEmpresas.Visible = false;
+                liEmpresas.Visible = false;
+            }
+
         }
 
         protected void Calendario_SelectionChanged(object sender, EventArgs e)
@@ -141,6 +149,25 @@ namespace STGO
                     if (!(t.Equals("")))
                     {
                         e.Row.BackColor = System.Drawing.Color.LightGreen;
+
+                    }
+
+                    else
+                    {
+
+                        List<ImageButton> botones = e.Row.Cells[e.Row.Cells.Count - 1].Controls.OfType<ImageButton>().ToList();
+
+                        foreach (ImageButton link in botones)
+                        {
+                            if (link.CommandName.Equals("BorradoMio"))
+                            {
+                                link.Visible = false;
+                            }
+                            else
+                            {
+                                link.Visible = true;
+                            }
+                        }
 
                     }
 

@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaConMenu.Master" AutoEventWireup="true" CodeBehind="sala-editar.aspx.cs" Inherits="STGO.Formulario_web21" Theme="STGO" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadPagConMenu" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="sala-editar.aspx.cs" Inherits="STGO.Formulario_web21" Theme="STGO" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 <script type="text/javascript" src="/Scripts/validarLargos.js"></script>
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div class="grid_12"><h1>Editar Sala</h1></div>
 <div class="grid_2 divlabel">
 <asp:Label ID="lblId" Text="Id: " runat="server" AssociatedControlID="txtId" Visible="false" /></div>
