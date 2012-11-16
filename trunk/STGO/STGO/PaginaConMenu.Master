@@ -6,16 +6,7 @@
     </asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ID="Menucontenido" ContentPlaceHolderID="MenuContent" runat="server">
-    <div class="container_12" id="menu">
-        <div class="grid_12">
-            
-            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="False" />
-            <asp:Menu ID="MenuPrincipal" runat="server" DataSourceID="SiteMapDataSource1" StaticDisplayLevels="1"
-                MaximumDynamicDisplayLevels="0" Orientation="Horizontal">
-            </asp:Menu>
-            
-        </div>
-    </div>
+
 </asp:Content>
 <asp:Content ID="Maincontenedor" ContentPlaceHolderID="MainContent" runat="server">
     <asp:ContentPlaceHolder ID="MainPaginaConMenu" runat="server">

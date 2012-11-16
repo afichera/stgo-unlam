@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaConMenu.master" Theme="STGO" AutoEventWireup="true" CodeBehind="cantidadDeSalas.aspx.cs" Inherits="STGO.cantidadDeSalas" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadPagConMenu" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" Theme="STGO" AutoEventWireup="true" CodeBehind="cantidadDeSalas.aspx.cs" Inherits="STGO.cantidadDeSalas" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <div class="grid_12"><h1>Cambiar cantidad máxima de salas</h1>
 </div>
 <div class="grid_3 divlabel"><asp:Label ID="lblRazonSocial" runat="server" AssociatedControlID="txtRazonSocial">Empresa: </asp:Label></div>

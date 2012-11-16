@@ -64,7 +64,6 @@
     <Content Include="404.aspx" />
     <Content Include="About.aspx" />
     <Content Include="activarCuenta.aspx" />
-    <Content Include="Add.aspx" />
     <Content Include="cantidadDeSalas.aspx" />
     <Content Include="empresas.aspx" />
     <Content Include="Error.aspx" />
@@ -143,13 +142,6 @@
     </Compile>
     <Compile Include="activarCuenta.aspx.designer.cs">
       <DependentUpon>activarCuenta.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Add.aspx.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Add.aspx.designer.cs">
-      <DependentUpon>Add.aspx</DependentUpon>
     </Compile>
     <Compile Include="cantidadDeSalas.aspx.cs">
       <DependentUpon>cantidadDeSalas.aspx</DependentUpon>

@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PaginaConMenu.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
     CodeBehind="empresas.aspx.cs" Inherits="STGO.empresas" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadPagConMenu" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainPaginaConMenu" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="grid_12">
         <h1>
             Empresas</h1>
