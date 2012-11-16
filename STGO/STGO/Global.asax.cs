@@ -13,6 +13,7 @@ namespace STGO
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
+            //log4net.Config.DOMConfigurator.Configure();
 
         }
 
