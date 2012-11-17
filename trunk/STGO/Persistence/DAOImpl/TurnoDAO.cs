@@ -243,7 +243,7 @@ namespace Persistence.DAOImpl
 
         public void updateTurno(Turno turno, long salaId)
         {
-            Turno turno = entity;
+            
             try
             {
                 if (base.Conectar())
@@ -293,7 +293,7 @@ namespace Persistence.DAOImpl
             }
             catch (SqlException ex)
             {
-                logger.Error("No se pudo actualizar el turno . Detalle: "+ ex.StackTrace)
+                logger.Error("No se pudo actualizar el turno . Detalle: " + ex.StackTrace);
                 throw new BDDException("No se pudo actualizar el turno. Detalle: "+ex.Message);
             }
             finally {

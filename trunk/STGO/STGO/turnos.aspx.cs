@@ -63,14 +63,7 @@ namespace STGO
                 GrillaDia.DataBind();
             }
 
-            else
-            {
-                todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate);
-                GrillaDia.DataSource = todosLosTurnos;
-                GrillaDia.DataBind();
 
-
-            }
 
 
                 
@@ -121,28 +114,31 @@ namespace STGO
         {
             if (e.CommandName == "EditarMio")
             {
-                fondoTurno.Visible = true;
-                editTurno.Visible = true;
+                
 
                 long id = long.Parse(e.CommandArgument.ToString());
 
                 Turno turno = turnoService.obtenerTurno(long.Parse(liSalas.SelectedValue), id);
 
-
+                txtEditId.Visible = true;
                 txtEditId.Text = turno.Id.ToString();
                 txtEditFecha.Text = turno.FechaHoraInicio.Date.ToShortDateString();
                 txtEditHoraInicio.Text = turno.FechaHoraInicio.TimeOfDay.ToString();
                 txtEditHoraFin.Text = turno.FechaHoraFin.TimeOfDay.ToString();
                 txtEditReservador.Text = turno.Reservador.ToString();
                 txtEditDescripcion.Text = turno.Descripcion.ToString();
+                
+                fondoTurno.Visible = true;
+                editTurno.Visible = true;
+                txtEditId.Visible = false;
             }
             else if (e.CommandName == "BorradoMio")
             {
                 long id = long.Parse(e.CommandArgument.ToString());
-                if (id != null)
+                if (id != 0)
                 {
                     turnoService.delete(turnoService.getFindById(id));
-                    todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now); 
+                    todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
                     GrillaDia.DataSource = todosLosTurnos;
                     GrillaDia.DataBind();
                 }
@@ -243,9 +239,9 @@ namespace STGO
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            long id = long.Parse(txtEditId.Text);
 
-
-            if (txtEditId.Text == "")
+            if (id == 0)
             {
                 turnoService.reservarTurno(long.Parse(liSalas.SelectedValue), txtEditReservador.Text, txtEditDescripcion.Text, DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraInicio.Text), DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraFin.Text));
             }
@@ -254,8 +250,8 @@ namespace STGO
             {
             Turno turno = new Turno();
             turno.Id = long.Parse(txtEditId.Text);
-            turno.FechaHoraInicio = DateTime.Parse(txtEditFecha.Text + txtEditHoraInicio.Text);
-            turno.FechaHoraFin = DateTime.Parse(txtEditFecha.Text + txtEditHoraFin.Text);
+            turno.FechaHoraInicio = DateTime.Parse(txtEditFecha.Text +" "+ txtEditHoraInicio.Text);
+            turno.FechaHoraFin = DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraFin.Text);
             turno.Reservador= txtEditReservador.Text;
             turno.Descripcion= txtEditDescripcion.Text;
             turnoService.saveOrUpdate(long.Parse(liSalas.SelectedValue), turno);
