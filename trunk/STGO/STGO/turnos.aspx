@@ -152,8 +152,11 @@
             <div class="grid_4 divlabel">
                 <asp:Button ID="btnGuardar" class="boton" runat="server" Text="Guardar Cambios"
                     CausesValidation="true"  OnClick="btnGuardar_Click" UseSubmitBehavior="True" />
-                <asp:Button ID="linkCancelar" runat="server" class="boton" Text="Cancelar" CausesValidation="False"
+                <asp:Button ID="btnCancelar" runat="server" class="boton" Text="Cancelar" CausesValidation="False"
                     OnClick="linkCancelar_Click" />
+            </div>
+            <div class="grid_6 alpha omega" id="errorGuardaTurno">
+                <asp:Label ID="lblerrorGuardar" runat="server" Text=""></asp:Label>
             </div>
         </div>
     </div>

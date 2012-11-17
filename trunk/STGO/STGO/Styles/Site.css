@@ -258,6 +258,13 @@ a:link, a:visited
   padding-top:8px;   
 }
 
+#errorGuardaTurno
+{
+color:Red;
+text-align:center;
+
+}
+
 
 .guardar_perfil
 {
