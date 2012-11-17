@@ -13,14 +13,10 @@ namespace Services.ServiceImpl
     public class EmpresaService:IEmpresaService
     {
         private IEmpresaDAO empresaDAO = DAOLocator.Instance.EmpresaDAO;
-        ILog logger = log4net.LogManager.GetLogger(typeof(EmpresaService));
-
-
+       
         public List<Empresa> getAll()
         {
-            List<Empresa> empresas = this.empresaDAO.getAll();
-            logger.Debug("Se pidieron todas las empresas. Devolvió: ");
-            return empresas;
+            return this.empresaDAO.getAll();            
         }
 
         public Empresa getFindById(long id)
