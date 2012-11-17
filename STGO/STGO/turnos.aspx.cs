@@ -8,6 +8,7 @@ using Model;
 using Services.Util;
 using Services.Service;
 using System.Web.Security;
+using Model.Exceptions;
 
 namespace STGO
 {
@@ -114,8 +115,8 @@ namespace STGO
         {
             if (e.CommandName == "EditarMio")
             {
-                
 
+                lblerrorGuardar.Text = "";
                 long id = long.Parse(e.CommandArgument.ToString());
 
                 Turno turno = turnoService.obtenerTurno(long.Parse(liSalas.SelectedValue), id);
@@ -206,7 +207,7 @@ namespace STGO
 
         protected void btnNuevoTurno_Click(object sender, EventArgs e)
         {
-
+            lblerrorGuardar.Text = "";
             fondoTurno.Visible = true;
             editTurno.Visible = true;
 
@@ -239,28 +240,37 @@ namespace STGO
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            long id = long.Parse(txtEditId.Text);
 
-            if (id == 0)
+            try
             {
-                turnoService.reservarTurno(long.Parse(liSalas.SelectedValue), txtEditReservador.Text, txtEditDescripcion.Text, DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraInicio.Text), DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraFin.Text));
+                if (txtEditId.Text == "")
+                {
+                    turnoService.reservarTurno(long.Parse(liSalas.SelectedValue), txtEditReservador.Text, txtEditDescripcion.Text, DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraInicio.Text), DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraFin.Text));
+                }
+
+                else
+                {
+                    Turno turno = new Turno();
+                    turno.Id = long.Parse(txtEditId.Text);
+                    turno.FechaHoraInicio = DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraInicio.Text);
+                    turno.FechaHoraFin = DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraFin.Text);
+                    turno.Reservador = txtEditReservador.Text;
+                    turno.Descripcion = txtEditDescripcion.Text;
+                    turnoService.saveOrUpdate(long.Parse(liSalas.SelectedValue), turno);
+                }
+                todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate);
+                GrillaDia.DataSource = todosLosTurnos;
+                GrillaDia.DataBind();
+                fondoTurno.Visible = false;
+                editTurno.Visible = false;
+
             }
 
-            else
+            catch (TurnoInvalidoException ex)
             {
-            Turno turno = new Turno();
-            turno.Id = long.Parse(txtEditId.Text);
-            turno.FechaHoraInicio = DateTime.Parse(txtEditFecha.Text +" "+ txtEditHoraInicio.Text);
-            turno.FechaHoraFin = DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraFin.Text);
-            turno.Reservador= txtEditReservador.Text;
-            turno.Descripcion= txtEditDescripcion.Text;
-            turnoService.saveOrUpdate(long.Parse(liSalas.SelectedValue), turno);
+                lblerrorGuardar.Text = ex.Message;
+
             }
-            todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate);
-            GrillaDia.DataSource = todosLosTurnos;
-            GrillaDia.DataBind();
-            fondoTurno.Visible = false;
-            editTurno.Visible = false;
         }
 
 
