@@ -256,7 +256,7 @@ namespace STGO
                     turno.FechaHoraFin = DateTime.Parse(txtEditFecha.Text + " " + txtEditHoraFin.Text);
                     turno.Reservador = txtEditReservador.Text;
                     turno.Descripcion = txtEditDescripcion.Text;
-                    turnoService.saveOrUpdate(long.Parse(liSalas.SelectedValue), turno);
+                    turnoService.updateTurno(turno, long.Parse(liSalas.SelectedValue));
                 }
                 todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate);
                 GrillaDia.DataSource = todosLosTurnos;
