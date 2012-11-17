@@ -47,12 +47,21 @@ namespace Services.ServiceImpl
            return this.turnoDAO.obtenerTurnos(idSala, fecha);
         }
 
-        public List<Turno> obtenerTurnosLibres(long idSala, DateTime fecha)
-        {
-            Sala sala = this.salaDAO.getFindById(idSala);
-            List<Turno> turnosReservados = this.obtenerTurnosReservados(idSala, fecha);
-            List<Turno> turnosTotales = new List<Turno>();
+        public List<Turno> obtenerTurnosLibres(long idSala, DateTime fecha){
             List<Turno> turnosLibres;
+            List<Turno> turnosReservados = this.obtenerTurnosReservados(idSala, fecha);
+            List<Turno> turnosTotales = obtenerPlantillaTurnos(idSala);
+            turnosLibres = this.extraerTurnosOcupados(turnosTotales, turnosReservados);
+            turnosLibres.Sort();
+            return turnosLibres;
+        }
+
+        //Genera dada una sala la plantilla de turnos completa para un dia
+        private List<Turno> obtenerPlantillaTurnos(long idSala)
+        {
+            List<Turno> turnosTotales = new List<Turno>();
+            Sala sala = this.salaDAO.getFindById(idSala);
+
             Turno turno;
             DateTime horarioInicioAux;
             DateTime horarioFinAux;
@@ -61,14 +70,15 @@ namespace Services.ServiceImpl
             int minutosInicio = sala.HoraInicio.Minute;
             int minutosFin = sala.HoraCierre.Minute;
             int frecuencia = sala.Frecuencia;
-            
-            if((horaInicio*60+minutosInicio)>=(horaFin*60+minutosFin)){
+
+            if ((horaInicio * 60 + minutosInicio) >= (horaFin * 60 + minutosFin))
+            {
                 throw new TurnoInvalidoException("La configuración de Horario de Inicio y Fin de turnos de la sala son inválidos.");
             }
             //Inicializo en el primer horario
             horarioInicioAux = sala.HoraInicio;
             horarioFinAux = sala.HoraInicio.AddMinutes(frecuencia);
-            int totalMinutosDia = (((horaFin * 60) + minutosFin) / ((horaInicio * 60) + minutosInicio));            
+            int totalMinutosDia = (((horaFin * 60) + minutosFin) / ((horaInicio * 60) + minutosInicio));
             int maximoTurnosDia = totalMinutosDia / frecuencia;
             for (int i = 0; i < maximoTurnosDia; i++)
             {
@@ -77,14 +87,12 @@ namespace Services.ServiceImpl
                 turno.FechaHoraFin = horarioFinAux;
                 turno.Descripcion = "";
                 turno.Reservador = "";
-                
+
                 horarioFinAux = horarioFinAux.AddMinutes(frecuencia);
                 horarioInicioAux = horarioInicioAux.AddMinutes(frecuencia);
                 turnosTotales.Add(turno);
             }
-            turnosLibres = this.extraerTurnosOcupados(turnosTotales, turnosReservados);
-            turnosLibres.Sort();
-            return turnosLibres;
+            return turnosTotales;
         }
 
         public List<Turno> extraerTurnosOcupados(List<Turno> turnosTotales, List<Turno> turnosReservados){
@@ -169,9 +177,15 @@ namespace Services.ServiceImpl
 
         public List<Turno> obtenerTurnos(long salaId, DateTime dateTime)
         {
-            return this.turnoDAO.obtenerTurnos(salaId, dateTime);
-
+           List<Turno> turnosReservados =  this.turnoDAO.obtenerTurnos(salaId, dateTime);
+           List<Turno> turnosDelDia = this.obtenerTurnosLibres(salaId, dateTime);
+           turnosDelDia.AddRange(turnosReservados);
+           turnosDelDia.Sort();
+           return turnosDelDia;
         }
 
+        public void updateTurno(Turno turno, long salaId) {
+            this.turnoDAO.updateTurno(turno, salaId);
+        }
     }
 }

@@ -21,5 +21,7 @@ namespace Services.Service
         List<Turno> obtenerTurnos(long p, DateTime dateTime);
 
         Turno saveOrUpdate(long idSala, Turno entity);
+
+        void updateTurno(Turno turno, long salaId);
     }
 }

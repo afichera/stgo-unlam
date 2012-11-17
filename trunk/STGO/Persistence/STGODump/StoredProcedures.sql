@@ -326,3 +326,64 @@ BEGIN TRANSACTION TURNO_DELETE;
 			WHERE id = @idTurno AND
 			salaId = @idSala;
 COMMIT TRANSACTION TURNO_DELETE; 	
+
+GO
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteProfiles]    Script Date: 10/28/2012 15:15:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_TURNO_UPDATE]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[SP_TURNO_UPDATE]
+GO
+
+USE [STGO]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_TURNO_UPDATE]    Script Date: 10/28/2012 15:15:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER OFF
+GO
+
+CREATE PROCEDURE [dbo].[SP_TURNO_UPDATE]
+    @id						bigint,
+    @salaId		bigint, 
+    @horaInicio DateTime, 
+    @horaFin	DateTime, 
+    @reservador	varchar(100),
+    @descripcion varchar (200)    
+AS
+DECLARE @rows int;
+DECLARE @reservadorError varchar(100);
+DECLARE @msgError varchar(200);
+SET @rows = 0;
+BEGIN TRANSACTION UPDATETURNO; 
+if(@salaId is not null and @salaId <> 0) 
+begin
+	SET @rows = (SELECT COUNT(*) FROM Turno T 
+				WHERE T.salaId = @salaId 
+				AND T.fechaHoraBaja IS NULL
+				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
+				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio AND t.id != @id);
+end
+IF (@rows = 0)
+BEGIN
+	UPDATE TURNO SET reservador  = @reservador,
+					 fechaHoraInicio = @horaInicio,
+					 fechaHoraFin = @horaFin, 
+					 descripcion = @descripcion
+		WHERE id = @id;
+end
+
+COMMIT TRANSACTION UPDATETURNO;
+IF (@rows > 0)
+SELECT @reservadorError = reservador FROM Turno T 
+				WHERE T.salaId = @salaId 
+				AND T.fechaHoraBaja IS NULL
+				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
+				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio AND t.id != @id
+	SELECT @msgError = "IMPOSIBLE GUARDAR TURNO YA QUE EL RANGO HORARIO ESTA OCUPADO POR: "+@reservadorError
+	RAISERROR(@msgError ,16,1)
+ 	 	
+GO
