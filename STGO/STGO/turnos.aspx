@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="turnos.aspx.cs" Inherits="STGO.turnos" Theme="STGO" %>
+    CodeBehind="turnos.aspx.cs" Inherits="STGO.turnos" Theme="STGO"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <title>STGO-Turnos</title>
@@ -55,13 +55,13 @@
                 <asp:BoundField DataField="Descripcion" HeaderText="Descripción" Visible="true" />
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:ImageButton ID="Editar" Text="Editar" runat="server" CommandName="EditarMio"
+                        <asp:ImageButton ID="EditarMio" runat="server" CommandName="EditarMio"
                             CommandArgument='<%# Eval("id") %>' ImageUrl="~/images/pencil.png" CausesValidation="false" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:ImageButton ID="BorradoMio" Text="Eliminar" runat="server" CommandName="BorradoMio"
+                        <asp:ImageButton ID="BorradoMio" runat="server" CommandName="BorradoMio"
                             CommandArgument='<%# Eval("id") %>' ImageUrl="~/images/cross.png" OnClientClick="return confirm('¿Esta seguro que desea eliminar este turno?');" />
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -80,7 +80,7 @@
             </div>
             <div class="clear">
             </div>
-            <asp:TextBox ID="txtEditId" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtEditId" runat="server" ></asp:TextBox>
             <div class="grid_2 alpha divlabel">
                 <asp:Label ID="lblEditFecha" runat="server" Text="Fecha:"></asp:Label>
             </div>
@@ -151,7 +151,7 @@
             </div>
             <div class="grid_4 divlabel">
                 <asp:Button ID="btnGuardar" class="boton" runat="server" Text="Guardar Cambios"
-                    CausesValidation="true" OnClick="btnGuardar_Click" UseSubmitBehavior="True" />
+                    CausesValidation="true"  OnClick="btnGuardar_Click" UseSubmitBehavior="True" />
                 <asp:Button ID="linkCancelar" runat="server" class="boton" Text="Cancelar" CausesValidation="False"
                     OnClick="linkCancelar_Click" />
             </div>
