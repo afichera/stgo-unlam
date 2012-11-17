@@ -150,9 +150,9 @@
             <div class="clear">
             </div>
             <div class="grid_4 divlabel">
-                <asp:LinkButton ID="btnGuardar" class="boton" runat="server" Text="Guardar Cambios"
-                    CausesValidation="true" OnClick="btnGuardar_Click" />
-                <asp:LinkButton ID="linkCancelar" runat="server" class="boton" Text="Cancelar" CausesValidation="False"
+                <asp:Button ID="btnGuardar" class="boton" runat="server" Text="Guardar Cambios"
+                    CausesValidation="true" OnClick="btnGuardar_Click" UseSubmitBehavior="True" />
+                <asp:Button ID="linkCancelar" runat="server" class="boton" Text="Cancelar" CausesValidation="False"
                     OnClick="linkCancelar_Click" />
             </div>
         </div>
