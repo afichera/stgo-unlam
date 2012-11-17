@@ -15,5 +15,7 @@ namespace Persistence.DAO
         void eliminarTurno(long idSala, long idTurno);
 
         List<Turno> obtenerTurnos(long salaId, DateTime dateTime);
+
+        void updateTurno(Turno turno, long salaId);
     }
 }

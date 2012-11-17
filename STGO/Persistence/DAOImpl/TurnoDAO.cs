@@ -241,5 +241,64 @@ namespace Persistence.DAOImpl
 
         }
 
+        public void updateTurno(Turno turno, long salaId)
+        {
+            Turno turno = entity;
+            try
+            {
+                if (base.Conectar())
+                {
+
+                    string sp = "SP_TURNO_UPDATE";
+                    SqlCommand Command = new SqlCommand(sp, base.Conexion);
+                    Command.CommandType = CommandType.StoredProcedure;
+                    SqlParameter paramId = new SqlParameter("id", SqlDbType.BigInt);
+                    SqlParameter paramSalaId = new SqlParameter("salaId", SqlDbType.BigInt);
+                    SqlParameter paramHoraInicio = new SqlParameter("horaInicio", SqlDbType.DateTime);
+                    SqlParameter paramHoraFin = new SqlParameter("horaFin", SqlDbType.DateTime);
+                    SqlParameter paramReservador = new SqlParameter("reservador", SqlDbType.VarChar);
+                    SqlParameter paramDescripcion = new SqlParameter("descripcion", SqlDbType.VarChar);
+                    paramId.Direction = ParameterDirection.InputOutput;
+                    paramId.Value = turno.Id;
+                    
+                    paramSalaId.Direction = ParameterDirection.Input;
+                    paramSalaId.Value = salaId;
+
+                    paramHoraInicio.Direction = ParameterDirection.Input;
+                    paramHoraInicio.Value = turno.FechaHoraInicio;
+                    paramHoraFin.Direction = ParameterDirection.Input;
+                    paramHoraFin.Value = turno.FechaHoraFin;
+                    paramReservador.Direction = ParameterDirection.Input;
+                    paramReservador.Value = turno.Reservador;
+                    paramDescripcion.Direction = ParameterDirection.Input;
+                    paramDescripcion.Value = turno.Descripcion;
+
+                    Command.Parameters.Add(paramId);
+                    Command.Parameters.Add(paramSalaId);
+                    Command.Parameters.Add(paramHoraInicio);
+                    Command.Parameters.Add(paramHoraFin);
+                    Command.Parameters.Add(paramReservador);
+                    Command.Parameters.Add(paramDescripcion);
+                    
+
+                    int filasAfectadas = Command.ExecuteNonQuery();
+                    
+                }
+                else
+                {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
+                    throw new BDDException();
+                }
+                
+            }
+            catch (SqlException ex)
+            {
+                logger.Error("No se pudo actualizar el turno . Detalle: "+ ex.StackTrace)
+                throw new BDDException("No se pudo actualizar el turno. Detalle: "+ex.Message);
+            }
+            finally {
+                base.Desconectar();
+            }
+        }
     }
 }
