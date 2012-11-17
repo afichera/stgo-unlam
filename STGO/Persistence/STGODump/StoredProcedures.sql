@@ -78,6 +78,8 @@ AS
 BEGIN TRANSACTION DELETESALA; 
 	UPDATE Sala SET fechaHoraBaja = GETDATE()
 			WHERE id = @id;
+	UPDATE Turno SET fechaHoraBaja = GETDATE()
+			WHERE salaId = @id;
 COMMIT TRANSACTION DELETESALA; 	
 GO
 
