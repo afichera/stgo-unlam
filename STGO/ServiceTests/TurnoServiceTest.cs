@@ -65,7 +65,7 @@ namespace ServiceTests
             Assert.IsTrue(turnosLibres.Count == 17);
         }
 
-       [TestMethod]
+       //[TestMethod]
         public void TestReservarTurno() {
             DateTime horaInicio = new DateTime(2012, 11, 18, 11, 14, 59);
             DateTime horaFin = new DateTime(2012, 11, 18, 11, 30, 0);
@@ -93,7 +93,7 @@ namespace ServiceTests
 
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void TestObtenerTurnos() {
             List<Turno> turnos = this.turnoService.obtenerTurnos(1, DateTime.Now);
 
