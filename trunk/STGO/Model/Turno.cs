@@ -17,13 +17,18 @@ namespace Model
 
         public int CompareTo(Turno other)
         {
+            int minutos;
+            int minutosOther;
+
             if (this.FechaHoraInicio == null)
                 return (other.FechaHoraInicio == null) ? 0 : 1;
 
             if (other.FechaHoraInicio == null)
                 return -1;
 
-            return this.FechaHoraInicio.CompareTo(other.FechaHoraInicio);
+            minutosOther = (other.FechaHoraInicio.Hour * 60) + other.FechaHoraInicio.Minute;
+            minutos = (this.FechaHoraInicio.Hour * 60) + this.FechaHoraInicio.Minute;
+            return minutos.CompareTo(minutosOther);
             
         }
     }
