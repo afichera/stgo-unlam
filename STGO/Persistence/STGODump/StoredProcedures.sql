@@ -279,6 +279,8 @@ CREATE PROCEDURE [dbo].[SP_TURNO_RESERVAR]
     @descripcion					varchar(200)
 AS
 DECLARE @rows int;
+DECLARE @reservadorError varchar(100);
+DECLARE @msgError varchar(200);
 SET @rows = 0;
 BEGIN TRANSACTION RESERVA_TURNO; 
 if(@salaId is not null and @salaId <> 0) 
@@ -286,8 +288,8 @@ begin
 	SET @rows = (SELECT COUNT(*) FROM Turno T 
 				WHERE T.salaId = @salaId
 				AND T.fechaHoraBaja IS NULL 
-				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
-				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio);
+				AND ((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin)));
 end
 IF (@rows = 0)
 BEGIN
@@ -296,9 +298,13 @@ BEGIN
 end
 COMMIT TRANSACTION RESERVA_TURNO;
 IF (@rows = 1)
-	RAISERROR("TURNO OCUPADO.",16,1)
- 	
-
+SELECT @reservadorError = reservador FROM Turno T 
+				WHERE T.salaId = @salaId 
+				AND T.fechaHoraBaja IS NULL
+				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
+				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio
+	SELECT @msgError = "IMPOSIBLE RESERVAR TURNO YA QUE EL RANGO HORARIO ESTA OCUPADO POR: "+@reservadorError
+	RAISERROR(@msgError ,16,1) 	
 GO
 
 USE [STGO]
