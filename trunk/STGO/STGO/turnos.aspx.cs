@@ -269,8 +269,8 @@ namespace STGO
             catch (TurnoInvalidoException ex)
             {
                 lblerrorGuardar.Text = ex.Message;
-
             }
+
         }
 
 
