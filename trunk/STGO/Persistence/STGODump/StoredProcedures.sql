@@ -255,6 +255,7 @@ GO
 USE [STGO]
 GO
 
+
 /****** Object:  StoredProcedure [dbo].[SP_TURNO_RESERVAR]    Script Date: 10/28/2012 15:15:42 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SP_TURNO_RESERVAR]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[SP_TURNO_RESERVAR]
@@ -301,11 +302,12 @@ IF (@rows = 1)
 SELECT @reservadorError = reservador FROM Turno T 
 				WHERE T.salaId = @salaId 
 				AND T.fechaHoraBaja IS NULL
-				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
-				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio
+				AND ((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin));
 	SELECT @msgError = "IMPOSIBLE RESERVAR TURNO YA QUE EL RANGO HORARIO ESTA OCUPADO POR: "+@reservadorError
 	RAISERROR(@msgError ,16,1) 	
 GO
+
 
 USE [STGO]
 GO
@@ -366,9 +368,8 @@ begin
 				WHERE T.salaId = @salaId 
 				AND T.fechaHoraBaja IS NULL
 				AND T.id <>  @id
-				AND ( (@horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin)
-				OR (@horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio)
-				))
+				AND ((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin)))
 end
 IF (@rows = 0)
 
@@ -385,9 +386,9 @@ BEGIN
 SELECT @reservadorError = reservador FROM Turno T 
 				WHERE T.salaId = @salaId 
 				AND T.fechaHoraBaja IS NULL
-				AND @horaInicio BETWEEN T.fechaHoraInicio AND T.fechaHoraFin
-				OR @horaFin BETWEEN T.fechaHoraFin AND T.fechaHoraInicio AND t.id != @id
-	SELECT @msgError = "IMPOSIBLE GUARDAR TURNO YA QUE EL RANGO HORARIO ESTA OCUPADO POR: "+@reservadorError
+				AND((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin)) AND t.id != @id
+	SELECT @msgError = 'IMPOSIBLE GUARDAR TURNO YA QUE EL RANGO HORARIO ESTA OCUPADO POR: '+@reservadorError
 	RAISERROR(@msgError ,16,1) 	
 	 	
 END
