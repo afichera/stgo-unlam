@@ -118,7 +118,7 @@ namespace Services.ServiceImpl
                         minutoInicialTurnoReservado = turnoReservado.FechaHoraInicio.Hour * 60 + turnoReservado.FechaHoraInicio.Minute;
                         minutoFinalTurnoReservado = turnoReservado.FechaHoraFin.Hour * 60 + turnoReservado.FechaHoraFin.Minute;
 
-                        if ((minutoInicialTurnoReservado > minutoInicialLibre && minutoInicialTurnoReservado < minutoFinalLibre)
+                        if ((minutoInicialTurnoReservado >= minutoInicialLibre && minutoInicialTurnoReservado < minutoFinalLibre)
                             || (minutoFinalTurnoReservado > minutoInicialLibre && minutoFinalTurnoReservado < minutoFinalLibre))
                         {
                             agregarTurno = false;
