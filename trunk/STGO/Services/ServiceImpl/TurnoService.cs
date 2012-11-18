@@ -118,8 +118,8 @@ namespace Services.ServiceImpl
                         minutoInicialTurnoReservado = turnoReservado.FechaHoraInicio.Hour * 60 + turnoReservado.FechaHoraInicio.Minute;
                         minutoFinalTurnoReservado = turnoReservado.FechaHoraFin.Hour * 60 + turnoReservado.FechaHoraFin.Minute;
 
-                        if ((minutoInicialTurnoReservado >= minutoInicialLibre && minutoInicialTurnoReservado <= minutoFinalLibre)
-                            || (minutoFinalTurnoReservado >= minutoInicialLibre && minutoFinalTurnoReservado <= minutoFinalLibre))
+                        if ((minutoInicialTurnoReservado > minutoInicialLibre && minutoInicialTurnoReservado < minutoFinalLibre)
+                            || (minutoFinalTurnoReservado > minutoInicialLibre && minutoFinalTurnoReservado < minutoFinalLibre))
                         {
                             agregarTurno = false;
                         }
@@ -160,7 +160,7 @@ namespace Services.ServiceImpl
 
         private void validaTurnoMultiplo(DateTime horaInicio, DateTime horaFin, Sala sala)
         {
-            int cantidadMinutos = (horaFin.Hour * 60 + horaFin.Minute) - (horaInicio.Hour * 60) + horaInicio.Minute;
+            int cantidadMinutos = ((horaFin.Hour * 60) + horaFin.Minute) - ((horaInicio.Hour * 60) + horaInicio.Minute);
             if (sala.PermiteMultiplo)
             {
                 //Valido que el rango de tiempo este comprendido dentro de la multiplicidad.                
