@@ -149,18 +149,18 @@ namespace Services.ServiceImpl
             if((sala.HoraInicio.Hour*60+sala.HoraInicio.Minute)>(horaInicio.Hour*60+horaInicio.Minute) || (sala.HoraCierre.Hour*60+sala.HoraCierre.Minute)<(horaFin.Hour*60+horaFin.Minute)){
                 throw new TurnoInvalidoException("El turno esta fuera del rango horario de la configuración de la Sala.");
             }
-            Turno turno = new Turno();
-            List<Turno> turnosAOcupar = new List<Turno>();
-            turno.FechaHoraFin = horaFin;
-            turno.FechaHoraInicio = horaInicio;
-            turnosAOcupar.Add(turno);
-            List<Turno> turnosDelDia = this.obtenerTurnos(idSala, horaInicio);
-            if (turnosDelDia != null && turnosDelDia.Count>0) {
-                List<Turno> turnosLibres = this.extraerTurnosOcupados(turnosDelDia, turnosAOcupar);
-                if (turnosLibres != null && (turnosLibres.Count != turnosDelDia.Count)) {
-                    throw new TurnoInvalidoException("La Reserva del Turno no se pudo realizar. Turno Ocupado");             
-                }
-            }
+            //Turno turno = new Turno();
+            //List<Turno> turnosAOcupar = new List<Turno>();
+            //turno.FechaHoraFin = horaFin;
+            //turno.FechaHoraInicio = horaInicio;
+            //turnosAOcupar.Add(turno);
+            //List<Turno> turnosDelDia = this.obtenerTurnos(idSala, horaInicio);
+            //if (turnosDelDia != null && turnosDelDia.Count>0) {
+            //    List<Turno> turnosLibres = this.extraerTurnosOcupados(turnosDelDia, turnosAOcupar);
+            //    if (turnosLibres != null && (turnosLibres.Count != turnosDelDia.Count)) {
+            //        throw new TurnoInvalidoException("La Reserva del Turno no se pudo realizar. Turno Ocupado");             
+            //    }
+            //}
             
             this.turnoDAO.reservarTurno(idSala, nombreReservador, descripcion, horaInicio, horaFin);
         }
