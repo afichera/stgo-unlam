@@ -370,8 +370,8 @@ begin
 				WHERE T.salaId = @salaId 
 				AND T.fechaHoraBaja IS NULL
 				AND T.id <>  @id
-				AND ((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
-				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin)))
+				AND ((@horaInicio>= T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >=@horaFin)))
 end
 IF (@rows = 0)
 
@@ -388,8 +388,8 @@ BEGIN
 SELECT @reservadorError = reservador FROM Turno T 
 				WHERE T.salaId = @salaId 
 				AND T.fechaHoraBaja IS NULL
-				AND((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
-				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin)) AND t.id != @id
+				AND((@horaInicio>= T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >=@horaFin)) AND t.id != @id
 	SELECT @msgError = 'IMPOSIBLE GUARDAR TURNO YA QUE EL RANGO HORARIO ESTA OCUPADO POR: '+@reservadorError
 	RAISERROR(@msgError ,16,1) 	
 	 	
