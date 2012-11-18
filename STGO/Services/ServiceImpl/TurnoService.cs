@@ -100,8 +100,10 @@ namespace Services.ServiceImpl
 
         public List<Turno> extraerTurnosOcupados(List<Turno> turnosTotales, List<Turno> turnosReservados){
             List<Turno> turnosLibres = new List<Turno>();
+            
             int minutoInicialTurnoReservado;
             int minutoFinalTurnoReservado;
+            int cantidadMinutosReservados;
             int minutoInicialLibre;
             int minutoFinalLibre;
             bool agregarTurno;
@@ -117,10 +119,16 @@ namespace Services.ServiceImpl
                     {
                         minutoInicialTurnoReservado = turnoReservado.FechaHoraInicio.Hour * 60 + turnoReservado.FechaHoraInicio.Minute;
                         minutoFinalTurnoReservado = turnoReservado.FechaHoraFin.Hour * 60 + turnoReservado.FechaHoraFin.Minute;
+                        cantidadMinutosReservados = minutoFinalTurnoReservado - minutoInicialTurnoReservado;
+
 
                         if ((minutoInicialTurnoReservado >= minutoInicialLibre && minutoInicialTurnoReservado < minutoFinalLibre)
-                            || (minutoFinalTurnoReservado > minutoInicialLibre && minutoFinalTurnoReservado < minutoFinalLibre))
+                            || (minutoFinalTurnoReservado > minutoInicialLibre && minutoFinalTurnoReservado <= minutoFinalLibre))
                         {
+                            agregarTurno = false;
+                        }
+
+                        if ((minutoInicialLibre >= minutoInicialTurnoReservado) && (minutoInicialLibre < minutoFinalTurnoReservado)) {
                             agregarTurno = false;
                         }
                         
