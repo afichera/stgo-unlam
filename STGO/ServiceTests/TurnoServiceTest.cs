@@ -80,7 +80,7 @@ namespace ServiceTests
             Assert.IsTrue(true);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void TestUpdateTurno() {
             Turno turno = new Turno();
             turno.Id = 100;
@@ -89,6 +89,14 @@ namespace ServiceTests
             turno.FechaHoraInicio = DateTime.Now;
             turno.FechaHoraFin = turno.FechaHoraInicio.AddMinutes(30);
             this.turnoService.updateTurno(turno, 1);
+            Assert.IsTrue(true);
+
+        }
+
+        [TestMethod]
+        public void TestObtenerTurnos() {
+            List<Turno> turnos = this.turnoService.obtenerTurnos(1, DateTime.Now);
+
             Assert.IsTrue(true);
 
         }
