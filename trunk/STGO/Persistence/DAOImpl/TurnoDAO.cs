@@ -258,12 +258,10 @@ namespace Persistence.DAOImpl
                     SqlParameter paramHoraFin = new SqlParameter("horaFin", SqlDbType.DateTime);
                     SqlParameter paramReservador = new SqlParameter("reservador", SqlDbType.VarChar);
                     SqlParameter paramDescripcion = new SqlParameter("descripcion", SqlDbType.VarChar);
-                    paramId.Direction = ParameterDirection.InputOutput;
-                    paramId.Value = turno.Id;
-                    
+                    paramId.Direction = ParameterDirection.Input;
+                    paramId.Value = turno.Id;                    
                     paramSalaId.Direction = ParameterDirection.Input;
                     paramSalaId.Value = salaId;
-
                     paramHoraInicio.Direction = ParameterDirection.Input;
                     paramHoraInicio.Value = turno.FechaHoraInicio;
                     paramHoraFin.Direction = ParameterDirection.Input;
@@ -279,7 +277,6 @@ namespace Persistence.DAOImpl
                     Command.Parameters.Add(paramHoraFin);
                     Command.Parameters.Add(paramReservador);
                     Command.Parameters.Add(paramDescripcion);
-                    
 
                     int filasAfectadas = Command.ExecuteNonQuery();
                     

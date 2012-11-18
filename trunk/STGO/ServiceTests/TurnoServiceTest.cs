@@ -16,7 +16,7 @@ namespace ServiceTests
     {
         private ITurnoService turnoService = ServiceLocator.Instance.TurnoService;
 
-        [TestMethod]
+       //[TestMethod]
         public void TestExtraerTurnosReservados()
         {
             List<Turno> turnosTotales = new List<Turno>();
@@ -65,19 +65,32 @@ namespace ServiceTests
             Assert.IsTrue(turnosLibres.Count == 17);
         }
 
-        [TestMethod]
+       // [TestMethod]
         public void TestReservarTurno() { 
             DateTime horaInicio = DateTime.Now;
             DateTime horaFin = DateTime.Now.AddMinutes(30);
             this.turnoService.reservarTurno(1, "carlos", "Turno de Psicologia", horaInicio, horaFin);
             Assert.IsTrue(true);
         }
-        [TestMethod]
+       // [TestMethod]
         public void TestEliminarTurno(){
             long idSala = 1;
             long idTurno = 100;
             this.turnoService.eliminarTurno(idSala, idTurno);
             Assert.IsTrue(true);
+        }
+
+        [TestMethod]
+        public void TestUpdateTurno() {
+            Turno turno = new Turno();
+            turno.Id = 100;
+            turno.Descripcion = "TURNO DE PRUEBA";
+            turno.Reservador = "PEPE";
+            turno.FechaHoraInicio = DateTime.Now;
+            turno.FechaHoraFin = turno.FechaHoraInicio.AddMinutes(30);
+            this.turnoService.updateTurno(turno, 1);
+            Assert.IsTrue(true);
+
         }
 
     }
