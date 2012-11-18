@@ -78,7 +78,7 @@ namespace Services.ServiceImpl
             //Inicializo en el primer horario
             horarioInicioAux = sala.HoraInicio;
             horarioFinAux = sala.HoraInicio.AddMinutes(frecuencia);
-            int totalMinutosDia = (((horaFin * 60) + minutosFin) / ((horaInicio * 60) + minutosInicio));
+            int totalMinutosDia = (((horaFin * 60) + minutosFin) - ((horaInicio * 60) + minutosInicio));
             int maximoTurnosDia = totalMinutosDia / frecuencia;
             for (int i = 0; i < maximoTurnosDia; i++)
             {
