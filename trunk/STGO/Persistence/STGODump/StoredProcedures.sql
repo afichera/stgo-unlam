@@ -289,25 +289,27 @@ begin
 	SET @rows = (SELECT COUNT(*) FROM Turno T 
 				WHERE T.salaId = @salaId
 				AND T.fechaHoraBaja IS NULL 
-				AND ((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
-				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin)));
+				AND ((@horaInicio>= T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >=@horaFin)));
 end
 IF (@rows = 0)
-BEGIN
 	INSERT INTO TURNO (reservador, fechaHoraInicio, fechaHoraFin, descripcion, salaId)
-	VALUES (@nombreReservador, @horaInicio, @horaFin, @descripcion, @salaId);	 
-end
-COMMIT TRANSACTION RESERVA_TURNO;
+	VALUES (@nombreReservador, @horaInicio, @horaFin, @descripcion, @salaId)		 
+
 IF (@rows = 1)
+BEGIN
 SELECT @reservadorError = reservador FROM Turno T 
 				WHERE T.salaId = @salaId 
 				AND T.fechaHoraBaja IS NULL
-				AND ((@horaInicio> T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
-				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >@horaFin));
+				AND ((@horaInicio>= T.fechaHoraInicio AND T.fechaHoraFin >@horaInicio)
+				OR (@horaFin > T.fechaHoraFin AND T.fechaHoraInicio >=@horaFin));
+	ROLLBACK TRANSACTION RESERVA_TURNO;
 	SELECT @msgError = "IMPOSIBLE RESERVAR TURNO YA QUE EL RANGO HORARIO ESTA OCUPADO POR: "+@reservadorError
 	RAISERROR(@msgError ,16,1) 	
+	
+	END
+COMMIT TRANSACTION RESERVA_TURNO;
 GO
-
 
 USE [STGO]
 GO
