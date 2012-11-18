@@ -151,9 +151,9 @@ namespace Persistence.DAOImpl
 
 
                     paramIdTurno.Direction = ParameterDirection.Input;
-                    paramIdTurno.Value = idSala;
+                    paramIdTurno.Value = idTurno;
                     paramIdSala.Direction = ParameterDirection.Input;
-                    paramIdSala.Value = idTurno;
+                    paramIdSala.Value = idSala;
 
                     Command.Parameters.Add(paramIdTurno);
                     Command.Parameters.Add(paramIdSala);
