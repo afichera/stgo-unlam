@@ -185,7 +185,16 @@ namespace Services.ServiceImpl
         }
 
         public void updateTurno(Turno turno, long salaId) {
-            this.turnoDAO.updateTurno(turno, salaId);
+
+            try
+            {
+                this.turnoDAO.updateTurno(turno, salaId);
+            }
+
+            catch (BDDException ex)
+            {
+                throw new TurnoInvalidoException(ex.Message);
+            }
         }
     }
 }
