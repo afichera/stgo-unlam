@@ -7,11 +7,13 @@ using Services.Service;
 using Persistence.DAO;
 using Persistence.Util;
 using Model.Exceptions;
+using log4net;
 
 namespace Services.ServiceImpl
 {
     public class TurnoService:ITurnoService
     {
+        private static ILog logger = log4net.LogManager.GetLogger(typeof(TurnoService));
         private ITurnoDAO turnoDAO = DAOLocator.Instance.TurnoDAO;
         private ISalaDAO salaDAO = DAOLocator.Instance.SalaDAO;
 
@@ -73,6 +75,7 @@ namespace Services.ServiceImpl
 
             if ((horaInicio * 60 + minutosInicio) >= (horaFin * 60 + minutosFin))
             {
+                logger.Error("La configuración de Horario de Inicio y Fin de turnos de la sala son inválidos. Hora Inicio: "+sala.HoraInicio.ToString()+" Hora Fin: "+sala.HoraCierre.ToString());
                 throw new TurnoInvalidoException("La configuración de Horario de Inicio y Fin de turnos de la sala son inválidos.");
             }
             //Inicializo en el primer horario
@@ -144,31 +147,42 @@ namespace Services.ServiceImpl
         {
             Sala sala = this.salaDAO.getFindById(idSala);
             if (sala == null) {
+                logger.Error("No se encontro sala del turno a reservar. Sala id: " + idSala);
                 throw new BusinessException("No se encontró la sala del turno a reservar.");
             }
             if((sala.HoraInicio.Hour*60+sala.HoraInicio.Minute)>(horaInicio.Hour*60+horaInicio.Minute) || (sala.HoraCierre.Hour*60+sala.HoraCierre.Minute)<(horaFin.Hour*60+horaFin.Minute)){
+                logger.Error("El turno esta fuera del rango horario de la configuración de la Sala. Hora Inicio Sala: " + sala.HoraInicio.ToString()+". Hora Cierre Sala: "+sala.HoraCierre.ToString()+". Hora Inicio Turno: "+horaInicio.ToString()+". Hora Fin Turno: "+horaFin.ToString());
                 throw new TurnoInvalidoException("El turno esta fuera del rango horario de la configuración de la Sala.");
             }
-            //Turno turno = new Turno();
-            //List<Turno> turnosAOcupar = new List<Turno>();
-            //turno.FechaHoraFin = horaFin;
-            //turno.FechaHoraInicio = horaInicio;
-            //turnosAOcupar.Add(turno);
-            //List<Turno> turnosDelDia = this.obtenerTurnos(idSala, horaInicio);
-            //if (turnosDelDia != null && turnosDelDia.Count>0) {
-            //    List<Turno> turnosLibres = this.extraerTurnosOcupados(turnosDelDia, turnosAOcupar);
-            //    if (turnosLibres != null && (turnosLibres.Count != turnosDelDia.Count)) {
-            //        throw new TurnoInvalidoException("La Reserva del Turno no se pudo realizar. Turno Ocupado");             
-            //    }
-            //}
-            
+            this.validaTurnoMultiplo(horaInicio, horaFin, sala);
             this.turnoDAO.reservarTurno(idSala, nombreReservador, descripcion, horaInicio, horaFin);
+        }
+
+        private void validaTurnoMultiplo(DateTime horaInicio, DateTime horaFin, Sala sala)
+        {
+            int cantidadMinutos = (horaFin.Hour * 60 + horaFin.Minute) - (horaInicio.Hour * 60) + horaInicio.Minute;
+            if (sala.PermiteMultiplo)
+            {
+                //Valido que el rango de tiempo este comprendido dentro de la multiplicidad.                
+                if (!(cantidadMinutos % sala.Frecuencia == 0)) {
+                    logger.Error("El rango elegído para el turno no es múltiplo de la frecuencia de la sala. Cantidad Minutos Turno: "+cantidadMinutos+". Frecuencia Minutos Sala: "+sala.Frecuencia);
+                    throw new TurnoInvalidoException("El rango elegído para el turno no es múltiplo de la frecuencia de la sala.");
+                }
+            }
+            else { 
+                //Valido que sea el minimo tiempo de un turno.
+                if (cantidadMinutos != sala.Frecuencia) {
+                    logger.Error("El turno elegído no es válido. La Sala no permite turnos múltiplos.");
+                    throw new TurnoInvalidoException("El turno elegído no es válido. La Sala no permite turnos múltiplos.");
+                }
+            }
         }
 
         public void eliminarTurno(long idSala, long idTurno)
         {
             Sala sala = this.salaDAO.getFindById(idSala);
             if (sala == null) {
+                logger.Error("No se puede eliminar el turno porque la sala no existe. Sala Id: " + idSala);
                 throw new BusinessException("No se puede eliminar el turno porque la sala no existe.");
             }
 
@@ -185,6 +199,14 @@ namespace Services.ServiceImpl
         }
 
         public void updateTurno(Turno turno, long salaId) {
+            Sala sala = this.salaDAO.getFindById(salaId);
+            if (sala == null)
+            {
+                logger.Error("La sala enviada no existe. Sala id: " + salaId);
+                throw new BusinessException("La sala enviada no existe. ");
+            }
+            this.validaTurnoMultiplo(turno.FechaHoraInicio, turno.FechaHoraFin, sala);
+            
 
             try
             {
@@ -193,6 +215,7 @@ namespace Services.ServiceImpl
 
             catch (BDDException ex)
             {
+                logger.Error("Turno Invalido. Detalle. "+ex.StackTrace);
                 throw new TurnoInvalidoException(ex.Message);
             }
         }
