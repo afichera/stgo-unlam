@@ -36,10 +36,10 @@
         <div class="grid_3 omega">
             <asp:RequiredFieldValidator ID="rqfCuit" runat="server" ControlToValidate="txtCuit"
                 ErrorMessage="Debe completar el cuit." Display="Dynamic" ValidationGroup="valGrupoEdicion"></asp:RequiredFieldValidator>
-<%--
-                <asp:RegularExpressionValidator ID="revCuit" ErrorMessage="El formato del Cuit es inválido."
-                ControlToValidate="txtCuit" runat="server" ValidationExpression="\d{2}-\d{8}-\d{8}"
-                ValidationGroup="valGrupoEdicion" Display="Dynamic" />--%></div>
+<asp:RegularExpressionValidator ID="revCuitReg" ErrorMessage="El formato del Cuit es inválido."
+                                    ToolTip="Ingrese el CUIT. Ej: 99-99999999-9." ControlToValidate="txtCuit"
+                                    runat="server" ValidationExpression="\d{2}-\d{8}-\d" ValidationGroup="valGrupoEdicion"
+                                    Display="Dynamic" /></div>
         <div class="clear">
         </div>
         <div class="grid_2 divlabel alpha">
