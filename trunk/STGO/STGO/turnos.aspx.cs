@@ -139,7 +139,7 @@ namespace STGO
                 long id = long.Parse(e.CommandArgument.ToString());
                 if (id != 0)
                 {
-                    turnoService.eliminarTurno(long.Parse(liSalas.SelectedValue),id);
+                    turnoService.eliminarTurno(long.Parse(liSalas.SelectedValue), id);
                     todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
                     GrillaDia.DataSource = todosLosTurnos;
                     GrillaDia.DataBind();
@@ -192,8 +192,6 @@ namespace STGO
 
                 else
                 {
-
-
                     ImageButton borrar = e.Row.FindControl("BorradoMio") as ImageButton;
                     borrar.Visible = false;
                     ImageButton editar = e.Row.FindControl("EditarMio") as ImageButton;
@@ -203,9 +201,6 @@ namespace STGO
 
 
             }
-
-
-
 
 
         }
@@ -228,8 +223,8 @@ namespace STGO
             lblerrorGuardar.Text = "";
             fondoTurno.Visible = true;
             editTurno.Visible = true;
-            
-            
+
+
 
 
 
