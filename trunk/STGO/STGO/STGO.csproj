@@ -71,6 +71,7 @@
     <Content Include="images\logo.png" />
     <Content Include="images\overlay.png" />
     <Content Include="images\pencil.png" />
+    <Content Include="images\plus.png" />
     <Content Include="images\ruido.png" />
     <Content Include="Libraries\JSON\Newtonsoft.Json.Net35.dll" />
     <Content Include="Libraries\JSON\Newtonsoft.Json.Net35.xml" />

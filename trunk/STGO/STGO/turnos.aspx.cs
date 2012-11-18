@@ -18,7 +18,7 @@ namespace STGO
         ITurnoService turnoService = ServiceLocator.Instance.TurnoService;
         List<Sala> todasLasSalas;
         ISalaService salaService = ServiceLocator.Instance.SalaService;
-        List<Empresa> todasLasEmpresas=new List<Empresa>();
+        List<Empresa> todasLasEmpresas = new List<Empresa>();
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
         Empresa miEmpresa;
         protected void Page_Load(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace STGO
 
 
 
-                
+
 
 
         }
@@ -91,7 +91,7 @@ namespace STGO
         protected void Calendario_SelectionChanged(object sender, EventArgs e)
         {
 
-            todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate); 
+            todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate);
             GrillaDia.DataSource = todosLosTurnos;
             GrillaDia.DataBind();
         }
@@ -128,7 +128,7 @@ namespace STGO
                 txtEditHoraFin.Text = turno.FechaHoraFin.TimeOfDay.ToString();
                 txtEditReservador.Text = turno.Reservador.ToString();
                 txtEditDescripcion.Text = turno.Descripcion.ToString();
-                
+
                 fondoTurno.Visible = true;
                 editTurno.Visible = true;
                 txtEditId.Visible = false;
@@ -145,50 +145,64 @@ namespace STGO
                 }
             }
 
+            else if (e.CommandName == "NuevoMio")
+            {
+
+                lblerrorGuardar.Text = "";
+                
+                txtEditId.Visible = true;
+                
+                txtEditId.Text = "";
+                txtEditFecha.Text = Calendario.SelectedDate.ToShortDateString();
+                string[] arg = new string[2];
+                arg = e.CommandArgument.ToString().Split(';');
+                txtEditHoraInicio.Text = arg[0];
+                txtEditHoraFin.Text = arg[1];
+                txtEditReservador.Text = "";
+                txtEditDescripcion.Text = "";
+
+                fondoTurno.Visible = true;
+                editTurno.Visible = true;
+                txtEditId.Visible = false;
+            }
+
         }
 
         protected void GrillaDia_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            
 
-            
+
+
         }
 
         protected void GrillaDia_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-           
-                string t = "";
-                if (e.Row.RowType == DataControlRowType.DataRow)
+
+            string t = "";
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                t = DataBinder.Eval(e.Row.DataItem, "id").ToString();
+                if (!(t.Equals("0")))
                 {
-                    t = DataBinder.Eval(e.Row.DataItem, "id").ToString();
-                    if (!(t.Equals("")))
-                    {
-                        e.Row.BackColor = System.Drawing.Color.LightGreen;
+                    e.Row.BackColor = System.Drawing.Color.LightGreen;
+                    ImageButton nuevo = e.Row.FindControl("NuevoMio") as ImageButton;
+                    nuevo.Visible = false;
+                }
 
-                    }
+                else
+                {
 
-                    else
-                    {
 
-                        List<ImageButton> botones = e.Row.Cells[e.Row.Cells.Count - 1].Controls.OfType<ImageButton>().ToList();
-
-                        foreach (ImageButton link in botones)
-                        {
-                            if (link.CommandName.Equals("BorradoMio"))
-                            {
-                                link.Visible = false;
-                            }
-                            else
-                            {
-                                link.Visible = true;
-                            }
-                        }
-
-                    }
-
+                    ImageButton borrar = e.Row.FindControl("BorradoMio") as ImageButton;
+                    borrar.Visible = false;
+                    ImageButton editar = e.Row.FindControl("EditarMio") as ImageButton;
+                    editar.Visible = false;
 
                 }
-            //else quitar botón eliminar
+
+
+            }
+
 
         }
 
@@ -211,7 +225,7 @@ namespace STGO
             fondoTurno.Visible = true;
             editTurno.Visible = true;
 
-                
+
 
 
             txtEditId.Text = "";
