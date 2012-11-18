@@ -138,7 +138,7 @@ namespace STGO
                 long id = long.Parse(e.CommandArgument.ToString());
                 if (id != 0)
                 {
-                    turnoService.delete(turnoService.getFindById(id));
+                    turnoService.eliminarTurno(long.Parse(liSalas.SelectedValue),id);
                     todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
                     GrillaDia.DataSource = todosLosTurnos;
                     GrillaDia.DataBind();
@@ -149,9 +149,9 @@ namespace STGO
             {
 
                 lblerrorGuardar.Text = "";
-                
+
                 txtEditId.Visible = true;
-                
+
                 txtEditId.Text = "";
                 txtEditFecha.Text = Calendario.SelectedDate.ToShortDateString();
                 string[] arg = new string[2];
@@ -202,6 +202,9 @@ namespace STGO
 
 
             }
+
+
+
 
 
         }

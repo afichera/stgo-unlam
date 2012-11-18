@@ -45,10 +45,10 @@
                 <asp:BoundField DataField="Id" HeaderText="Id" Visible="true" />
                 <asp:TemplateField HeaderText="Hora">
                     <ItemTemplate>
-                        <asp:Label ID="lblHoraInicio" runat="server" Text='<%# Eval("FechaHoraInicio", "{0:t}") %>'></asp:Label>
+                        <asp:Label ID="lblHoraInicio" runat="server" Text='<%# Eval("FechaHoraInicio", "{0:H:mm}") %>'></asp:Label>
                         <br />
                         <br />
-                        <asp:Label ID="lblHoraFin" runat="server" Text='<%# Eval("FechaHoraFin", "{0:t}") %>'></asp:Label>
+                        <asp:Label ID="lblHoraFin" runat="server" Text='<%# Eval("FechaHoraFin", "{0:H:mm}") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
 
@@ -60,7 +60,7 @@
                 
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:ImageButton ID="NuevoMio" runat="server" CommandName="NuevoMio" CommandArgument='<%#Eval("FechaHoraInicio", "{0:HH:mm}") + ";" +Eval("FechaHoraFin", "{0:HH:mm}")%>' 
+                        <asp:ImageButton ID="NuevoMio" runat="server" CommandName="NuevoMio" CommandArgument='<%#Eval("FechaHoraInicio", "{0:H:mm}") + ";" +Eval("FechaHoraFin", "{0:H:mm}")%>' 
                             ImageUrl="~/images/plus.png" CausesValidation="false" />
    
                         <asp:ImageButton ID="EditarMio" runat="server" CommandName="EditarMio" CommandArgument='<%# Eval("id") %>'
