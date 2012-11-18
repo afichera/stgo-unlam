@@ -279,14 +279,15 @@ text-align:center;
 
 .fondoTurno
 {width:100%;
- height:100%;   
- position:absolute;
+height: 100%;
+ position:fixed;
  z-index:51;
  left:0;
  top:0; 
+ bottom:0px;
  background-image:url(../images/overlay.png);
- display:block;  
-}
+ 
+ }
 .editTurno
 {
     position:absolute;

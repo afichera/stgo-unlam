@@ -9,6 +9,7 @@ using Services.Util;
 using Services.Service;
 using System.Web.Security;
 using Model.Exceptions;
+using System.Web.UI.HtmlControls;
 
 namespace STGO
 {
@@ -227,6 +228,8 @@ namespace STGO
             lblerrorGuardar.Text = "";
             fondoTurno.Visible = true;
             editTurno.Visible = true;
+            
+            
 
 
 
