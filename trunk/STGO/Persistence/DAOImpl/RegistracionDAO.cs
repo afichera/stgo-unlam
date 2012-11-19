@@ -41,8 +41,7 @@ namespace Persistence.DAOImpl
 
 
                     base.Command.Connection = base.Conexion;
-                    Command.CommandText = "DELETE FROM dbo.Registracion WHERE Username = @username;";
-
+                    Command.CommandText = "DELETE FROM dbo.Registracion WHERE email = @username;";
                     Command.CommandType = CommandType.Text;
                     Command.Parameters.AddWithValue("username", entity.Email);
 
@@ -58,8 +57,8 @@ namespace Persistence.DAOImpl
             }
             catch (SqlException ex)
             {
-                logger.Error("Ocurrio un error al intentar eliminar el usuario: " + entity.Email);
-                throw new BDDException("Ocurrio un error al intentar eliminar el usuario previo. Detalle: " + ex.Message);
+                logger.Error("Ocurrio un error al intentar eliminar la registración del usuario: " + entity.Email);
+                throw new BDDException("Ocurrio un error al intentar eliminar la registración del usuario previo. Detalle: " + ex.Message);
             }
             finally
             {

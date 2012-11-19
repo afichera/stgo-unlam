@@ -40,7 +40,7 @@ namespace Services.ServiceImpl
         public void newAccountValidate(string userName)
         {
             Registracion registracion = this.registracionDAO.getFindByUserName(userName);
-            if (registracion != null)
+            if (registracion != null )
             {
                 if (registracion.Pendiente)
                 {

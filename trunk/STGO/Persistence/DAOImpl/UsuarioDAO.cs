@@ -103,7 +103,7 @@ namespace Persistence.DAOImpl
 
 
                     base.Command.Connection = base.Conexion;
-                    Command.CommandText = "SELECT u.UserName, m.Password, e.id FROM aspnet_Users u INNER JOIN aspnet_Membership m ON (u.UserId = m.UserId) INNER JOIN Empresa e ON (u.UserId = e.UserId) WHERE u.UserName = @UserName AND E.fechaHoraBaja IS NULL AND E.activa = 0";
+                    Command.CommandText = "SELECT u.UserName, m.Password, e.id FROM aspnet_Users u INNER JOIN aspnet_Membership m ON (u.UserId = m.UserId) INNER JOIN Empresa e ON (u.UserId = e.UserId) WHERE u.UserName = @UserName AND E.fechaHoraBaja IS NULL AND E.activa = 1";
                     Command.CommandType = CommandType.Text;
                     Command.Parameters.AddWithValue("UserName", email.ToUpper());
                     dataReader = Command.ExecuteReader();

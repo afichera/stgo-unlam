@@ -59,8 +59,15 @@ namespace STGO
                 liSalas.DataSource = this.todasLasSalas;
                 liSalas.DataBind();
 
+                if (liSalas != null && (!liSalas.SelectedValue.Equals("")))
+                {
+                    todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
 
-                todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
+                }
+                else {
+                    todosLosTurnos = new List<Turno>();
+                }
+                
                 GrillaDia.DataSource = todosLosTurnos;
                 GrillaDia.DataBind();
             }
