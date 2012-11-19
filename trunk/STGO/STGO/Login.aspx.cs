@@ -8,13 +8,15 @@ using System.Web.Security;
 using Services.Service;
 using Services.Util;
 using Model;
+using Model.Exceptions;
+using log4net;
 
 namespace STGO
 {
     public partial class Login : System.Web.UI.Page
     {
         private IUsuarioService usuarioService = ServiceLocator.Instance.UsuarioService;
-
+        private static ILog logger = log4net.LogManager.GetLogger(typeof(Login));
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -24,37 +26,45 @@ namespace STGO
         {
 
             MembershipUser user = Membership.GetUser(loginSTGOId.UserName);
-            if (user != null && Membership.ValidateUser(user.UserName, loginSTGOId.Password))
+            try
             {
-                FormsAuthentication.SetAuthCookie(user.UserName, false);
-                if (Roles.IsUserInRole(user.UserName, Constantes.ROLES_ADMIN))
+                if (user != null)
                 {
-                    Context.Response.Redirect("~/empresas.aspx", true);
-
-                }
-                else if (Roles.IsUserInRole(user.UserName, Constantes.ROLES_EMPRESA))
-                {
-                    if (this.usuarioService.login(user.UserName, loginSTGOId.Password) != -1)
+                   
+                    long retorno = this.usuarioService.login(loginSTGOId.UserName, loginSTGOId.Password);
+                    switch (retorno)
                     {
-                        Context.Response.Redirect("~/turnos.aspx", true);
-                    }
-                    else
-                    {
-                        Session.Abandon();
-                        Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
-                        loginSTGOId.FailureText = "Usuario Inactivo o Inexistente.";
-                    }
 
+                        case 0:
+                            //Usuario administrador.
+                            FormsAuthentication.SetAuthCookie(user.UserName, false);
+                            Context.Response.Redirect("~/empresas.aspx", true);
+                            break;
+                        case -1:
+                            //inactivo o inexistente.
+                            Session.Abandon();
+                            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+                            loginSTGOId.FailureText = "Usuario Inactivo o Inexistente.";
+                            break;
+                        default:
+                            //Usuario Empresa.
+                            FormsAuthentication.SetAuthCookie(user.UserName, false);
+                            Context.Response.Redirect("~/turnos.aspx", true);
+                            break;
+                    }
                 }
                 else
                 {
-                    Response.Redirect("~/Error.aspx");
+                    Session.Abandon();
+                    Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+                    loginSTGOId.FailureText = "Usuario Inactivo o Inexistente.";
                 }
-
-
             }
-
-
+            catch (BusinessException ex)
+            {
+                logger.Info("Ocurrió un error durante el logueo del usuario: " + loginSTGOId.UserName + ". Detalle: " + ex.Message);
+                Response.Redirect("~/Error.aspx");
+            }
 
         }
 
