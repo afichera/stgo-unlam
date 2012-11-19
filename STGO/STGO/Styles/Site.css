@@ -156,6 +156,13 @@ width:440px;
  text-align:left;
 }
 
+.error
+{
+    color:red;
+ font-weight:bold;
+ text-align:left;
+}
+
 /*Para las tablas generadas po asp.net*/
 
 .tabla-datos td, .tabla-datos th

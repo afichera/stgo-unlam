@@ -254,6 +254,8 @@ namespace STGO
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
+        {Page.Validate();
+        if (Page.IsValid)
         {
 
             try
@@ -286,6 +288,12 @@ namespace STGO
                 lblerrorGuardar.Text = ex.Message;
             }
 
+            catch (BusinessException ex)
+            {
+                lblerrorGuardar.Text = ex.Message;
+            }
+
+        }
         }
 
 

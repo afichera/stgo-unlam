@@ -62,5 +62,9 @@
 <div class="grid_3 prefix_2 ok">
 <asp:Label ID="lblResultado"  runat="server" Text=""></asp:Label>
 </div>
+<div class="clear"></div>
+<div class="grid_3 prefix_2 error">
+<asp:Label ID="lblerrorGuardar"  runat="server" Text=""></asp:Label>
+</div>
 
 </asp:Content>
