@@ -7,6 +7,7 @@ using Services.Service;
 using Services.Util;
 using System.Web.Script.Services;
 using Model;
+using Model.Exceptions;
 
 namespace STGOWS
 {
@@ -54,16 +55,34 @@ namespace STGOWS
         }
 
         [WebMethod]
-        public void ReservarTurno(long IdSala, String NombreReservador, String Descripcion, DateTime HoraInicio, DateTime HoraFin)
+        public String ReservarTurno(long IdSala, String NombreReservador, String Descripcion, DateTime HoraInicio, DateTime HoraFin)
         {
-            this.turnoService.reservarTurno(IdSala, NombreReservador, Descripcion, HoraInicio, HoraFin);
+            try
+            {
+                this.turnoService.reservarTurno(IdSala, NombreReservador, Descripcion, HoraInicio, HoraFin);
+                return "Turno Reservado Correctamente.";
+            }
+            catch (BusinessException e)
+            {
+                return "Ocurrió un Error No se pudo Reservar el turno."+e.Message;
+            }
+            
         }   
 
 
         [WebMethod]
-        public void EliminarTurno(long IdSala, long IdTurno)
+        public String EliminarTurno(long IdSala, long IdTurno)
         {
-            this.turnoService.eliminarTurno(IdSala, IdTurno);
+            
+            try
+            {
+                this.turnoService.eliminarTurno(IdSala, IdTurno);
+                return "Turno Eliminado Correctamente.";
+            }
+            catch (BusinessException e)
+            {
+                return "Ocurrió un Error No se pudo Eliminar el turno." + e.Message;
+            }
         }   
 
     }
