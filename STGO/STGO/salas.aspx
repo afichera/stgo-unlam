@@ -30,9 +30,9 @@
                             runat="server" /></ItemTemplate>
                 </asp:TemplateField>
                 <asp:BoundField DataField="HoraInicio" HeaderText="Hora Inicio" HtmlEncode="false"
-                    DataFormatString="{0:t}" />
+                    DataFormatString="{0:H:mm}" />
                 <asp:BoundField DataField="HoraCierre" HeaderText="Hora Cierre" HtmlEncode="false"
-                    DataFormatString="{0:t}" />
+                    DataFormatString="{0:H:mm}" />
                 <asp:CommandField ShowEditButton="True" />
                 <asp:TemplateField>
                     <ItemTemplate>

@@ -50,27 +50,25 @@
     <div class="clear">
     </div>
     <div class="grid_2 divlabel">
-        <asp:Label ID="lblHoraInicio" Text="Hora Inicio (HH:mm:ss): " runat="server" AssociatedControlID="txtHoraInicio" /></div>
+        <asp:Label ID="lblHoraInicio" Text="Hora Inicio: " runat="server" AssociatedControlID="txtHoraInicio" /></div>
     <div class="grid_2">
         <asp:TextBox ID="txtHoraInicio" runat="server"></asp:TextBox></div>
     <div class="grid_3">
         <asp:RequiredFieldValidator ID="rfvHoraInicio" Display="Dynamic" runat="server" ErrorMessage="Este campo es obligatorio"
             ControlToValidate="txtHoraInicio"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="regHoraInicio" runat="server" ErrorMessage="La hora debe tener formato HH:mm:ss"
-            ControlToValidate="txtHoraInicio" ValidationExpression="^(0[1-9]|1\d|2[0-3]):([0-5]\d):([0-5]\d)$"
-            Display="Dynamic"></asp:RegularExpressionValidator></div>
+        <asp:RegularExpressionValidator ID="regHoraInicio" runat="server" ErrorMessage="Formato de hora inválido" ControlToValidate="txtHoraInicio"
+     ValidationExpression="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" Display="Dynamic"></asp:RegularExpressionValidator></div>
     <div class="clear">
     </div>
     <div class="grid_2 divlabel">
-        <asp:Label ID="lblHoraFin" Text="Hora Fin (HH:mm:ss): " runat="server" AssociatedControlID="txtHoraFin" /></div>
+        <asp:Label ID="lblHoraFin" Text="Hora Fin: " runat="server" AssociatedControlID="txtHoraFin" /></div>
     <div class="grid_2">
         <asp:TextBox ID="txtHoraFin" runat="server"></asp:TextBox></div>
     <div class="grid_3">
         <asp:RequiredFieldValidator Display="Dynamic" ID="rfvHoraFin" runat="server" ErrorMessage="Este campo es obligatorio"
             ControlToValidate="txtHoraFin"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="regHoraFin" runat="server" ErrorMessage="La hora debe tener formato HH:mm:ss"
-            ControlToValidate="txtHoraFin" ValidationExpression="^(0[1-9]|1\d|2[0-3]):([0-5]\d):([0-5]\d)$"
-            Display="Dynamic"></asp:RegularExpressionValidator>
+       <asp:RegularExpressionValidator ID="regHoraFin" runat="server" ErrorMessage="Formato de hora inválido" ControlToValidate="txtHoraFin"
+     ValidationExpression="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" Display="Dynamic"></asp:RegularExpressionValidator>
         <asp:CompareValidator ID="compHoras" runat="server" ErrorMessage="La hora de cierre debe ser posterior a la de inicio"
             ControlToValidate="txtHoraFin" ControlToCompare="txtHoraInicio" Type="String"
             Operator="GreaterThan"></asp:CompareValidator>
