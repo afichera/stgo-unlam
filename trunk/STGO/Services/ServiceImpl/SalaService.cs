@@ -26,7 +26,7 @@ namespace Services.ServiceImpl
         {
             return this.salaDAO.getFindById(id);
         }
-
+        //TODO: Debería ser transaccional para evitar problemas de concurrencia... si queda tiempo vemos como.
         public Sala saveOrUpdate(Sala sala, Empresa empresa) {
             // Si ocurre esto es un update, debo validar.
             Sala salaAux;
@@ -39,20 +39,31 @@ namespace Services.ServiceImpl
                     logger.Error("La sala fue eliminada por otro usuario mientras se estaba editando.");
                     throw new BusinessException("La sala fue eliminada por otro usuario mientras se estaba editando.");
                 }
-                //TODO: Buscar los turnos a futuro y si no hay lanzar excepcion.
-
-                if (salaAux.PermiteMultiplo && !sala.PermiteMultiplo && turnosFuturo != null && turnosFuturo.Count > 0)
+                
+                turnosFuturo = this.turnoDAO.obtenerTurnosFuturo(sala.Id);
+                if ((salaAux.PermiteMultiplo && !sala.PermiteMultiplo) && turnosFuturo != null && turnosFuturo.Count > 0)
                 {                    
-                    logger.Error("La sala Id: "+sala.Id+" permitía Multiplo y posee turnos a futuro. No se puede realizar la modificación.");
+                    logger.Info("La sala Id: "+sala.Id+" permitía Multiplo y posee turnos a futuro. No se puede realizar la modificación.");
                     throw new BusinessException("La sala permitía Multiplo y posee turnos a futuro. No se puede realizar la modificación.");
+                }
+
+                if ((salaAux.Frecuencia != sala.Frecuencia) && turnosFuturo != null && turnosFuturo.Count > 0) {
+                    logger.Info("La sala Id: " + sala.Id + " posee turnos a futuro. No se puede realizar la modificación de la frecuencia.");
+                    throw new BusinessException("La sala posee turnos a futuro. No se puede realizar la modificación de la frecuencia.");                    
                 }
 
                 foreach (var turno in turnosFuturo)
                 {
-                    if ((((turno.FechaHoraInicio.Hour * 60) + turno.FechaHoraInicio.Minute) < ((sala.HoraInicio.Hour * 60) + sala.HoraInicio.Minute))) {
-                        msgTurnosError += "Reservador: " + turno.Reservador + " Hora Inicio: " + turno.FechaHoraInicio.ToString();
+                    if ((((turno.FechaHoraInicio.Hour * 60) + turno.FechaHoraInicio.Minute) < ((sala.HoraInicio.Hour * 60) + sala.HoraInicio.Minute)) ||
+                        (((turno.FechaHoraFin.Hour * 60) + turno.FechaHoraFin.Minute) > ((sala.HoraCierre.Hour * 60) + sala.HoraCierre.Minute)))
+                    {
+                        msgTurnosError += "Reservador: " + turno.Reservador + " Hora Inicio: " + turno.FechaHoraInicio.ToString()+" Hora Fin: "+ turno.FechaHoraFin.ToString();
                     }
                     
+                }
+                if (!msgTurnosError.Equals("")) {
+                    logger.Info("No se puedo modificar la Sala porque tiene turnos a futuro que interfieren con la configuración elegida. Detalle: " + msgTurnosError);
+                    throw new BusinessException("No se puedo modificar la Sala porque tiene turnos a futuro que interfieren con la configuración elegida. Detalle: " + msgTurnosError);
                 }
 
 
