@@ -45,7 +45,7 @@ namespace STGO
                     liEmpresas.DataSource = this.todasLasEmpresas;
                     liEmpresas.DataBind();
                 }
-
+                
 
 
                 if (liEmpresas.SelectedValue == "0")
@@ -56,9 +56,15 @@ namespace STGO
                 {
                     this.todasLasSalas = salaService.obtenerSalasEmpresa(long.Parse(liEmpresas.SelectedValue));
                 }
-                liSalas.DataSource = this.todasLasSalas;
-                liSalas.DataBind();
-
+                if (this.todasLasSalas.Count ==0)
+                {
+                    Response.Redirect("~/sala-alta.aspx");
+                }
+                else
+                {
+                    liSalas.DataSource = this.todasLasSalas;
+                    liSalas.DataBind();
+                }
                 if (liSalas != null && (!liSalas.SelectedValue.Equals("")))
                 {
                     todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);

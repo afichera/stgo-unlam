@@ -41,8 +41,8 @@ namespace STGO
                     else
                         ddlPermiteMultiplos.SelectedValue = "false";
                     txtFrecuencia.Text = Convert.ToString(sala.Frecuencia);
-                    txtHoraInicio.Text = Convert.ToString(sala.HoraInicio.TimeOfDay);
-                    txtHoraFin.Text = Convert.ToString(sala.HoraCierre.TimeOfDay);
+                    txtHoraInicio.Text = sala.HoraInicio.TimeOfDay.ToString();
+                    txtHoraFin.Text = sala.HoraCierre.TimeOfDay.ToString();
 
 
                 }
