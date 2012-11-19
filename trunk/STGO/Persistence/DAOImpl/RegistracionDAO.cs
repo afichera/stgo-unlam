@@ -32,7 +32,39 @@ namespace Persistence.DAOImpl
 
         public void delete(Registracion entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (base.Conectar())
+                {
+                    SqlDataReader dataReader;
+                    base.Command = new SqlCommand();
+
+
+                    base.Command.Connection = base.Conexion;
+                    Command.CommandText = "DELETE FROM dbo.Registracion WHERE Username = @username;";
+
+                    Command.CommandType = CommandType.Text;
+                    Command.Parameters.AddWithValue("username", entity.Email);
+
+                    dataReader = Command.ExecuteReader();
+
+                }
+                else
+                {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
+                    throw new BDDException();
+                }
+                
+            }
+            catch (SqlException ex)
+            {
+                logger.Error("Ocurrio un error al intentar eliminar el usuario: " + entity.Email);
+                throw new BDDException("Ocurrio un error al intentar eliminar el usuario previo. Detalle: " + ex.Message);
+            }
+            finally
+            {
+                base.Desconectar();
+            }
         }
 
         public Registracion getFindByUserName(string userName)
