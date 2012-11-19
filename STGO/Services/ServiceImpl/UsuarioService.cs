@@ -6,6 +6,9 @@ using Model;
 using Services.Service;
 using Persistence.DAO;
 using Persistence.Util;
+using System.Web;
+using System.Web.Security;
+
 
 namespace Services.ServiceImpl
 {
@@ -35,7 +38,18 @@ namespace Services.ServiceImpl
 
         public long login(string email, string password)
         {
-            return this.usuarioDAO.login(email, password);
+            MembershipUser user = Membership.GetUser(email);
+            if (user != null && Membership.ValidateUser(email, password))
+            {
+                if (Roles.IsUserInRole(user.UserName, Constantes.ROLES_EMPRESA))
+                {
+                    return this.usuarioDAO.login(email, password);
+                }
+                return 0;//Si es administrador devuelvo 0.
+            }
+            else {
+                return -1;
+            }            
         }
 
         public Usuario getFindByEmail(string email)
