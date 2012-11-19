@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Model;
 using Services.Service;
 using Services.Util;
+using Model.Exceptions;
 
 
 namespace STGO
@@ -56,31 +57,42 @@ namespace STGO
             Page.Validate();
             if (Page.IsValid)
             {
-
-
-                Sala salaEdit = new Sala();
-                salaEdit.Id = long.Parse(txtId.Text);
-                salaEdit.Nombre = txtNombre.Text;
-                if (ddlPermiteMultiplos.SelectedItem.Text == "Si")
-                    salaEdit.PermiteMultiplo = true;
-                else
-                    salaEdit.PermiteMultiplo = false;
-
-                salaEdit.Frecuencia = Convert.ToInt32(txtFrecuencia.Text);
-                salaEdit.HoraInicio = Convert.ToDateTime(txtHoraInicio.Text);
-                salaEdit.HoraCierre = Convert.ToDateTime(txtHoraFin.Text);
-                IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
-                Empresa empresa = empresaService.getFindById(1);//hay que tomar el id de empresa de la sesion
-                Sala resultado = salaService.saveOrUpdate(salaEdit, empresa);
-
-                if (resultado != null)
+                try
                 {
-                    lblResultado.Text = "Se han guardado los datos";
+
+
+                    Sala salaEdit = new Sala();
+                    salaEdit.Id = long.Parse(txtId.Text);
+                    salaEdit.Nombre = txtNombre.Text;
+                    if (ddlPermiteMultiplos.SelectedItem.Text == "Si")
+                        salaEdit.PermiteMultiplo = true;
+                    else
+                        salaEdit.PermiteMultiplo = false;
+
+                    salaEdit.Frecuencia = Convert.ToInt32(txtFrecuencia.Text);
+                    salaEdit.HoraInicio = Convert.ToDateTime(txtHoraInicio.Text);
+                    salaEdit.HoraCierre = Convert.ToDateTime(txtHoraFin.Text);
+                    IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
+                    Empresa empresa = empresaService.getFindById(1);//hay que tomar el id de empresa de la sesion
+                    Sala resultado = salaService.saveOrUpdate(salaEdit, empresa);
+
+                    if (resultado != null)
+                    {
+                        lblResultado.Text = "Se han guardado los datos";
+                        lblerrorGuardar.Text = "";
+                    }
+                    else
+                    {
+                        lblResultado.Text = "Ha habido un error al guardar. Si el error persiste contacte al administrador.";
+                    }
                 }
-                else
+
+                catch (BusinessException ex)
                 {
-                    lblResultado.Text = "Ha habido un error al guardar. Si el error persiste contacte al administrador.";
+                    lblResultado.Text = "";
+                    lblerrorGuardar.Text = ex.Message;
                 }
+
 
             }
         }
