@@ -17,12 +17,6 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Membership.CreateUser("adminadmin", "adminadmin");
-            //Membership.CreateUser("empresa1", "empresa1");
-            //Membership.CreateUser("empresa2", "empresa2");
-            //Roles.AddUserToRole("adminadmin", "ADMINISTRADOR");
-            //Roles.AddUserToRole("empresa1", "EMPRESA");
-            //Roles.AddUserToRole("empresa2", "EMPRESA");
 
         }
 
