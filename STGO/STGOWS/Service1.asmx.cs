@@ -21,29 +21,50 @@ namespace STGOWS
     public class Service1 : System.Web.Services.WebService
     {
 
+        ITurnoService turnoService = ServiceLocator.Instance.TurnoService;
+        ISalaService salaService = ServiceLocator.Instance.SalaService;
+
+
         [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string HelloWorld()
+        public List<Sala> ObtenerSalas()        {
+            return salaService.getAll();
+        }
+
+        [WebMethod]
+        public List<Sala> ObtenerSalasEmpresa(long idEmpresa) {
+            return this.salaService.obtenerSalasEmpresa(idEmpresa);
+        }
+
+        [WebMethod]
+        public List<Turno> ObtenerTurnosReservados(long idSala, DateTime fecha) {
+            return this.turnoService.obtenerTurnosReservados(idSala, fecha);
+        }
+
+
+        [WebMethod]
+        public List<Turno> ObtenerTurnosLibres(long idSala, DateTime fecha)
         {
-            return "Hello World";
+            return this.turnoService.obtenerTurnosLibres(idSala, fecha);
         }
 
         [WebMethod]
-        public string getById(int numero) {
-            return "Hola" + numero.ToString();
-        }
-
-        [WebMethod]  
-        public List<Model.Empresa> getAllParametros() {
-            IEmpresaService empresaService= ServiceLocator.Instance.EmpresaService;
-            return empresaService.getAll();
+        public Turno ObtenerTurno(long IdSala, long IdTurno)
+        {
+            return this.turnoService.obtenerTurno(IdSala, IdTurno);
         }
 
         [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public Turno ObtenerTurno(long idSala, long idTurno) {
-            ITurnoService turnoService = ServiceLocator.Instance.TurnoService;
-            return turnoService.obtenerTurno(idSala, idTurno);
-        }
+        public void ReservarTurno(long IdSala, String NombreReservador, String Descripcion, DateTime HoraInicio, DateTime HoraFin)
+        {
+            this.turnoService.reservarTurno(IdSala, NombreReservador, Descripcion, HoraInicio, HoraFin);
+        }   
+
+
+        [WebMethod]
+        public void EliminarTurno(long IdSala, long IdTurno)
+        {
+            this.turnoService.eliminarTurno(IdSala, IdTurno);
+        }   
+
     }
 }
