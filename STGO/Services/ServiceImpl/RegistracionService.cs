@@ -7,6 +7,7 @@ using Model;
 using Persistence.DAO;
 using Persistence.Util;
 using Model.Exceptions;
+using System.Web.Security;
 
 
 namespace Services.ServiceImpl
@@ -48,6 +49,8 @@ namespace Services.ServiceImpl
                     fechaHoraActual = fechaHoraActual.Subtract(timeSpan);
                     if (registracion.FechaHoraRegistro <= fechaHoraActual)
                     {
+                        this.registracionDAO.delete(registracion);
+                        Membership.DeleteUser(userName);
                         //TODO: Duda, Eliminamos el registro, lo marcamos como historico o bien impedimos que se vuelva a registrar???
                         //Loggear que se va a hacer pelota el registro caducado y hacer pelota el registro caducado y demas.
 
