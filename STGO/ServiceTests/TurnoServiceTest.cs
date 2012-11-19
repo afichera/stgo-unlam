@@ -65,10 +65,10 @@ namespace ServiceTests
             Assert.IsTrue(turnosLibres.Count == 17);
         }
 
-       //[TestMethod]
+       [TestMethod]
         public void TestReservarTurno() {
-            DateTime horaInicio = new DateTime(2012, 11, 18, 11, 14, 59);
-            DateTime horaFin = new DateTime(2012, 11, 18, 11, 30, 0);
+            DateTime horaInicio = new DateTime(2012, 11, 19, 17, 00, 00);
+            DateTime horaFin = new DateTime(2012, 11, 19, 17, 30, 0);
             this.turnoService.reservarTurno(1, "carlos", "Turno de Psicologia", horaInicio, horaFin);
             Assert.IsTrue(true);
         }
@@ -93,7 +93,7 @@ namespace ServiceTests
 
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void TestObtenerTurnos() {
             List<Turno> turnos = this.turnoService.obtenerTurnos(1, DateTime.Now);
 

@@ -17,5 +17,7 @@ namespace Persistence.DAO
         List<Turno> obtenerTurnos(long salaId, DateTime dateTime);
 
         void updateTurno(Turno turno, long salaId);
+
+        List<Turno> obtenerTurnosFuturo(long salaId);
     }
 }

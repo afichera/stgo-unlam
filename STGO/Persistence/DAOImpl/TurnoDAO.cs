@@ -297,5 +297,59 @@ namespace Persistence.DAOImpl
                 base.Desconectar();
             }
         }
+
+
+        public List<Turno> obtenerTurnosFuturo(long salaId)
+        {
+            List<Turno> turnos = new List<Turno>();
+            try
+            {
+                if (base.Conectar())
+                {
+                    SqlDataReader dataReader;
+                    base.Command = new SqlCommand();
+                    Turno turno;
+
+                    base.Command.Connection = base.Conexion;
+                    Command.CommandText = "SELECT t.id, t.reservador, t.fechaHoraInicio, t.fechaHoraFin, t.descripcion, t.salaId  FROM Turno t WHERE t.salaId = @salaId AND t.fechaHoraInicio >= getdate() AND t.fechaHoraBaja is null";
+
+                    Command.CommandType = CommandType.Text;
+                    Command.Parameters.AddWithValue("salaId", salaId);
+
+                    dataReader = Command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+
+                        turno = new Turno();
+                        turno.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                        turno.Reservador = dataReader.GetSqlString(1).ToString();
+                        turno.FechaHoraInicio = DateTime.Parse(dataReader.GetSqlDateTime(2).ToString());
+                        turno.FechaHoraFin = DateTime.Parse(dataReader.GetSqlDateTime(3).ToString());
+                        turno.Descripcion = dataReader.GetSqlString(4).ToString();
+                        turnos.Add(turno);
+                    }
+
+                }
+                else
+                {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
+                    throw new BDDException();
+                }
+                return turnos;
+
+            }
+            catch (SqlException ex)
+            {
+                logger.Error("Ocurrió un error al intentar recuperar los turnos a futuro de la sala id: " + salaId + " . Detalle: " + ex.StackTrace);
+                throw new BDDException("Ocurrió un error al intentar recuperar los turnos a futuro de la sala. Detalle: " + ex.Message);
+            }
+            finally
+            {
+
+                base.Desconectar();
+
+            }
+        }
     }
 }
