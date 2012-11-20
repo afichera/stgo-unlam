@@ -8,6 +8,7 @@ using Persistence.DAO;
 using Persistence.Util;
 using Model.Exceptions;
 using System.Web.Security;
+using log4net;
 
 
 namespace Services.ServiceImpl
@@ -16,6 +17,7 @@ namespace Services.ServiceImpl
     {
         private IRegistracionDAO registracionDAO = DAOLocator.Instance.RegistracionDAO;
         private IParametroDAO parametroDAO = DAOLocator.Instance.ParametroDAO;
+        private static ILog logger = log4net.LogManager.GetLogger(typeof(RegistracionService));
 
         public List<Registracion> getAll()
         {
@@ -51,16 +53,15 @@ namespace Services.ServiceImpl
                     {
                         this.registracionDAO.delete(registracion);
                         Membership.DeleteUser(userName);
-                        //TODO: Duda, Eliminamos el registro, lo marcamos como historico o bien impedimos que se vuelva a registrar???
-                        //Loggear que se va a hacer pelota el registro caducado y hacer pelota el registro caducado y demas.
-
-                        //throw new RegistracionExpiradaException("Expiro el tiempo para activar la cuenta. Se deberán eliminar registros para permitir la reutilización.");
+                        logger.Info("Se elimino el registro de registración vencido para poder reutilizar el mismo email: " + userName);
                     }
                     else {
+                        logger.Info("Se realizo un intento de registro con un usuario que posee una registración pendiente no vencida. Usuario: "+userName);
                         throw new EMailRegistradoException();
                     }                    
                 }
                 else {
+                    logger.Info("No se pudo realizar el registro con el nombre de usuario: " + userName + ", porque ya existe.");
                     throw new EMailRegistradoException();
                 }
             }
@@ -70,7 +71,8 @@ namespace Services.ServiceImpl
 
         public void completarRegistro(Registracion registracion, Guid guid)
         {
-            this.registracionDAO.crearPendiente(registracion, guid); 
+            this.registracionDAO.crearPendiente(registracion, guid);
+            
         }
 
 
@@ -101,16 +103,16 @@ namespace Services.ServiceImpl
                     fechaHoraActual =  fechaHoraActual.Subtract(timeSpan);
                     if (registracion.FechaHoraRegistro <= fechaHoraActual)
                     {
-                        //Loggear que se va a hacer pelota el registro caducado y hacer pelota el registro caducado y demas.
+                        logger.Info("Se intento activar una cuenta cuyo registro expiró. Clave de activación: "+activationKey.ToString());
                         throw new RegistracionExpiradaException();
                     }
-                    else
-                    {
-                        this.registracionDAO.activarCuenta(activationKey);
-                    }
+                   
+                    this.registracionDAO.activarCuenta(activationKey);
+                    logger.Info("Se realizó la activación de cuenta. Clave de activación: " + activationKey.ToString());
                 }
                 else
                 {
+                    logger.Info("Se intento realizar una activación sobre una cuenta ya activa. No se realizan modificaciones. Clave de activación: "+activationKey.ToString());
                     throw new EMailRegistradoException();
                 }
             }
