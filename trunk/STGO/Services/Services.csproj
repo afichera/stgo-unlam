@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceImpl\EmpresaService.cs" />
-    <Compile Include="ServiceImpl\MembershipUser.cs" />
     <Compile Include="ServiceImpl\ParametroService.cs" />
     <Compile Include="ServiceImpl\RegistracionService.cs" />
     <Compile Include="ServiceImpl\RolService.cs" />

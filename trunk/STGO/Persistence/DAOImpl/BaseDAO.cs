@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Collections;
 using Model;
 using Model.Exceptions;
+using System.Configuration;
 
 
 namespace Persistence.DAOImpl
@@ -48,14 +49,8 @@ namespace Persistence.DAOImpl
        
         public String CadenaConexion()
         {
-            SqlConnectionStringBuilder csb = new SqlConnectionStringBuilder();
-            csb.DataSource = @"(local)";
-            csb.InitialCatalog = "STGO";
-            csb.IntegratedSecurity = true;
-            //csb.UserID = "stgo";
-            //csb.Password = "adminadmin";
+            return ConfigurationManager.ConnectionStrings["SqlServer"].ConnectionString;
 
-            return csb.ConnectionString;
         }
 
         public void ComenzarTransaccion()
