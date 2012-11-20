@@ -70,7 +70,7 @@ namespace STGO
 
         protected void loginSTGOId_LoginError(object sender, EventArgs e)
         {
-            Console.Write("Sonamos");
+           
         }
 
     }

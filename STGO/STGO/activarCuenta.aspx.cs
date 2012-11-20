@@ -40,6 +40,7 @@ namespace STGO
                     btnVolver.Text = "Volver";
                     btnVolver.PostBackUrl = "~/Default.aspx";
                 }
+                
 
             }
 

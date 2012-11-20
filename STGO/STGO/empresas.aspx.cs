@@ -18,20 +18,23 @@ namespace STGO
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!Page.IsPostBack)
             {
-                this.todasLasEmpresas = empresaService.getAll();
-                grid_Empresas.DataSource = this.todasLasEmpresas;
-                grid_Empresas.DataBind();
+                inicializar();
             }
 
+        }
+
+        private void inicializar()
+        {
+            this.todasLasEmpresas = empresaService.getAll();
+            grid_Empresas.DataSource = this.todasLasEmpresas;
+            grid_Empresas.DataBind();
         }
 
         protected void Page_SaveStateComplete(object sender, EventArgs e)
         {
             grid_Empresas.Columns[0].Visible = false;
-
         }
 
         protected void grid_Empresas_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -39,28 +42,30 @@ namespace STGO
             if (e.CommandName == "cambiarEstado")
             {
                 long id = long.Parse(e.CommandArgument.ToString());
-                Empresa empresaACambiar = empresaService.getFindById(id);
-                if (empresaACambiar.activo == true)
-                    empresaACambiar.activo = false;
-                else
-                    empresaACambiar.activo = true;
-
-               empresaService.saveOrUpdate(empresaACambiar, empresaACambiar.Usuario.Id);
-                
-                this.todasLasEmpresas = empresaService.getAll();
-                grid_Empresas.DataSource = this.todasLasEmpresas;
-                grid_Empresas.DataBind();
-
+                guardarEmpresa(id);
             }
 
-            else
-                if (e.CommandName == "cambiarCantSalas")
-                {
+            else if (e.CommandName == "cambiarCantSalas")
+            {
                     String id = e.CommandArgument.ToString();
-                    Response.Redirect("cantidadDeSalas.aspx?id=" + id.ToString());
-                  
-                }
+                    Response.Redirect("cantidadDeSalas.aspx?id=" + id.ToString());                  
+            }
 
+        }
+
+        private void guardarEmpresa(long id)
+        {
+            Empresa empresaACambiar = empresaService.getFindById(id);
+            if (empresaACambiar.activo == true)
+            {
+                empresaACambiar.activo = false;
+            }
+            else {
+                empresaACambiar.activo = true;
+            }
+            
+            empresaService.saveOrUpdate(empresaACambiar, empresaACambiar.Usuario.Id);
+            this.inicializar();
         }
     }
 }
