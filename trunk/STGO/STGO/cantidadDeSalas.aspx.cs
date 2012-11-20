@@ -7,12 +7,15 @@ using System.Web.UI.WebControls;
 using Model;
 using Services.Util;
 using Services.Service;
+using Model.Exceptions;
+using log4net;
 
 namespace STGO
 {
     public partial class cantidadDeSalas : System.Web.UI.Page
     {
         IEmpresaService empresaService = ServiceLocator.Instance.EmpresaService;
+        private static ILog logger = log4net.LogManager.GetLogger(typeof(cantidadDeSalas));
         Empresa empresa;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,18 +26,11 @@ namespace STGO
                     Response.Redirect("empresas.aspx");
                 else
                 {
-
-
                     long idEmpresa = long.Parse(Request.QueryString["id"]);
-
                     this.empresa = empresaService.getFindById(idEmpresa);
-
                     txtRazonSocial.Text =empresa.RazonSocial;
-                    txtCantSalas.Text = empresa.maximoSalas.ToString();
-                    
-
+                    txtCantSalas.Text = empresa.maximoSalas.ToString();                 
                 }
-
 
             }
 
@@ -50,18 +46,19 @@ namespace STGO
                  this.empresa = empresaService.getFindById(idEmpresa);
 
                  this.empresa.maximoSalas = Convert.ToInt32(txtCantSalas.Text);
-                 Empresa resultado = empresaService.saveOrUpdate(empresa, empresa.Usuario.Id);
-
-                 if (resultado != null)
+                 Empresa resultado; 
+                 try
                  {
+                     resultado = empresaService.saveOrUpdate(empresa, empresa.Usuario.Id);
                      lblResultado.Text = "Se han guardado los datos";
                  }
-                 else
+                 catch (BusinessException ex)
                  {
+                     logger.Error("Ha ocurrido un error al guardar la empresa. Si el error persiste contacte al administrador." + ex.Message);
                      lblResultado.Text = "Ha habido un error al guardar. Si el error persiste contacte al administrador.";
+
                  }
-
-
+                
              }
         }
     }
