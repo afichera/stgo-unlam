@@ -40,7 +40,7 @@ namespace Persistence.DAOImpl
             Turno turno = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -79,7 +79,7 @@ namespace Persistence.DAOImpl
                 throw new BDDException("Ocurrio un error al intentar recuperar el turno. Detalle: " + ex.Message);
             }
             finally {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -88,7 +88,7 @@ namespace Persistence.DAOImpl
         {
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
 
                     string sp = "SP_TURNO_RESERVAR";
@@ -131,7 +131,7 @@ namespace Persistence.DAOImpl
                 throw new BDDException("Ocurrio un error al intentar reservar el turno. Detalle: "+ex.Message);
             }
             finally {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -140,7 +140,7 @@ namespace Persistence.DAOImpl
         {
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
 
                     string sp = "SP_TURNO_DELETE";
@@ -177,7 +177,7 @@ namespace Persistence.DAOImpl
                 throw new BDDException("Ocurrió un error al intentar eliminar la reserva para del turno. Detalle: " + ex.Message);
             }
             finally {
-                base.Desconectar();
+                base.desconectar();
 
             }
             
@@ -188,7 +188,7 @@ namespace Persistence.DAOImpl
             List<Turno> turnos = new List<Turno>();
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -234,7 +234,7 @@ namespace Persistence.DAOImpl
             }
             finally {
 
-                base.Desconectar();
+                base.desconectar();
            
             }
 
@@ -246,7 +246,7 @@ namespace Persistence.DAOImpl
             
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
 
                     string sp = "SP_TURNO_UPDATE";
@@ -294,7 +294,7 @@ namespace Persistence.DAOImpl
                 throw new BDDException("No se pudo actualizar el turno. Detalle: "+ex.Message);
             }
             finally {
-                base.Desconectar();
+                base.desconectar();
             }
         }
 
@@ -304,7 +304,7 @@ namespace Persistence.DAOImpl
             List<Turno> turnos = new List<Turno>();
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -347,7 +347,7 @@ namespace Persistence.DAOImpl
             finally
             {
 
-                base.Desconectar();
+                base.desconectar();
 
             }
         }
