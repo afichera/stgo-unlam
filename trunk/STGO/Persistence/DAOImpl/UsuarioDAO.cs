@@ -20,7 +20,7 @@ namespace Persistence.DAOImpl
             List<Usuario> usuarios = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -63,7 +63,7 @@ namespace Persistence.DAOImpl
                 throw new BDDException("Ocurrio un error al intentar obtener la lista de ususarios. Detalle: " + ex.Message);
             }
             finally {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -95,7 +95,7 @@ namespace Persistence.DAOImpl
             long empresaId = -1;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -130,7 +130,7 @@ namespace Persistence.DAOImpl
                 throw new BDDException("Ocurrió un error al validar el loggin. Detalle: " + ex.Message);
             }
             finally {
-                base.Desconectar();            
+                base.desconectar();            
             }
         }
     }

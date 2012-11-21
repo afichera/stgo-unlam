@@ -19,7 +19,7 @@ namespace Persistence.DAOImpl
             List<Parametro> parametros = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -53,7 +53,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
         }
 
@@ -62,7 +62,7 @@ namespace Persistence.DAOImpl
             Parametro parametro = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -99,7 +99,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }

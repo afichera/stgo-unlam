@@ -20,7 +20,7 @@ namespace Persistence.DAOImpl
             List<Empresa> empresas = new List<Empresa>();
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -69,7 +69,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
         }
 
@@ -78,7 +78,7 @@ namespace Persistence.DAOImpl
             try
             {
                 Empresa empresa = null;
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -125,7 +125,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
         }
 
@@ -136,7 +136,7 @@ namespace Persistence.DAOImpl
 
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
 
                     string sp = "SP_EMPRESA_SAVE_OR_UPDATE";
@@ -193,7 +193,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
 
@@ -205,7 +205,7 @@ namespace Persistence.DAOImpl
             Empresa empresa = entity;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     string sp = "SP_EMPRESA_DELETE";
                     SqlCommand Command = new SqlCommand(sp, base.Conexion);
@@ -229,7 +229,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -239,7 +239,7 @@ namespace Persistence.DAOImpl
             Empresa empresa = entity;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     string sp = "SP_EMPRESA_SAVE_OR_UPDATE";
                     SqlCommand Command = new SqlCommand(sp, base.Conexion);
@@ -294,7 +294,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -304,7 +304,7 @@ namespace Persistence.DAOImpl
             Empresa empresa = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -348,7 +348,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
         }
     }

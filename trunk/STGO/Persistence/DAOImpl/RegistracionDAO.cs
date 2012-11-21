@@ -34,7 +34,7 @@ namespace Persistence.DAOImpl
         {
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -62,7 +62,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
         }
 
@@ -71,7 +71,7 @@ namespace Persistence.DAOImpl
             Registracion registracion = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -108,7 +108,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -119,7 +119,7 @@ namespace Persistence.DAOImpl
             Registracion registracion = entity;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
 
                     string sp = "SP_REGISTRACION_CREAR_PENDIENTE";
@@ -165,7 +165,7 @@ namespace Persistence.DAOImpl
             finally
             {
 
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -176,7 +176,7 @@ namespace Persistence.DAOImpl
             Registracion registracion = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -213,7 +213,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
         }
 
@@ -221,7 +221,7 @@ namespace Persistence.DAOImpl
         {
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     string sp = "SP_ACTIVAR_CUENTA";
                     SqlCommand Command = new SqlCommand(sp, base.Conexion);
@@ -233,7 +233,7 @@ namespace Persistence.DAOImpl
                     Command.Parameters.Add(paramKeyId);
 
                     int filasAfectadas = Command.ExecuteNonQuery();
-                    base.Desconectar();
+                    base.desconectar();
                     if (filasAfectadas < 1)
                     {
                         logger.Error("Error al activar cuenta.");
@@ -248,7 +248,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }

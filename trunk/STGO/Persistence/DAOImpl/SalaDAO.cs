@@ -20,7 +20,7 @@ namespace Persistence.DAOImpl
             List<Sala> salas = new List<Sala>();
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -63,7 +63,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
         }
         public List<Sala> getAll()
@@ -71,7 +71,7 @@ namespace Persistence.DAOImpl
             List<Sala> salas = new List<Sala>();
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -111,7 +111,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -120,7 +120,7 @@ namespace Persistence.DAOImpl
             Sala sala = null;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     SqlDataReader dataReader;
                     base.Command = new SqlCommand();
@@ -161,7 +161,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -171,7 +171,7 @@ namespace Persistence.DAOImpl
             Sala sala = entity;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
 
                     string sp = "SP_SALA_SAVE_OR_UPDATE";
@@ -227,7 +227,7 @@ namespace Persistence.DAOImpl
             }
             finally
             {
-                base.Desconectar();
+                base.desconectar();
             }
 
         }
@@ -240,7 +240,7 @@ namespace Persistence.DAOImpl
         {
             Sala sala = entity;
 
-            if (base.Conectar())
+            if (base.conectar())
             {
                 string sp = "SP_SALA_DELETE";
                 SqlCommand Command = new SqlCommand(sp, base.Conexion);
@@ -250,7 +250,7 @@ namespace Persistence.DAOImpl
                 paramId.Value = sala.Id;
                 Command.Parameters.Add(paramId);
                 int filasAfectadas = Command.ExecuteNonQuery();
-                base.Desconectar();
+                base.desconectar();
             }
         }
 
@@ -259,7 +259,7 @@ namespace Persistence.DAOImpl
             int cantidad = 0;
             try
             {
-                if (base.Conectar())
+                if (base.conectar())
                 {
                     base.Command = new SqlCommand();
                     base.Command.Connection = base.Conexion;
@@ -284,7 +284,7 @@ namespace Persistence.DAOImpl
                 throw new BDDException("Ocurrio un error al intentar obtener la cantidad de salas de la empresa. Detalle: "+ex.Message);
             }
             finally {
-                base.Desconectar();            
+                base.desconectar();            
             }
 
         }
