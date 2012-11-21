@@ -7,7 +7,9 @@
     <div class="grid_6">
   
     <asp:CreateUserWizard RequireEmail="true" ID="CreateUserWizard1" CreateUserButtonText="Registrarse"
-        runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser" ContinueButtonStyle-CssClass="boton" CreateUserButtonStyle-CssClass="boton" OnCreatingUser="CreateUserWizard1_CreatingUser">
+        runat="server" OnCreatedUser="CreateUserWizard1_CreatedUser" ContinueButtonStyle-CssClass="boton" 
+        CreateUserButtonStyle-CssClass="boton" OnCreatingUser="CreateUserWizard1_CreatingUser" 
+        DuplicateUserNameErrorMessage="El email ingresado ya existe. Ingrese otra dirección de email.">
         <WizardSteps>
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                 <ContentTemplate>
