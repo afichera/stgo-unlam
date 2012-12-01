@@ -96,5 +96,10 @@ namespace Services.ServiceImpl
         {
             return this.salaDAO.cantidadSalasEmpresa(idEmpresa);
         }
+
+        
+        public List<Sala> getAllEmpresaActiva() {
+            return this.salaDAO.getAllEmpresaActiva();
+        }
     }
 }

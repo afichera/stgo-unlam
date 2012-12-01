@@ -45,5 +45,6 @@ namespace Services.ServiceImpl
         {
             return this.empresaDAO.getFindByGuid(userId);
         }
+
     }
 }

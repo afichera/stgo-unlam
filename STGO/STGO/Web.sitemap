@@ -4,6 +4,6 @@
     <siteMapNode url="empresas.aspx" title="Empresas"  description="" roles="ADMINISTRADOR"/>
     <siteMapNode url="turnos.aspx" title="Turnos"  description="" roles="ADMINISTRADOR,EMPRESA"/>
     <siteMapNode url="salas.aspx" title="Salas"  description="" roles="ADMINISTRADOR,EMPRESA"/>
-    <siteMapNode url="miperfil.aspx" title="Mis Datos"  description="" roles="ADMINISTRADOR,EMPRESA"/>
+    <siteMapNode url="miperfil.aspx" title="Mis Datos"  description="" roles="EMPRESA"/>
   </siteMapNode>
 </siteMap>

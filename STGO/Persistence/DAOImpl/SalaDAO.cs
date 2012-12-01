@@ -115,6 +115,57 @@ namespace Persistence.DAOImpl
             }
 
         }
+
+        public List<Sala> getAllEmpresaActiva()
+        {
+            List<Sala> salas = new List<Sala>();
+            try
+            {
+                if (base.conectar())
+                {
+                    SqlDataReader dataReader;
+                    base.Command = new SqlCommand();
+                    Sala sala;
+
+                    base.Command.Connection = base.Conexion;
+                    Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S INNER JOIN EMPRESA E ON(e.id = s.empresaId) WHERE s.fechaHoraBaja is null AND e.id = 1";
+                    Command.CommandType = CommandType.Text;
+                    dataReader = Command.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        sala = new Sala();
+                        sala.Id = long.Parse(dataReader.GetSqlInt64(0).ToString());
+                        sala.Nombre = dataReader.GetSqlString(1).ToString();
+                        sala.PermiteMultiplo = Convert.ToBoolean(dataReader.GetSqlByte(2).Value);
+                        sala.Frecuencia = int.Parse(dataReader.GetSqlInt32(3).ToString());
+                        sala.HoraInicio = DateTime.Parse(dataReader.GetSqlDateTime(4).ToString());
+                        sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
+                        salas.Add(sala);
+                    }
+
+                }
+                else
+                {
+                    logger.Error(Constantes.ERROR_BDD_CONEXION);
+                    throw new BDDException();
+                }
+                return salas;
+
+            }
+            catch (SqlException ex)
+            {
+                logger.Error("Ocurrio un error al intentar obtener todas las salas de empresa activa de la Base de datos. Detalle: " + ex.StackTrace);
+                throw new BDDException("Ocurrio un error al intentar obtener todas las salas de empresa activa de la Base de datos. Detalle: " + ex.Message);
+
+            }
+            finally
+            {
+                base.desconectar();
+            }
+
+        }
+
         public Sala getFindById(long id)
         {
             Sala sala = null;
