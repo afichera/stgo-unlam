@@ -24,10 +24,11 @@
                                         <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">Usuario:</asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="UserName" runat="server" MaxLength="256" ></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
                                             ErrorMessage="Debe ingresar el usuario." ToolTip="El nombre de usuario es requerido."
                                             ValidationGroup="loginSTGOId">*</asp:RequiredFieldValidator>
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -35,7 +36,7 @@
                                         <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Contraseña:</asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="Password" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
                                             ErrorMessage="Debe Ingresar la Contraseña." ToolTip="La Contraseña es requerida."
                                             ValidationGroup="loginSTGOId">*</asp:RequiredFieldValidator>

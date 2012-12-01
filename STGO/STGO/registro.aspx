@@ -27,7 +27,7 @@
                                 <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">E-mail: </asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="UserName" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="UserName" runat="server" MaxLength="256"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" Display="Dynamic"
                                     ControlToValidate="UserName" ErrorMessage="El E-mail es requerido." ToolTip="El email es requerido."
                                     ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
@@ -61,7 +61,7 @@
                                 <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Contraseña: </asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="Password" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
                                     ErrorMessage="La contraseña es requerida." ToolTip="La contraseña es requerida."
                                     ValidationGroup="CreateUserWizard1" Display="Dynamic">*</asp:RequiredFieldValidator>
@@ -72,7 +72,7 @@
                                 <asp:Label ID="ConfirmPasswordLabel" runat="server" AssociatedControlID="ConfirmPassword">Confirmar Contraseña: </asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="ConfirmPassword"
                                     ErrorMessage="La confirmación de contraeña es requerida." ToolTip="La confirmación de contraeña es requerida."
                                     ValidationGroup="CreateUserWizard1" Display="Dynamic">*</asp:RequiredFieldValidator>
@@ -83,7 +83,7 @@
                                 <asp:Label ID="lblRazonSocialReg" Text="Razón Social: " runat="server" AssociatedControlID="txtRazonSocialReg" />
                             </td>
                             <td>
-                                <asp:TextBox ID="txtRazonSocialReg" runat="server" ValidationGroup="CreateUserWizard1"></asp:TextBox>
+                                <asp:TextBox ID="txtRazonSocialReg" runat="server" ValidationGroup="CreateUserWizard1" MaxLength="100"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rqfRazonSocialReg" runat="server" ControlToValidate="txtRazonSocialReg"
                                     ErrorMessage="Debe completar la Razón Social." Display="Dynamic"></asp:RequiredFieldValidator>
                             </td>
@@ -93,7 +93,7 @@
                                 <asp:Label ID="lblCuitReg" Text="Cuit: " runat="server" AssociatedControlID="txtCuitReg" />
                             </td>
                             <td>
-                                <asp:TextBox ID="txtCuitReg" runat="server" ValidationGroup="CreateUserWizard1"></asp:TextBox>
+                                <asp:TextBox ID="txtCuitReg" runat="server" ValidationGroup="CreateUserWizard1" MaxLength="13"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rqfCuitReg" runat="server" ControlToValidate="txtCuitReg"
                                     ValidationGroup="CreateUserWizard1" ErrorMessage="Debe completar el cuit." Display="Dynamic"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="revCuitReg" ErrorMessage="El formato del Cuit es inválido."
@@ -107,7 +107,7 @@
                                 <asp:Label ID="lblTelefonoReg" Text="Teléfono: " runat="server" AssociatedControlID="txtTelefonoReg" />
                             </td>
                             <td>
-                                <asp:TextBox ID="txtTelefonoReg" runat="server" ValidationGroup="CreateUserWizard1"></asp:TextBox>
+                                <asp:TextBox ID="txtTelefonoReg" runat="server" ValidationGroup="CreateUserWizard1" MaxLength="20"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rqfTelefonoReg" runat="server" ControlToValidate="txtTelefonoReg"
                                     ErrorMessage="Debe completar el teléfono." ValidationGroup="CreateUserWizard1"
                                     Display="Dynamic"></asp:RequiredFieldValidator>
