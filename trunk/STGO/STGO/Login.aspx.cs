@@ -48,6 +48,7 @@ namespace STGO
                             break;
                         default:
                             //Usuario Empresa.
+                            Session["EmpresaId"] = retorno;
                             FormsAuthentication.SetAuthCookie(user.UserName, false);
                             Context.Response.Redirect("~/turnos.aspx", true);
                             break;

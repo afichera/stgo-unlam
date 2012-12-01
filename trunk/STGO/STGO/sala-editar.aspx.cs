@@ -8,6 +8,7 @@ using Model;
 using Services.Service;
 using Services.Util;
 using Model.Exceptions;
+using log4net;
 
 
 namespace STGO
@@ -15,9 +16,11 @@ namespace STGO
     public partial class Formulario_web21 : System.Web.UI.Page
     {
         ISalaService salaService = ServiceLocator.Instance.SalaService;
+        private static ILog logger = log4net.LogManager.GetLogger(typeof(Formulario_web21));
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!Page.IsPostBack)
             {
 
@@ -28,11 +31,20 @@ namespace STGO
                     Response.Redirect("salas.aspx");
                 else
                 {
-
-
+                    long idEmpresa = 0;
+                    if (Session["EmpresaId"] != null) {
+                        idEmpresa = long.Parse(Session["EmpresaId"].ToString());
+                    }
+                    
+                    
                     long idSala = long.Parse(Request.QueryString["id"]);
 
                     sala = salaService.getFindById(idSala);
+                    
+                    if ((sala.EmpresaId != idEmpresa) && idEmpresa!=0) {
+                        logger.Error("El usuario con la empresa id: " + idEmpresa + " intento ingresar a la sala id: " + idSala + " de la empresa id: " + sala.EmpresaId);
+                        throw new BusinessException("No esta autorizado a ver la sala indicada.");    
+                    }
 
                     txtId.Text = Convert.ToString(sala.Id);
                     txtNombre.Text = sala.Nombre;
