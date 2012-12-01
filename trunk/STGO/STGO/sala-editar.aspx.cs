@@ -26,13 +26,14 @@ namespace STGO
 
                 Sala sala;
 
-                string id = "";
+                
                 if (Request.QueryString["id"] == null)
                     Response.Redirect("salas.aspx");
                 else
                 {
                     long idEmpresa = 0;
-                    if (Session["EmpresaId"] != null) {
+                    if (Session["EmpresaId"] != null)
+                    {
                         idEmpresa = long.Parse(Session["EmpresaId"].ToString());
                     }
                     
@@ -41,7 +42,7 @@ namespace STGO
 
                     sala = salaService.getFindById(idSala);
                     
-                    if ((sala.EmpresaId != idEmpresa) && idEmpresa!=0) {
+                    if ((sala.EmpresaId != idEmpresa) && idEmpresa!=-1) {
                         logger.Error("El usuario con la empresa id: " + idEmpresa + " intento ingresar a la sala id: " + idSala + " de la empresa id: " + sala.EmpresaId);
                         throw new BusinessException("No esta autorizado a ver la sala indicada.");    
                     }

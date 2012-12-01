@@ -31,6 +31,7 @@ namespace STGO
         private void inicializar()
         {
             Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
+            
             txtMail.Text = empresa.Usuario.EMail.ToString();
             txtRazonSocial.Text = empresa.RazonSocial.ToString();
             txtCuit.Text = empresa.CUIT.ToString();
