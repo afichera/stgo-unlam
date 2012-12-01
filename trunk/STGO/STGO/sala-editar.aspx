@@ -12,7 +12,7 @@
 
 <div class="grid_2 divlabel">
 <asp:Label ID="lblNombre" Text="Nombre: " runat="server" AssociatedControlID="txtNombre" /></div>
-<div class="grid_2"><asp:TextBox ID="txtNombre" runat="server" ></asp:TextBox></div>
+<div class="grid_2"><asp:TextBox ID="txtNombre" runat="server" MaxLength="100" ></asp:TextBox></div>
 <div class="grid_3">
     <asp:RequiredFieldValidator  Display="Dynamic" ID="rfvNombre" runat="server" ErrorMessage="Este campo es obligatorio" ControlToValidate="txtNombre"></asp:RequiredFieldValidator>
     <asp:CustomValidator ID="customNombre" runat="server" Display="Dynamic" ControlToValidate="txtNombre" ErrorMessage="El nombre no puede tener más de 100 caracteres" ClientValidationFunction="validaLargo100"></asp:CustomValidator>

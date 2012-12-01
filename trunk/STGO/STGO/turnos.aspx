@@ -104,7 +104,7 @@
                 <asp:Label ID="lblEditHoraInicio" runat="server" Text="Hora Inicio:"></asp:Label>
             </div>
             <div class="grid_2">
-                <asp:TextBox ID="txtEditHoraInicio" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtEditHoraInicio" runat="server" ToolTip="Debe ingresar la hora en formato HH:MM. Ej: 16:30"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
                 <asp:RequiredFieldValidator Display="Dynamic" ID="rfvEditHoraInicio" ControlToValidate="txtEditHoraInicio"
@@ -119,13 +119,13 @@
                 <asp:Label ID="lblEditHoraFin" runat="server" Text="Hora Fin:"></asp:Label>
             </div>
             <div class="grid_2">
-                <asp:TextBox ID="txtEditHoraFin" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtEditHoraFin" runat="server"  ToolTip="Debe ingresar la hora en formato HH:MM. Ej: 16:30"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
                 <asp:RequiredFieldValidator Display="Dynamic" ID="rfvEditHoraFin" ControlToValidate="txtEditHoraFin"
                     runat="server" ErrorMessage="Este campo es obligatorio"></asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator Display="Dynamic" ID="regEditHoraFin" runat="server"
-                    ErrorMessage="El formato de hora no es válidp" ControlToValidate="txtEditHoraFin"
+                    ErrorMessage="El formato de hora no es válido. Debe ingresar en formato HH:MM. Ej: 16:25 " ControlToValidate="txtEditHoraFin"
                     ValidationExpression="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$"></asp:RegularExpressionValidator>
             </div>
             <div class="clear">
@@ -134,7 +134,7 @@
                 <asp:Label ID="lblEditReservador" runat="server" Text="Reservador:"></asp:Label>
             </div>
             <div class="grid_2">
-                <asp:TextBox ID="txtEditReservador" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtEditReservador" runat="server" MaxLength="100"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
                 <asp:RequiredFieldValidator Display="Dynamic" ID="rfvEditReservador" ControlToValidate="txtEditReservador"
@@ -148,7 +148,7 @@
                 <asp:Label ID="lblEditDescripcion" runat="server" Text="Descripción:"></asp:Label>
             </div>
             <div class="grid_2">
-                <asp:TextBox ID="txtEditDescripcion" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtEditDescripcion" runat="server" MaxLength="200"></asp:TextBox>
             </div>
             <div class="grid_2 omega">
                 <asp:CustomValidator ID="customEditDescripcion" runat="server" Display="Dynamic"
