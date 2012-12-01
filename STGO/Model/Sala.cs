@@ -13,6 +13,7 @@ namespace Model
         public int Frecuencia { get; set; }
         public DateTime HoraInicio { get; set; }
         public DateTime HoraCierre { get; set; }
+        public long EmpresaId { get; set; }
 
         public Sala(String nombre, Boolean permiteMultiplo, int frecuencia, DateTime horaInicio, DateTime horaCierre)
         {

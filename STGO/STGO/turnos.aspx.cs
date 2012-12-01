@@ -153,10 +153,10 @@ namespace STGO
                 if (id != 0)
                 {
                     turnoService.eliminarTurno(long.Parse(liSalas.SelectedValue), id);
-                    todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
-                    GrillaDia.DataSource = todosLosTurnos;
-                    GrillaDia.DataBind();
                 }
+                todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
+                GrillaDia.DataSource = todosLosTurnos;
+                GrillaDia.DataBind();
             }
 
             else if (e.CommandName == "NuevoMio")

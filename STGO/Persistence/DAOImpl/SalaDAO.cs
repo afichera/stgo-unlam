@@ -118,6 +118,7 @@ namespace Persistence.DAOImpl
         public Sala getFindById(long id)
         {
             Sala sala = null;
+            
             try
             {
                 if (base.conectar())
@@ -126,7 +127,7 @@ namespace Persistence.DAOImpl
                     base.Command = new SqlCommand();
 
                     base.Command.Connection = base.Conexion;
-                    Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin FROM Sala S WHERE s.id = @id and s.fechaHoraBaja is null";
+                    Command.CommandText = "SELECT s.id, s.nombre, s.permiteMultiplo, s.frecuencia, s.horaInicio, s.horaFin, s.empresaId FROM Sala S WHERE s.id = @id and s.fechaHoraBaja is null";
 
                     Command.CommandType = CommandType.Text;
                     Command.Parameters.AddWithValue("id", id);
@@ -142,7 +143,8 @@ namespace Persistence.DAOImpl
                         sala.Frecuencia = int.Parse(dataReader.GetSqlInt32(3).ToString());
                         sala.HoraInicio = DateTime.Parse(dataReader.GetSqlDateTime(4).ToString());
                         sala.HoraCierre = DateTime.Parse(dataReader.GetSqlDateTime(5).ToString());
-
+                        sala.EmpresaId = long.Parse(dataReader.GetSqlInt64(6).ToString());
+                        
                     }
 
                 }
