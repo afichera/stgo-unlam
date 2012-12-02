@@ -30,12 +30,20 @@ namespace STGO
 
         private void inicializar()
         {
-            Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
-            
-            txtMail.Text = empresa.Usuario.EMail.ToString();
-            txtRazonSocial.Text = empresa.RazonSocial.ToString();
-            txtCuit.Text = empresa.CUIT.ToString();
-            txtTelefono.Text = empresa.Telefono.ToString();
+
+            if (Roles.IsUserInRole(userLogged.UserName, Constantes.ROLES_ADMIN))
+            {
+                PanelDatosModificarId.Visible = false;
+            }
+            else {
+                Empresa empresa = this.empresaService.getFindByGuid((Guid)userLogged.ProviderUserKey);
+                PanelDatosModificarId.Visible = true;
+                txtMail.Text = empresa.Usuario.EMail.ToString();
+                txtRazonSocial.Text = empresa.RazonSocial.ToString();
+                txtCuit.Text = empresa.CUIT.ToString();
+                txtTelefono.Text = empresa.Telefono.ToString();
+            }
+
         }
 
         protected void btnGuardarPerfil_Click(object sender, EventArgs e)

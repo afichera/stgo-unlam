@@ -44,7 +44,7 @@ namespace STGO
                             //inactivo o inexistente.
                             Session.Abandon();
                             Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
-                            loginSTGOId.FailureText = "Usuario Inactivo o Inexistente.";
+                            loginSTGOId.FailureText = "Usuario o Password Incorrecto.";
                             break;
                         default:
                             //Usuario Empresa.
@@ -58,8 +58,12 @@ namespace STGO
                 {
                     Session.Abandon();
                     Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
-                    loginSTGOId.FailureText = "Usuario Inactivo o Inexistente.";
+                    loginSTGOId.FailureText = "Usuario Inexistente.";
                 }
+            }
+            catch (UsuarioInactivoException ex)
+            {
+                loginSTGOId.FailureText = ex.Message;
             }
             catch (BusinessException ex)
             {

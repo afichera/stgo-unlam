@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using Model;
 
 namespace STGO
 {
@@ -12,9 +13,10 @@ namespace STGO
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Membership.GetUser() != null)
+            MembershipUser user = Membership.GetUser();
+            if (user != null)
             {
-                usuarioLogueado.Text = "Bienvenido " + Membership.GetUser().UserName + " - ";
+                usuarioLogueado.Text = "Bienvenido " + user.UserName + " - ";
             }
 
             else
@@ -23,6 +25,8 @@ namespace STGO
             }
         }
 
-
+ 
     }
+
+
 }

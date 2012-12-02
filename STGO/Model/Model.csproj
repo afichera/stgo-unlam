@@ -53,6 +53,7 @@
     <Compile Include="Turno.cs" />
     <Compile Include="TurnoInvalidoException.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="UsuarioInactivoException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

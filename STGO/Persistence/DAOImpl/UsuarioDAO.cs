@@ -8,6 +8,7 @@ using Persistence.DAO;
 using Model;
 using log4net;
 using Persistence.Util;
+using Model.Exceptions;
 
 namespace Persistence.DAOImpl
 {
@@ -93,6 +94,7 @@ namespace Persistence.DAOImpl
         public long login(string email, string password)
         {
             long empresaId = -1;
+            int empresaActiva = 1;
             try
             {
                 if (base.conectar())
@@ -103,7 +105,7 @@ namespace Persistence.DAOImpl
 
 
                     base.Command.Connection = base.Conexion;
-                    Command.CommandText = "SELECT u.UserName, m.Password, e.id FROM aspnet_Users u INNER JOIN aspnet_Membership m ON (u.UserId = m.UserId) INNER JOIN Empresa e ON (u.UserId = e.UserId) WHERE u.UserName = @UserName AND E.fechaHoraBaja IS NULL AND E.activa = 1";
+                    Command.CommandText = "SELECT u.UserName, m.Password, e.id, e.activa FROM aspnet_Users u INNER JOIN aspnet_Membership m ON (u.UserId = m.UserId) INNER JOIN Empresa e ON (u.UserId = e.UserId) WHERE u.UserName = @UserName AND E.fechaHoraBaja IS NULL";
                     Command.CommandType = CommandType.Text;
                     Command.Parameters.AddWithValue("UserName", email.ToUpper());
                     dataReader = Command.ExecuteReader();
@@ -114,6 +116,12 @@ namespace Persistence.DAOImpl
                         usuario.EMail = dataReader.GetSqlString(0).ToString();
                         usuario.Password = dataReader.GetSqlString(1).ToString();
                         empresaId = long.Parse(dataReader.GetSqlInt64(2).ToString());
+                        empresaActiva = dataReader.GetByte(3);
+                    }
+
+                    if (empresaActiva!=1) {
+                        logger.Info("Se intento loguear con un usuario inactivo. empresaId: "+empresaId);
+                        throw new UsuarioInactivoException();
                     }
 
                 }

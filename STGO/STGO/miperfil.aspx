@@ -128,7 +128,7 @@
                     </div>
                     <div class="grid_3 alpha">
                         <asp:Button ID="ChangePasswordPushButton" runat="server" CommandName="ChangePassword"
-                            OnCommand Text="Cambiar contraseña" ValidationGroup="ChangePassword1" CausesValidation="true" /></div>
+                            Text="Cambiar contraseña" ValidationGroup="ChangePassword1" CausesValidation="true" /></div>
                     <div class="grid_2 omega">
                         <asp:Button ID="CancelPushButton" runat="server" CausesValidation="False" CommandName="Cancel"
                             Text="Cancelar" /></div>
