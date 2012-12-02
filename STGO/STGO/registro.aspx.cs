@@ -91,10 +91,15 @@ namespace STGO
                     this.registracionService.completarRegistro(registracion, (Guid)user.ProviderUserKey);
                     this.enviarMail();
                 }
-                catch (BusinessException ex) {
+                catch (BusinessException ex)
+                {
                     Literal literal = (Literal)CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("ErrorMessage");
-                    logger.Error("Ocurrio un error al completar el registro."+ex.Message);
-                    literal.Text = "Ocurrio un error al completar el registro. " + ex.Message;
+                    logger.Error("Ocurrio un error al completar el registro." + ex.Message);
+                    throw ex;
+                }
+                catch (Exception ex) {
+                    logger.Error("Ocurrio un error al completar el registro." + ex.Message);
+                    throw ex;
                 }
         }
 
