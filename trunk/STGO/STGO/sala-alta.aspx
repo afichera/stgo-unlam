@@ -41,7 +41,7 @@
     <div class="grid_2 divlabel">
         <asp:Label ID="lblFrecuencia" Text="Frecuencia (en mins.): " runat="server" AssociatedControlID="txtFrecuencia" /></div>
     <div class="grid_2">
-        <asp:TextBox ID="txtFrecuencia" runat="server"></asp:TextBox></div>
+        <asp:TextBox ID="txtFrecuencia" MaxLength="3" runat="server"></asp:TextBox></div>
     <div class="grid_3">
         <asp:RequiredFieldValidator Display="Dynamic" ID="rfvFrecuencia" runat="server" ErrorMessage="Este campo es obligatorio"
             ControlToValidate="txtFrecuencia"></asp:RequiredFieldValidator></div>

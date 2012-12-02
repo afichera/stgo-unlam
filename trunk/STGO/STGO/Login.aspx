@@ -26,8 +26,8 @@
                                     <td>
                                         <asp:TextBox ID="UserName" runat="server" MaxLength="256" ></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
-                                            ErrorMessage="Debe ingresar el usuario." ToolTip="El nombre de usuario es requerido."
-                                            ValidationGroup="loginSTGOId">*</asp:RequiredFieldValidator>
+                                            ErrorMessage="(*)Debe ingresar el usuario." style="color: Red;" ToolTip="El nombre de usuario es requerido."
+                                            ValidationGroup="loginSTGOId" />
                                         
                                     </td>
                                 </tr>
@@ -38,8 +38,8 @@
                                     <td>
                                         <asp:TextBox ID="Password" runat="server" TextMode="Password" MaxLength="20"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
-                                            ErrorMessage="Debe Ingresar la Contraseña." ToolTip="La Contraseña es requerida."
-                                            ValidationGroup="loginSTGOId">*</asp:RequiredFieldValidator>
+                                            ErrorMessage="(*)Debe Ingresar la Contraseña." style="color: Red;" ToolTip="La Contraseña es requerida."
+                                            ValidationGroup="loginSTGOId"/>
                                     </td>
                                 </tr>
                                 <tr>

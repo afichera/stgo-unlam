@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script type="text/javascript" src="/Scripts/validarLargos.js"></script>
+    <script type="text/javascript" src="/Scripts/funciones.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Panel ID="PanelDatosModificarId" runat="server" DefaultButton="InvisibleButtonDatosModificarId">
@@ -16,13 +17,13 @@
             <div class="grid_2 divlabel alpha">
                 <asp:Label ID="lblMail" Text="E-mail (usuario): " runat="server" AssociatedControlID="txtMail" /></div>
             <div class="grid_2">
-                <asp:TextBox ID="txtMail" runat="server" Enabled="false"></asp:TextBox></div>
+                <asp:TextBox ID="txtMail" runat="server" onKeyPress="return disableEnterKey(event)" Enabled="false"></asp:TextBox></div>
             <div class="clear">
             </div>
             <div class="grid_2 divlabel alpha">
                 <asp:Label ID="lblRazonSocial" Text="Razón Social: " runat="server" AssociatedControlID="txtRazonSocial" /></div>
             <div class="grid_2">
-                <asp:TextBox ID="txtRazonSocial" runat="server" ValidationGroup="valGrupoEdicion"
+                <asp:TextBox ID="txtRazonSocial" runat="server" onKeyPress="return disableEnterKey(event)" ValidationGroup="valGrupoEdicion"
                     MaxLength="100"></asp:TextBox></div>
             <div class="grid_3 omega">
                 <asp:RequiredFieldValidator ID="rqfRazonSocial" runat="server" ControlToValidate="txtRazonSocial"
@@ -36,7 +37,7 @@
             <div class="grid_2 divlabel alpha">
                 <asp:Label ID="lblCuit" Text="Cuit: " runat="server" AssociatedControlID="txtCuit" /></div>
             <div class="grid_2">
-                <asp:TextBox ID="txtCuit" runat="server" ValidationGroup="valGrupoEdicion" MaxLength="13"></asp:TextBox></div>
+                <asp:TextBox ID="txtCuit" runat="server" onKeyPress="return disableEnterKey(event)" ValidationGroup="valGrupoEdicion" MaxLength="13"></asp:TextBox></div>
             <div class="grid_3 omega">
                 <asp:RequiredFieldValidator ID="rqfCuit" runat="server" ControlToValidate="txtCuit"
                     ErrorMessage="Debe completar el cuit." Display="Dynamic" ValidationGroup="valGrupoEdicion"></asp:RequiredFieldValidator>
@@ -48,7 +49,7 @@
             <div class="grid_2 divlabel alpha">
                 <asp:Label ID="lblTelefono" Text="Teléfono: " runat="server" AssociatedControlID="txtTelefono" /></div>
             <div class="grid_2">
-                <asp:TextBox ID="txtTelefono" runat="server" ValidationGroup="valGrupoEdicion" MaxLength="20"></asp:TextBox>
+                <asp:TextBox ID="txtTelefono" runat="server" onKeyPress="return disableEnterKey(event)" ValidationGroup="valGrupoEdicion" MaxLength="20"></asp:TextBox>
                 <asp:CustomValidator ID="CustomTelefono" runat="server" ValidationGroup="valGrupoEdicion"
                     Display="Dynamic" ControlToValidate="txtTelefono" ErrorMessage="El teléfono no puede tener más de 20 caracteres"
                     ClientValidationFunction="validaLargo20"></asp:CustomValidator>
@@ -81,7 +82,7 @@
                     <div class="grid_2 alpha">
                         <asp:Label ID="CurrentPasswordLabel" runat="server" AssociatedControlID="CurrentPassword">Contraseña:</asp:Label></div>
                     <div class="grid_3 omega">
-                        <asp:TextBox ID="CurrentPassword" runat="server" TextMode="Password" ValidationGroup="ChangePassword1"
+                        <asp:TextBox ID="CurrentPassword" runat="server" onKeyPress="return disableEnterKey(event)" TextMode="Password" ValidationGroup="ChangePassword1"
                             MaxLength="20"></asp:TextBox></div>
                     <div class="clear">
                     </div>
@@ -94,7 +95,7 @@
                     <div class="grid_2 alpha">
                         <asp:Label ID="NewPasswordLabel" runat="server" AssociatedControlID="NewPassword">Nueva contraseña:</asp:Label></div>
                     <div class="grid_3 omega">
-                        <asp:TextBox ID="NewPassword" runat="server" ValidationGroup="ChangePassword1" TextMode="Password"
+                        <asp:TextBox ID="NewPassword" runat="server" onKeyPress="return disableEnterKey(event)" ValidationGroup="ChangePassword1" TextMode="Password"
                             MaxLength="20"></asp:TextBox></div>
                     <div class="clear">
                     </div>
@@ -107,7 +108,7 @@
                     <div class="grid_2 alpha">
                         <asp:Label ID="ConfirmNewPasswordLabel" runat="server" AssociatedControlID="ConfirmNewPassword">Confirmar la nueva contraseña:</asp:Label></div>
                     <div class="grid_3 omega">
-                        <asp:TextBox ID="ConfirmNewPassword" ValidationGroup="ChangePassword1" runat="server"
+                        <asp:TextBox ID="ConfirmNewPassword" onKeyPress="return disableEnterKey(event)" ValidationGroup="ChangePassword1" runat="server"
                             TextMode="Password" MaxLength="20"></asp:TextBox></div>
                     <div class="clear">
                     </div>

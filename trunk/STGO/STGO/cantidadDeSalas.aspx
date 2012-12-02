@@ -8,7 +8,7 @@
 <div class="grid_2"><asp:TextBox ID="txtRazonSocial" runat="server" Enabled="false"></asp:TextBox></div>
 <div class="clear"></div>
 <div class="grid_3 divlabel"><asp:Label ID="lblCantidadSalas" runat="server" AssociatedControlID="txtCantSalas">Cantidad máxima de salas: </asp:Label></div>
-<div class="grid_2"><asp:TextBox ID="txtCantSalas" runat="server"></asp:TextBox></div>
+<div class="grid_2"><asp:TextBox ID="txtCantSalas" runat="server" MaxLength="4"></asp:TextBox></div>
 
 <div class="grid_3"><asp:RequiredFieldValidator Display="Dynamic" ID="rfvCantSalas" runat="server" ErrorMessage="Este campo es obligatorio" ControlToValidate="txtCantSalas"></asp:RequiredFieldValidator></div>
     <asp:RegularExpressionValidator display="Dynamic" ID="regCantSalas" runat="server" ErrorMessage="Coloque sólo números" ControlToValidate="txtCantSalas" ValidationExpression="-?[0-9]+"></asp:RegularExpressionValidator>
