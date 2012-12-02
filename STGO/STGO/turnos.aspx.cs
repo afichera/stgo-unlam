@@ -154,7 +154,7 @@ namespace STGO
                 {
                     turnoService.eliminarTurno(long.Parse(liSalas.SelectedValue), id);
                 }
-                todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), DateTime.Now);
+                todosLosTurnos = turnoService.obtenerTurnos(long.Parse(liSalas.SelectedValue), Calendario.SelectedDate);
                 GrillaDia.DataSource = todosLosTurnos;
                 GrillaDia.DataBind();
             }

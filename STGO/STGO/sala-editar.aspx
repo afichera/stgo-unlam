@@ -31,7 +31,7 @@
 
 <div class="grid_2 divlabel">
 <asp:Label ID="lblFrecuencia" Text="Frecuencia (en mins.): " runat="server" AssociatedControlID="txtFrecuencia" /></div>
-<div class="grid_2"><asp:TextBox ID="txtFrecuencia" runat="server" ></asp:TextBox></div>
+<div class="grid_2"><asp:TextBox ID="txtFrecuencia" runat="server" MaxLength="3"></asp:TextBox></div>
 <div class="grid_3"><asp:RequiredFieldValidator Display="Dynamic" ID="rfvFrecuencia" runat="server" ErrorMessage="Este campo es obligatorio" ControlToValidate="txtFrecuencia"></asp:RequiredFieldValidator></div>
     <asp:RegularExpressionValidator display="Dynamic" ID="regFrecuencia" runat="server" ErrorMessage="Coloque sólo números" ControlToValidate="txtFrecuencia" ValidationExpression="-?[0-9]+"></asp:RegularExpressionValidator>
     <div class="clear"></div>

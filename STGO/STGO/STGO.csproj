@@ -85,6 +85,7 @@
     <Content Include="sala-alta.aspx" />
     <Content Include="sala-editar.aspx" />
     <Content Include="salas.aspx" />
+    <Content Include="Scripts\funciones.js" />
     <Content Include="Scripts\validarLargos.js" />
     <Content Include="Styles\960.css" />
     <Content Include="Styles\league.svg" />
